@@ -1,4 +1,4 @@
-package com.company.application.data;
+package com.company.application.core.data;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

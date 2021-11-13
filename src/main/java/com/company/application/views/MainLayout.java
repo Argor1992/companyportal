@@ -32,7 +32,6 @@ import com.vaadin.flow.router.PageTitle;
 import com.company.application.views.MainLayout;
 import com.company.application.views.dashboard.DashboardView;
 import com.company.application.views.masterdetail.MasterDetailView;
-import com.company.application.views.collaborativemasterdetail.CollaborativeMasterDetailView;
 import com.company.application.views.personform.PersonFormView;
 import com.company.application.views.addressform.AddressFormView;
 import com.company.application.views.creditcardform.CreditCardFormView;
@@ -129,8 +128,6 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo("Dashboard", "la la-chart-area", DashboardView.class), //
 
                 new MenuItemInfo("Master-Detail", "la la-columns", MasterDetailView.class), //
-
-                new MenuItemInfo("Collaborative Master-Detail", "la la-columns", CollaborativeMasterDetailView.class), //
 
                 new MenuItemInfo("Person Form", "la la-user", PersonFormView.class), //
 

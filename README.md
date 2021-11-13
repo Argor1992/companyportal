@@ -1,3 +1,9 @@
+# Database
+docker run --name some-mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=test -d mysql
+docker exec -it some-mysql mysql -uroot -p
+create database company;
+
+
 # Company Portal
 
 This project can be used as a starting point to create your own Vaadin application with Spring Boot.
