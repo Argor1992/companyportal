@@ -2,8 +2,12 @@ package com.company.application.views.masterdetail;
 
 import java.util.Optional;
 
+import com.company.application.data.employee.entity.EmployeeEntity;
 import com.company.application.data.employee.service.EmployeeService;
 
+import com.company.application.domain.employeelist.data.EmployeeOverview;
+import com.company.application.domain.employeelist.usecase.EmployeeListUseCase;
+import com.company.application.domain.updateemployee.usecase.UpdateEmployeeUseCase;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.UI;
@@ -42,7 +46,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
     private final String SAMPLEPERSON_ID = "samplePersonID";
     private final String SAMPLEPERSON_EDIT_ROUTE_TEMPLATE = "master-detail/%d/edit";
 
-    private Grid<SamplePerson> grid = new Grid<>(SamplePerson.class, false);
+    private Grid<EmployeeOverview> grid = new Grid<>(EmployeeOverview.class, false);
 
     private TextField firstName;
     private TextField lastName;
@@ -55,14 +59,15 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
 
-    private BeanValidationBinder<SamplePerson> binder;
+    private BeanValidationBinder<EmployeeOverview> binder;
 
-    private SamplePerson samplePerson;
+    private EmployeeOverview samplePerson;
 
-    private EmployeeService employeeService;
+    private EmployeeListUseCase employeeListUseCase;
+    private UpdateEmployeeUseCase updateEmployeeUseCase;
 
-    public MasterDetailView(@Autowired EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public MasterDetailView(EmployeeListUseCase employeeListUseCase, UpdateEmployeeUseCase updateEmployeeUseCase) {
+        this.employeeListUseCase = employeeListUseCase;
         addClassNames("master-detail-view", "flex", "flex-col", "h-full");
 
         // Create UI
@@ -81,14 +86,8 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
         grid.addColumn("phone").setAutoWidth(true);
         grid.addColumn("dateOfBirth").setAutoWidth(true);
         grid.addColumn("occupation").setAutoWidth(true);
-        TemplateRenderer<SamplePerson> importantRenderer = TemplateRenderer.<SamplePerson>of(
-                "<vaadin-icon hidden='[[!item.important]]' icon='vaadin:check' style='width: var(--lumo-icon-size-s); height: var(--lumo-icon-size-s); color: var(--lumo-primary-text-color);'></vaadin-icon><vaadin-icon hidden='[[item.important]]' icon='vaadin:minus' style='width: var(--lumo-icon-size-s); height: var(--lumo-icon-size-s); color: var(--lumo-disabled-text-color);'></vaadin-icon>")
-                .withProperty("important", SamplePerson::isImportant);
-        grid.addColumn(importantRenderer).setHeader("Important").setAutoWidth(true);
 
-        grid.setItems(query -> employeeService.list(
-                PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
-                .stream());
+        grid.setItems(employeeListUseCase.getEmployeeList());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
         grid.setHeightFull();
 
@@ -103,7 +102,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
         });
 
         // Configure Form
-        binder = new BeanValidationBinder<>(SamplePerson.class);
+        binder = new BeanValidationBinder<>(EmployeeOverview.class);
 
         // Bind fields. This where you'd define e.g. validation rules
 
@@ -117,11 +116,11 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
         save.addClickListener(e -> {
             try {
                 if (this.samplePerson == null) {
-                    this.samplePerson = new SamplePerson();
+                    this.samplePerson = new EmployeeOverview();
                 }
                 binder.writeBean(this.samplePerson);
 
-                employeeService.update(this.samplePerson);
+                updateEmployeeUseCase.updateEmployee(this.samplePerson);
                 clearForm();
                 refreshGrid();
                 Notification.show("SamplePerson details stored.");
@@ -137,7 +136,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
     public void beforeEnter(BeforeEnterEvent event) {
         Optional<Integer> samplePersonId = event.getRouteParameters().getInteger(SAMPLEPERSON_ID);
         if (samplePersonId.isPresent()) {
-            Optional<SamplePerson> samplePersonFromBackend = employeeService.get(samplePersonId.get());
+            Optional<EmployeeOverview> samplePersonFromBackend = employeeListUseCase.getEmployee(samplePersonId.get());
             if (samplePersonFromBackend.isPresent()) {
                 populateForm(samplePersonFromBackend.get());
             } else {
@@ -209,7 +208,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
         populateForm(null);
     }
 
-    private void populateForm(SamplePerson value) {
+    private void populateForm(EmployeeOverview value) {
         this.samplePerson = value;
         binder.readBean(this.samplePerson);
 

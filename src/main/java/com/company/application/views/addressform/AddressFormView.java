@@ -45,7 +45,8 @@ public class AddressFormView extends Div {
 
         cancel.addClickListener(e -> clearForm());
         save.addClickListener(e -> {
-            addressService.update(binder.getBean());
+//            addressService.update(binder.getBean());
+            System.out.println("update");
             Notification.show(binder.getBean().getClass().getSimpleName() + " stored.");
             clearForm();
         });

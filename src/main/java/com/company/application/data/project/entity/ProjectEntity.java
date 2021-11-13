@@ -3,14 +3,16 @@ package com.company.application.data.project.entity;
 import com.company.application.core.data.AbstractEntity;
 import com.company.application.data.client.entity.ClientEntity;
 import com.company.application.data.employee.entity.EmployeeEntity;
-import com.company.application.data.employee.entity.Role;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ProjectEntity extends AbstractEntity {
+@Entity
+@Table(name = "Project")
+public class ProjectEntity extends AbstractEntity implements Serializable {
     private double amount;
     private LocalDate date;
 

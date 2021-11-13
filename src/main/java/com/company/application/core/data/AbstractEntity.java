@@ -6,8 +6,10 @@ import javax.persistence.MappedSuperclass;
 
 import com.vaadin.fusion.Nonnull;
 
+import java.io.Serializable;
+
 @MappedSuperclass
-public abstract class AbstractEntity {
+public abstract class AbstractEntity implements Serializable {
 
     @Id
     @GeneratedValue

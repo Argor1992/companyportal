@@ -1,6 +1,8 @@
 package com.company.application.views.personform;
 
 import com.company.application.data.employee.service.EmployeeService;
+import com.company.application.domain.employeelist.data.EmployeeOverview;
+import com.company.application.domain.updateemployee.usecase.UpdateEmployeeUseCase;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -36,9 +38,9 @@ public class PersonFormView extends Div {
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
 
-    private Binder<SamplePerson> binder = new Binder(SamplePerson.class);
+    private Binder<EmployeeOverview> binder = new Binder(EmployeeOverview.class);
 
-    public PersonFormView(EmployeeService personService) {
+    public PersonFormView(UpdateEmployeeUseCase updateEmployeeUseCase) {
         addClassName("person-form-view");
 
         add(createTitle());
@@ -50,14 +52,14 @@ public class PersonFormView extends Div {
 
         cancel.addClickListener(e -> clearForm());
         save.addClickListener(e -> {
-            personService.update(binder.getBean());
+            updateEmployeeUseCase.updateEmployee(binder.getBean());
             Notification.show(binder.getBean().getClass().getSimpleName() + " details stored.");
             clearForm();
         });
     }
 
     private void clearForm() {
-        binder.setBean(new SamplePerson());
+        binder.setBean(new EmployeeOverview());
     }
 
     private Component createTitle() {

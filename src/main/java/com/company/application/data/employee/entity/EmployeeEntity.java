@@ -7,6 +7,7 @@ import com.company.application.data.relations.entity.EmployeeClientRelationEntit
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -51,6 +52,18 @@ public class EmployeeEntity extends AbstractEntity {
     private Set<ProjectEntity> projects = new HashSet<>();
 
     public EmployeeEntity() {
+    }
+
+    public EmployeeEntity(String personnelNumber, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Occupation occupation, Role role, String password) {
+        this.personnelNumber = personnelNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
+        this.occupation = occupation;
+        this.role = role;
+        this.password = password;
     }
 
     public EmployeeEntity(String personnelNumber, String firstName, String lastName, String email, String phone, AddressEntity address, LocalDate dateOfBirth, Occupation occupation, Role role, String profilePicture, String password, Set<EmployeeClientRelationEntity> clients, Set<ProjectEntity> projects) {
