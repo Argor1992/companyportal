@@ -1,17 +1,30 @@
-package com.company.application.data.entity;
+package com.company.application.data.address.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.company.application.core.data.AbstractEntity;
 
 @Entity
-public class SampleAddress extends AbstractEntity {
+@Table(name = "Address")
+public class AddressEntity extends AbstractEntity {
 
     private String street;
     private String postalCode;
     private String city;
     private String state;
     private String country;
+
+    public AddressEntity() {
+    }
+
+    public AddressEntity(String street, String postalCode, String city, String state, String country) {
+        this.street = street;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+    }
 
     public String getStreet() {
         return street;

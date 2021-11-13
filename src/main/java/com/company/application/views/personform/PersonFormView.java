@@ -1,7 +1,6 @@
 package com.company.application.views.personform;
 
-import com.company.application.data.entity.SamplePerson;
-import com.company.application.data.service.SamplePersonService;
+import com.company.application.data.employee.service.EmployeeService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -19,8 +18,6 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.company.application.views.MainLayout;
-import com.vaadin.flow.data.renderer.TemplateRenderer;
-import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.icon.Icon;
 
@@ -41,7 +38,7 @@ public class PersonFormView extends Div {
 
     private Binder<SamplePerson> binder = new Binder(SamplePerson.class);
 
-    public PersonFormView(SamplePersonService personService) {
+    public PersonFormView(EmployeeService personService) {
         addClassName("person-form-view");
 
         add(createTitle());

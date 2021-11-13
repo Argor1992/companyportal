@@ -2,8 +2,7 @@ package com.company.application.views.masterdetail;
 
 import java.util.Optional;
 
-import com.company.application.data.entity.SamplePerson;
-import com.company.application.data.service.SamplePersonService;
+import com.company.application.data.employee.service.EmployeeService;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasStyle;
@@ -60,10 +59,10 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
 
     private SamplePerson samplePerson;
 
-    private SamplePersonService samplePersonService;
+    private EmployeeService employeeService;
 
-    public MasterDetailView(@Autowired SamplePersonService samplePersonService) {
-        this.samplePersonService = samplePersonService;
+    public MasterDetailView(@Autowired EmployeeService employeeService) {
+        this.employeeService = employeeService;
         addClassNames("master-detail-view", "flex", "flex-col", "h-full");
 
         // Create UI
@@ -87,7 +86,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
                 .withProperty("important", SamplePerson::isImportant);
         grid.addColumn(importantRenderer).setHeader("Important").setAutoWidth(true);
 
-        grid.setItems(query -> samplePersonService.list(
+        grid.setItems(query -> employeeService.list(
                 PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
                 .stream());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
@@ -122,7 +121,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
                 }
                 binder.writeBean(this.samplePerson);
 
-                samplePersonService.update(this.samplePerson);
+                employeeService.update(this.samplePerson);
                 clearForm();
                 refreshGrid();
                 Notification.show("SamplePerson details stored.");
@@ -138,7 +137,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
     public void beforeEnter(BeforeEnterEvent event) {
         Optional<Integer> samplePersonId = event.getRouteParameters().getInteger(SAMPLEPERSON_ID);
         if (samplePersonId.isPresent()) {
-            Optional<SamplePerson> samplePersonFromBackend = samplePersonService.get(samplePersonId.get());
+            Optional<SamplePerson> samplePersonFromBackend = employeeService.get(samplePersonId.get());
             if (samplePersonFromBackend.isPresent()) {
                 populateForm(samplePersonFromBackend.get());
             } else {

@@ -28,18 +28,18 @@ export class CheckoutFormView extends LitElement {
             <p class="m-0 text-s text-secondary">Checkout 1/3</p>
             <h3 class="mb-m mt-s text-2xl">Personal details</h3>
             <vaadin-text-field class="mb-s" label="Name" pattern="[\\p{L} \\-]+" required></vaadin-text-field>
-            <vaadin-email-field class="mb-s" label="Email address" required></vaadin-email-field>
+            <vaadin-email-field class="mb-s" label="Email addressEntity" required></vaadin-email-field>
             <vaadin-text-field class="mb-s" label="Phone number" pattern="[\\d \\-\\+]+" required></vaadin-text-field>
             <vaadin-checkbox class="mt-s">Remember personal details for next time</vaadin-checkbox>
           </section>
           <section class="flex flex-col mb-xl mt-m">
             <p class="m-0 text-s text-secondary">Checkout 2/3</p>
-            <h3 class="mb-m mt-s text-2xl">Shipping address</h3>
+            <h3 class="mb-m mt-s text-2xl">Shipping addressEntity</h3>
             <vaadin-combo-box class="mb-s" id="countrySelect" label="Country" required></vaadin-combo-box>
             <vaadin-text-area
               class="mb-s"
-              id="address"
-              label="Street address"
+              id="addressEntity"
+              label="Street addressEntity"
               maxlength="200"
               required
             ></vaadin-text-area>
@@ -60,8 +60,8 @@ export class CheckoutFormView extends LitElement {
               label="State"
               required
             ></vaadin-combo-box>
-            <vaadin-checkbox class="mt-s">Billing address is the same as shipping address</vaadin-checkbox>
-            <vaadin-checkbox>Remember address for next time</vaadin-checkbox>
+            <vaadin-checkbox class="mt-s">Billing addressEntity is the same as shipping addressEntity</vaadin-checkbox>
+            <vaadin-checkbox>Remember addressEntity for next time</vaadin-checkbox>
           </section>
           <section class="flex flex-col mb-xl mt-m">
             <p class="m-0 text-s text-secondary">Checkout 3/3</p>
