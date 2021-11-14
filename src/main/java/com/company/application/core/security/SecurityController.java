@@ -1,6 +1,8 @@
 package com.company.application.core.security;
 
-import com.company.application.data.employee.controller.EmployeeController;
+import com.company.application.data.employee.entity.Occupation;
+import com.company.application.data.employee.entity.Role;
+import com.company.application.data.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,7 +18,7 @@ public class SecurityController {
     @Autowired
     private SecurityService securityService;
     @Autowired
-    private EmployeeController userManagementController;
+    private EmployeeService employeeService;
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -25,6 +27,14 @@ public class SecurityController {
         return authentication != null
                 && !(authentication instanceof AnonymousAuthenticationToken)
                 && authentication.isAuthenticated();
+    }
+
+    public Optional<Role> getCurrentUserRole() {
+        return employeeService.getEmployeeRole(getPrincipalName());
+    }
+
+    public Optional<Occupation> getCurrentUserOccupation() {
+        return employeeService.getEmployeeOccupation(getPrincipalName());
     }
 
     public String getPrincipalName() {

@@ -5,6 +5,7 @@ import com.company.application.data.employee.dtos.EmployeeOverviewDto;
 import com.company.application.data.employee.dtos.EmployeeProfileDto;
 import com.company.application.data.employee.entity.EmployeeEntity;
 import com.company.application.data.employee.entity.Occupation;
+import com.company.application.data.employee.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,6 +23,16 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Intege
     Optional<EmployeeOverviewDto> findEmployeeOverviewById(@Param("id") Integer id);
 
     Optional<EmployeeProfileDto> findEmployeeProfileByEmail(@Param("email") String email);
+
+    @Query(
+            "select e.role from EmployeeEntity e where lower(e.email)=lower(:email)"
+    )
+    Optional<Role> findEmployeeRoleByEmail(@Param("email") String email);
+
+    @Query(
+            "select e.occupation from EmployeeEntity e where lower(e.email)=lower(:email)"
+    )
+    Optional<Occupation> findEmployeeOccupationByEmail(@Param("email") String email);
 
     @Modifying
     @Query(

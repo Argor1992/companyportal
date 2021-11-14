@@ -1,5 +1,7 @@
 package com.company.application.data.employee.service;
 
+import com.company.application.data.employee.entity.Occupation;
+import com.company.application.data.employee.entity.Role;
 import com.company.application.data.employee.repository.EmployeeRepository;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
 import com.company.application.domain.employeeprofile.data.Address;
@@ -80,5 +82,17 @@ public class EmployeeService {
                 employeeProfileDto.getRole(),
                 employeeProfileDto.getProfilePicture()
         ));
+    }
+
+    public Optional<Role> getEmployeeRole(String email) {
+        if (email == null || email.isEmpty())
+            return Optional.empty();
+        return employeeRepository.findEmployeeRoleByEmail(email);
+    }
+
+    public Optional<Occupation> getEmployeeOccupation(String email) {
+        if (email == null || email.isEmpty())
+            return Optional.empty();
+        return employeeRepository.findEmployeeOccupationByEmail(email);
     }
 }
