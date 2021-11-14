@@ -37,4 +37,10 @@ public class EmployeeController {
             return Optional.empty();
         return employeeService.getEmployeeProfile(email);
     }
+
+    public Optional<EmployeeProfile> getEmployeeProfile(Integer id) {
+        if (id  < 1)
+            return Optional.empty();
+        return employeeService.getEmployeeProfile(id);
+    }
 }

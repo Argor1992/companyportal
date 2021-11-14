@@ -29,10 +29,6 @@ public class EmployeeListUseCase {
     public boolean showUpdateMenu() {
         Optional<Role> role = securityController.getCurrentUserRole();
         Optional<Occupation> occupation = securityController.getCurrentUserOccupation();
-
-        System.err.println(role.get().getUiText());
-        System.err.println(occupation.get().getUiText());
-
         return role.isPresent() && occupation.isPresent() && (role.get() == Role.ADMIN || occupation.get() == Occupation.HUMAN_RESOURCES);
     }
 }

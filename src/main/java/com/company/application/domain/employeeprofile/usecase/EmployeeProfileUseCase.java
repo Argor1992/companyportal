@@ -21,4 +21,8 @@ public class EmployeeProfileUseCase {
         String name = securityController.getPrincipalName();
         return employeeController.getEmployeeProfile(name);
     }
+
+    public Optional<EmployeeProfile> getUser(Integer id) {
+        return employeeController.getEmployeeProfile(id);
+    }
 }

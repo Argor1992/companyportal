@@ -7,17 +7,15 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.*;
 import com.company.application.views.mainlayout.MainLayout;
-import com.vaadin.flow.router.RouteAlias;
 
 import java.util.Optional;
 
 @PageTitle("Profil")
 @Route(value = "profile", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
-public class ProfileView extends Main {
+public class ProfileView extends Main implements HasUrlParameter<Integer> {
     private final EmployeeProfileUseCase employeeProfileUseCase;
     private final GermanDateService dateService;
     private EmployeeProfile employee;
@@ -34,16 +32,25 @@ public class ProfileView extends Main {
         pageContent.setPadding(true);
         pageContent.setSpacing(false);
 
-        Optional<EmployeeProfile> employeeOptional = employeeProfileUseCase.getCurrentUser();
+        mainDiv.add(pageContent);
+        add(mainDiv);
+    }
+
+    @Override
+    public void setParameter(BeforeEvent beforeEvent, @OptionalParameter Integer integer) {
+        pageContent.removeAll();
+        Optional<EmployeeProfile> employeeOptional;
+        if (integer == null) {
+            employeeOptional = employeeProfileUseCase.getCurrentUser();
+        } else {
+            employeeOptional = employeeProfileUseCase.getUser(integer);
+        }
         if (employeeOptional.isPresent()) {
             employee = employeeOptional.get();
             pageContent.add(getProfileHeader(), getMainContent());
         } else {
             pageContent.add(new Paragraph("Employee does not exits"));
         }
-
-        mainDiv.add(pageContent);
-        add(mainDiv);
     }
 
     public Component getProfileHeader() {

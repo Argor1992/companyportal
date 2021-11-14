@@ -84,6 +84,28 @@ public class EmployeeService {
         ));
     }
 
+    public Optional<EmployeeProfile> getEmployeeProfile(Integer id) {
+        return employeeRepository.findEmployeeProfileById(id).map(employeeProfileDto -> new EmployeeProfile(
+                employeeProfileDto.getId(),
+                employeeProfileDto.getPersonnelNumber(),
+                employeeProfileDto.getFirstName(),
+                employeeProfileDto.getLastName(),
+                employeeProfileDto.getEmail(),
+                employeeProfileDto.getPhone(),
+                employeeProfileDto.getDateOfBirth(),
+                employeeProfileDto.getOccupation(),
+                new Address(
+                        employeeProfileDto.getAddress().getStreet(),
+                        employeeProfileDto.getAddress().getPostalCode(),
+                        employeeProfileDto.getAddress().getCity(),
+                        employeeProfileDto.getAddress().getState(),
+                        employeeProfileDto.getAddress().getCountry()
+                ),
+                employeeProfileDto.getRole(),
+                employeeProfileDto.getProfilePicture()
+        ));
+    }
+
     public Optional<Role> getEmployeeRole(String email) {
         if (email == null || email.isEmpty())
             return Optional.empty();
