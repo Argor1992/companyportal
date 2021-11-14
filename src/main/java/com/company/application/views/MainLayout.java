@@ -2,15 +2,11 @@ package com.company.application.views;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.ComponentUtil;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
@@ -18,20 +14,11 @@ import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.component.html.Footer;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Header;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.MainLayout;
-import com.company.application.views.dashboard.DashboardView;
-import com.company.application.views.masterdetail.MasterDetailView;
+import com.company.application.views.dashboard.ProfileView;
+import com.company.application.views.employeelist.EmployeeListView;
 import com.company.application.views.personform.PersonFormView;
 import com.company.application.views.addressform.AddressFormView;
 import com.company.application.views.creditcardform.CreditCardFormView;
@@ -39,7 +26,6 @@ import com.company.application.views.checkoutform.CheckoutFormView;
 import com.company.application.views.editor.EditorView;
 import com.company.application.views.list.ListView;
 import com.company.application.views.about.AboutView;
-import com.vaadin.flow.component.avatar.Avatar;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -125,9 +111,9 @@ public class MainLayout extends AppLayout {
 
     private List<RouterLink> createLinks() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
-                new MenuItemInfo("Dashboard", "la la-chart-area", DashboardView.class), //
+                new MenuItemInfo("Profil", "la la-user-circle", ProfileView.class), //
 
-                new MenuItemInfo("Master-Detail", "la la-columns", MasterDetailView.class), //
+                new MenuItemInfo("Mitarbeiterübersicht", "la la-th-list", EmployeeListView.class), //
 
                 new MenuItemInfo("Person Form", "la la-user", PersonFormView.class), //
 

@@ -5,6 +5,7 @@ import com.vaadin.flow.server.PWA;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.vaadin.artur.helpers.LaunchUtil;
 import com.vaadin.flow.theme.Theme;
@@ -18,7 +19,7 @@ import com.vaadin.flow.component.dependency.NpmPackage;
  * and some desktop browsers.
  *
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
 @Theme(value = "companyportal")
 @PWA(name = "Company Portal", shortName = "Company Portal", offlineResources = {"images/logo.png"})
 @Push

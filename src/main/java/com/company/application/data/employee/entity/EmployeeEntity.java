@@ -66,6 +66,22 @@ public class EmployeeEntity extends AbstractEntity {
         this.password = password;
     }
 
+    public EmployeeEntity(String personnelNumber, String firstName, String lastName, String email, String phone, AddressEntity address, LocalDate dateOfBirth, Occupation occupation, Role role, String profilePicture, String password) {
+        this.personnelNumber = personnelNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.dateOfBirth = dateOfBirth;
+        this.occupation = occupation;
+        this.role = role;
+        this.profilePicture = profilePicture;
+        this.password = password;
+        this.clients = clients;
+        this.projects = projects;
+    }
+
     public EmployeeEntity(String personnelNumber, String firstName, String lastName, String email, String phone, AddressEntity address, LocalDate dateOfBirth, Occupation occupation, Role role, String profilePicture, String password, Set<EmployeeClientRelationEntity> clients, Set<ProjectEntity> projects) {
         this.personnelNumber = personnelNumber;
         this.firstName = firstName;

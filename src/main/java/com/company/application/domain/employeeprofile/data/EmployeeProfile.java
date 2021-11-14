@@ -1,11 +1,11 @@
-package com.company.application.domain.employeelist.data;
+package com.company.application.domain.employeeprofile.data;
 
 import com.company.application.core.domain.IEmployee;
 import com.company.application.data.employee.entity.Occupation;
 
 import java.time.LocalDate;
 
-public class EmployeeOverview implements IEmployee {
+public class EmployeeProfile implements IEmployee {
     private final int id;
     private final String personnelNumber;
     private String firstName;
@@ -15,12 +15,12 @@ public class EmployeeOverview implements IEmployee {
     private LocalDate dateOfBirth;
     private Occupation occupation;
 
-    public EmployeeOverview() {
+    public EmployeeProfile() {
         id = 0;
         personnelNumber = "";
     }
 
-    public EmployeeOverview(int id, String personnelNumber, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Occupation occupation) {
+    public EmployeeProfile(int id, String personnelNumber, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Occupation occupation) {
         this.id = id;
         this.personnelNumber = personnelNumber;
         this.firstName = firstName;

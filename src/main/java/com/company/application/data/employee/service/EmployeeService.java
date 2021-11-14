@@ -1,6 +1,7 @@
 package com.company.application.data.employee.service;
 
 import com.company.application.core.security.SecurityController;
+import com.company.application.data.address.entity.AddressEntity;
 import com.company.application.data.employee.entity.EmployeeEntity;
 import com.company.application.data.employee.entity.Occupation;
 import com.company.application.data.employee.entity.Role;
@@ -34,96 +35,452 @@ public class EmployeeService {
                     Stream.of(
                             new EmployeeEntity(
                                     "123456", "Eula", "Lane",
-                                    "eula.lane@company.de", "100", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "eula.lane@company.de", "100",
+                                    new AddressEntity(
+                                            "Musterstraße 1",
+                                            "60306",
+                                            "Frankfurt",
+                                            "Hessen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.HUMAN_RESOURCES, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/1.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123457", "Barry", "Rodriquez",
-                                    "barry.rodriquez@company.de", "101", LocalDate.of(2011, 4, 9),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "barry.rodriquez@company.de", "101",
+                                    new AddressEntity(
+                                            "Schoenebergerstrasse 135Musterstraße 1",
+                                            "60306",
+                                            "Schlema",
+                                            "Sachsen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(2011, 4, 9),
+                                    Occupation.HUMAN_RESOURCES, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/1.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123458", "Eugenia", "Selvi",
-                                    "eugenia.selvi@company.de", "102", LocalDate.of(1971, 3, 25),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "eugenia.selvi@company.de", "102",
+                                    new AddressEntity(
+                                            "Pappelallee 92",
+                                            "36466",
+                                            "Dermbach",
+                                            "Thüringen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1971, 3, 25),
+                                    Occupation.HUMAN_RESOURCES, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/2.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123459", "Alejandro", "Miles",
-                                    "alejandro.miles@company.de", "103", LocalDate.of(2011, 5, 12),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "alejandro.miles@company.de", "103",
+                                    new AddressEntity(
+                                            "Paderborner Strasse 87",
+                                            "86480",
+                                            "Aletshausen",
+                                            "Bayern",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(2011, 5, 12),
+                                    Occupation.HUMAN_RESOURCES, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/2.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123460", "Cora", "Tesi",
-                                    "cora.tesi@company.de", "104", LocalDate.of(1969, 7, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "cora.tesi@company.de", "104",
+                                    new AddressEntity(
+                                            "Sonnenallee 55",
+                                            "86034",
+                                            "Augsburg",
+                                            "Bayern",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1969, 7, 8),
+                                    Occupation.HUMAN_RESOURCES, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/3.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123461", "Marguerite", "Ishii",
-                                    "marguerite.ishii@company.de", "105", LocalDate.of(1935, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "marguerite.ishii@company.de", "105",
+                                    new AddressEntity(
+                                            "Fugger Strasse 24",
+                                            "14407",
+                                            "Potsdam",
+                                            "Brandenburg",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1935, 4, 8),
+                                    Occupation.HUMAN_RESOURCES, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/4.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123462", "Mildred", "Jacobs",
-                                    "mildred.jacobs@company.de", "106", LocalDate.of(1964, 8, 11),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "mildred.jacobs@company.de", "106",
+                                    new AddressEntity(
+                                            "Kantstraße 79",
+                                            "08203",
+                                            "Auerbach",
+                                            "Sachsen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1964, 8, 11),
+                                    Occupation.HUMAN_RESOURCES, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/5.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123463", "Gene", "Goodman",
-                                    "gene.goodman@company.de", "107", LocalDate.of(2000, 9, 19),
-                                    Occupation.DEVELOPER, Role.USER, securityController.getHashedPassword("test")),
+                                    "gene.goodman@company.de", "107",
+                                    new AddressEntity(
+                                            "Rhinstrasse 110",
+                                            "80719",
+                                            "München",
+                                            "Bayern",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(2000, 9, 19),
+                                    Occupation.DEVELOPER, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/3.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123464", "Lettie", "Bennett",
-                                    "lettie.bennett@company.de", "108", LocalDate.of(1956, 4, 30),
-                                    Occupation.DEVELOPER, Role.USER, securityController.getHashedPassword("test")),
+                                    "lettie.bennett@company.de", "108",
+                                    new AddressEntity(
+                                            "Eschenweg 69",
+                                            "07717",
+                                            "Jena",
+                                            "Thüringen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1956, 4, 30),
+                                    Occupation.DEVELOPER, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/6.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123465", "Mabel", "Leach",
-                                    "mabel.leach@company.de", "109", LocalDate.of(1990, 1, 8),
-                                    Occupation.DEVELOPER, Role.USER, securityController.getHashedPassword("test")),
+                                    "mabel.leach@company.de", "109",
+                                    new AddressEntity(
+                                            "Kantstraße 85",
+                                            "09204",
+                                            "Limbach-Oberfrohna",
+                                            "Sachsen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1990, 1, 8),
+                                    Occupation.DEVELOPER, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/7.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123466", "Jordan", "Miccinesi",
-                                    "jordan.miccinesi@company.de", "110", LocalDate.of(1979, 12, 12),
-                                    Occupation.DEVELOPER, Role.USER, securityController.getHashedPassword("test")),
+                                    "jordan.miccinesi@company.de", "110",
+                                    new AddressEntity(
+                                            "Augsburger Straße 110",
+                                            "58513",
+                                            "Lüdenscheid",
+                                            "Nordrhein-Westfalen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1979, 12, 12),
+                                    Occupation.DEVELOPER, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/4.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123467", "Marie", "Parkes",
-                                    "marie.parkes@company.de", "111", LocalDate.of(1998, 3, 10),
-                                    Occupation.DEVELOPER, Role.USER, securityController.getHashedPassword("test")),
+                                    "123467", "Mark", "Parkes",
+                                    "marie.parkes@company.de", "111",
+                                    new AddressEntity(
+                                            "Flughafenstrasse 22",
+                                            "92714",
+                                            "Pleystein",
+                                            "Bayern",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1998, 3, 10),
+                                    Occupation.DEVELOPER, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/5.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123468", "Rose", "Gray",
-                                    "rose.gray@company.de", "112", LocalDate.of(1980, 4, 8),
-                                    Occupation.SERVICE_DESK, Role.USER, securityController.getHashedPassword("test")),
+                                    "rose.gray@company.de", "112",
+                                    new AddressEntity(
+                                            "Chausseestr. 28",
+                                            "25408",
+                                            "Pinneberg",
+                                            "Schleswig-Holstein",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1980, 4, 8),
+                                    Occupation.SERVICE_DESK, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/8.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123469", "Garrett", "Stokes",
-                                    "garrett.stokes@company.de", "113", LocalDate.of(1952, 4, 8),
-                                    Occupation.DEVELOPER, Role.USER, securityController.getHashedPassword("test")),
+                                    "garrett.stokes@company.de", "113",
+                                    new AddressEntity(
+                                            "Rudower Strasse 73",
+                                            "54597",
+                                            "Rommersheim",
+                                            "Rheinland-Pfalz",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.DEVELOPER, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/6.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123470", "Barbara", "Matthieu",
-                                    "barbara.matthieu@company.de", "114", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "123470", "Bob", "Matthieu",
+                                    "barbara.matthieu@company.de", "114",
+                                    new AddressEntity(
+                                            "Brandenburgische Str 83",
+                                            "55568",
+                                            "Abtweiler",
+                                            "Rheinland-Pfalz",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.MANAGEMENT, Role.ADMIN,
+                                    "https://randomuser.me/api/portraits/men/7.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123471", "Jean", "Rhodes",
-                                    "jean.rhodes@company.de", "115", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "jean.rhodes@company.de", "115",
+                                    new AddressEntity(
+                                            "Ellmenreichstrasse 124",
+                                            "91364",
+                                            "Unterleinleiter",
+                                            "Bayern",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.MANAGEMENT, Role.ADMIN,
+                                    "https://randomuser.me/api/portraits/men/8.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123472", "Jack", "Romoli",
-                                    "jack.romoli@company.de", "116", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "jack.romoli@company.de", "116",
+                                    new AddressEntity(
+                                            "Charlottenstrasse 104",
+                                            "01261",
+                                            "Dresden",
+                                            "Sachsen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.MANAGEMENT, Role.ADMIN,
+                                    "https://randomuser.me/api/portraits/men/9.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123473", "Pearl", "Holden",
-                                    "pearl.holden@company.de", "117", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "pearl.holden@company.de", "117",
+                                    new AddressEntity(
+                                            "Hochstrasse 81",
+                                            "25818",
+                                            "Bredstedt",
+                                            "Schleswig-Holstein",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.SALES, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/9.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123474", "Belle", "Montero",
-                                    "belle.montero@company.de", "118", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "belle.montero@company.de", "118",
+                                    new AddressEntity(
+                                            "Augsburger Strasse 92",
+                                            "56767",
+                                            "Kolverath",
+                                            "Rheinland-Pfalz",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.SALES, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/10.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123475", "Olive", "Molina",
-                                    "olive.molina@company.de", "119", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "olive.molina@company.de", "119",
+                                    new AddressEntity(
+                                            "Rohrdamm 72",
+                                            "31093",
+                                            "Hoyershausen",
+                                            "Niedersachsen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.SALES, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/11.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123476", "Minerva", "Todd",
-                                    "minerva.todd@company.de", "120", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "minerva.todd@company.de", "120",
+                                    new AddressEntity(
+                                            "Joachimstaler Str. 36",
+                                            "55496",
+                                            "Argenthal",
+                                            "Rheinland-Pfalz",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.SALES, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/12.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123477", "Bobby", "Pearson",
-                                    "bobby.pearson@company.de", "121", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test")),
+                                    "bobby.pearson@company.de", "121",
+                                    new AddressEntity(
+                                            "Am Borsigturm 85",
+                                            "41541",
+                                            "Stürzelberg",
+                                            "Nordrhein-Westfalen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.SALES, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/10.jpg",
+                                    securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123478", "Larry", "Ciappi",
-                                    "larry.ciappi@company.de", "122", LocalDate.of(1952, 4, 8),
-                                    Occupation.HUMAN_RESOURCES, Role.USER, securityController.getHashedPassword("test"))
+                                    "larry.ciappi@company.de", "122",
+                                    new AddressEntity(
+                                            "Langenhorner Chaussee 66",
+                                            "83313",
+                                            "Grub",
+                                            "Bayern",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1952, 4, 8),
+                                    Occupation.SALES, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/11.jpg",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
+                                    "123479", "Ronnie", "Salucci",
+                                    "ronnie.salucci@company.de", "123",
+                                    new AddressEntity(
+                                            "Scharnweberstrasse 58",
+                                            "65817",
+                                            "Eppstein",
+                                            "Hessen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1979, 4, 3),
+                                    Occupation.SERVICE_DESK, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/12.jpg",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
+                                    "123480", "Walter", "Grossi",
+                                    "walter.grossi@company.de", "124",
+                                    new AddressEntity(
+                                            "Genterstrasse 85",
+                                            "24032",
+                                            "Kiel",
+                                            "Schleswig-Holstein",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1979, 5, 21),
+                                    Occupation.SERVICE_DESK, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/13.jpg",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
+                                    "123481", "Frances", "Koopmans",
+                                    "frances.koopmans@company.de", "125",
+                                    new AddressEntity(
+                                            "Rohrdamm 40",
+                                            "29693",
+                                            "Hademstorf",
+                                            "Niedersachsen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1979, 7, 13),
+                                    Occupation.SERVICE_DESK, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/14.jpg",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
+                                    "123482", "Frances", "Fujimoto",
+                                    "frances.fujimoto@company.de", "126",
+                                    new AddressEntity(
+                                            "Alt Reinickendorf 71",
+                                            "86672",
+                                            "Thierhaupten",
+                                            "Bayern",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1979, 12, 16),
+                                    Occupation.SERVICE_DESK, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/15.jpg",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
+                                    "123483", "Olivia", "Vidal",
+                                    "olivia.vidal@company.de", "127",
+                                    new AddressEntity(
+                                            "Friedrichstrasse 127",
+                                            "40213",
+                                            "Karlstadt",
+                                            "Nordrhein-Westfalen",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1979, 3, 26),
+                                    Occupation.SERVICE_DESK, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/13.jpg",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
+                                    "123484", "Edna", "Henry",
+                                    "edna.henry@company.de", "128",
+                                    new AddressEntity(
+                                            "Hollander Strasse 89",
+                                            "65623",
+                                            "Netzbach",
+                                            "Rheinland-Pfalz",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1944, 7, 2),
+                                    Occupation.MARKETING, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/14.jpg",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
+                                    "123485", "Lydia", "Brun",
+                                    "lydia.brun@company.de", "129",
+                                    new AddressEntity(
+                                            "Esplanade 46",
+                                            "85619",
+                                            "Feldkirchen",
+                                            "Bayern",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1988, 3, 23),
+                                    Occupation.MARKETING, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/15.jpg",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
+                                    "123486", "Jay", "Blake",
+                                    "jay.blake@company.de", "130",
+                                    new AddressEntity(
+                                            "Fontenay 55",
+                                            "95620",
+                                            "Wunsiedel",
+                                            "Bayern",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(2000, 9, 4),
+                                    Occupation.MARKETING, Role.USER,
+                                    "https://randomuser.me/api/portraits/men/16.jpg",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
+                                    "123487", "Isabel", "Serafini",
+                                    "isabel.serafini@company.de", "131",
+                                    new AddressEntity(
+                                            "Kastanienallee 119",
+                                            "24590",
+                                            "Hohenwestedt",
+                                            "Schleswig-Holstein",
+                                            "Deutschland"
+                                    ),
+                                    LocalDate.of(1999, 1, 17),
+                                    Occupation.MARKETING, Role.USER,
+                                    "https://randomuser.me/api/portraits/women/16.jpg",
+                                    securityController.getHashedPassword("test"))
                     ).collect(Collectors.toList())
             );
         }

@@ -48,14 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    /**
-     * Mainly from: https://vaadin.com/docs/v14/flow/tutorials/in-depth-course/login-and-authentication
-     *
-     * Turns on Spring Security and the antMatcher describe all links that are accessible without a login.
-     *
-     * @param http
-     * @throws Exception
-     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -67,13 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin();
     }
 
-    /**
-     * Mainly from: https://vaadin.com/docs/v14/flow/tutorials/in-depth-course/login-and-authentication
-     * Excludes Vaadin-framework communication from Spring Security
-     *
-     * @param web
-     * @throws Exception
-     */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(
@@ -86,6 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/images/*",
                 "/frontend/**",
                 "/webjars/**",
-                "/frontend-es5/**", "/frontend-es6/**");
+                "/frontend-es5/**", "/frontend-es6/**" , "/sw-runtime-resources-precache.js");
     }
 }

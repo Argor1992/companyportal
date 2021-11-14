@@ -1,7 +1,5 @@
 package com.company.application.core.domain;
 
-import com.company.application.data.employee.entity.Occupation;
-
 import java.time.LocalDate;
 
 public interface IEmployee {
@@ -12,5 +10,4 @@ public interface IEmployee {
     String getEmail();
     String getPhone();
     LocalDate getDateOfBirth();
-    Occupation getOccupation();
 }

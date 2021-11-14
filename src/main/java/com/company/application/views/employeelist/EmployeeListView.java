@@ -1,50 +1,48 @@
-package com.company.application.views.masterdetail;
+package com.company.application.views.employeelist;
 
-import java.util.Optional;
-
-import com.company.application.data.employee.entity.EmployeeEntity;
-import com.company.application.data.employee.service.EmployeeService;
-
+import com.company.application.core.services.GermanDateService;
+import com.company.application.data.employee.entity.Occupation;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
 import com.company.application.domain.employeelist.usecase.EmployeeListUseCase;
 import com.company.application.domain.updateemployee.usecase.UpdateEmployeeUseCase;
+import com.company.application.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasStyle;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.data.renderer.ComponentRenderer;
+import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
-import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.MainLayout;
-import com.vaadin.flow.data.renderer.TemplateRenderer;
-import com.vaadin.flow.component.checkbox.Checkbox;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.component.datepicker.DatePicker;
-import com.vaadin.flow.component.dependency.Uses;
-import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.router.Route;
 
-@PageTitle("Master-Detail")
-@Route(value = "master-detail/:samplePersonID?/:action?(edit)", layout = MainLayout.class)
+import java.util.Optional;
+
+@PageTitle("Mitarbeiterübersicht")
+@Route(value = "employees/:samplePersonID?/:action?(edit)", layout = MainLayout.class)
 @Uses(Icon.class)
-public class MasterDetailView extends Div implements BeforeEnterObserver {
+public class EmployeeListView extends Div implements BeforeEnterObserver {
 
     private final String SAMPLEPERSON_ID = "samplePersonID";
-    private final String SAMPLEPERSON_EDIT_ROUTE_TEMPLATE = "master-detail/%d/edit";
+    private final String SAMPLEPERSON_EDIT_ROUTE_TEMPLATE = "employees/%d/edit";
 
     private Grid<EmployeeOverview> grid = new Grid<>(EmployeeOverview.class, false);
 
@@ -53,7 +51,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
     private TextField email;
     private TextField phone;
     private DatePicker dateOfBirth;
-    private TextField occupation;
+    private Select<Occupation> occupation;
     private Checkbox important;
 
     private Button cancel = new Button("Cancel");
@@ -66,8 +64,9 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
     private EmployeeListUseCase employeeListUseCase;
     private UpdateEmployeeUseCase updateEmployeeUseCase;
 
-    public MasterDetailView(EmployeeListUseCase employeeListUseCase, UpdateEmployeeUseCase updateEmployeeUseCase) {
+    public EmployeeListView(EmployeeListUseCase employeeListUseCase, UpdateEmployeeUseCase updateEmployeeUseCase, GermanDateService dateService) {
         this.employeeListUseCase = employeeListUseCase;
+        this.updateEmployeeUseCase = updateEmployeeUseCase;
         addClassNames("master-detail-view", "flex", "flex-col", "h-full");
 
         // Create UI
@@ -80,12 +79,16 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
         add(splitLayout);
 
         // Configure Grid
-        grid.addColumn("firstName").setAutoWidth(true);
-        grid.addColumn("lastName").setAutoWidth(true);
-        grid.addColumn("email").setAutoWidth(true);
-        grid.addColumn("phone").setAutoWidth(true);
-        grid.addColumn("dateOfBirth").setAutoWidth(true);
-        grid.addColumn("occupation").setAutoWidth(true);
+        grid.addColumn(EmployeeOverview::getFirstName, "firstName").setHeader("Vorname").setAutoWidth(true);
+        grid.addColumn(EmployeeOverview::getLastName, "lastName").setHeader("Nachname").setAutoWidth(true);
+        grid.addColumn(EmployeeOverview::getEmail, "email").setHeader("E-Mail").setAutoWidth(true);
+        grid.addColumn(EmployeeOverview::getPhone, "phone").setHeader("Durchwahl").setAutoWidth(true);
+        grid.addColumn(
+                (ValueProvider<EmployeeOverview, String>) employeeOverview ->
+                        dateService.getGermanDate(employeeOverview.getDateOfBirth()), "dateOfBirth").setHeader("Geburtsdatum").setAutoWidth(true);
+        grid.addColumn(
+                (ValueProvider<EmployeeOverview, String>) employeeOverview ->
+                        employeeOverview.getOccupation().getUiText(), "occupation").setHeader("Abteilung").setAutoWidth(true);
 
         grid.setItems(employeeListUseCase.getEmployeeList());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
@@ -97,7 +100,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
                 UI.getCurrent().navigate(String.format(SAMPLEPERSON_EDIT_ROUTE_TEMPLATE, event.getValue().getId()));
             } else {
                 clearForm();
-                UI.getCurrent().navigate(MasterDetailView.class);
+                UI.getCurrent().navigate(EmployeeListView.class);
             }
         });
 
@@ -124,7 +127,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
                 clearForm();
                 refreshGrid();
                 Notification.show("SamplePerson details stored.");
-                UI.getCurrent().navigate(MasterDetailView.class);
+                UI.getCurrent().navigate(EmployeeListView.class);
             } catch (ValidationException validationException) {
                 Notification.show("An exception happened while trying to store the samplePerson details.");
             }
@@ -146,7 +149,7 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
                 // when a row is selected but the data is no longer available,
                 // refresh grid
                 refreshGrid();
-                event.forwardTo(MasterDetailView.class);
+                event.forwardTo(EmployeeListView.class);
             }
         }
     }
@@ -166,7 +169,10 @@ public class MasterDetailView extends Div implements BeforeEnterObserver {
         email = new TextField("Email");
         phone = new TextField("Phone");
         dateOfBirth = new DatePicker("Date Of Birth");
-        occupation = new TextField("Occupation");
+        occupation = new Select<>();
+        occupation.setLabel("Occupation");
+        occupation.setItems(Occupation.values());
+        occupation.setRenderer(new ComponentRenderer<>(option -> new Text(option.getUiText())));
         important = new Checkbox("Important");
         important.getStyle().set("padding-top", "var(--lumo-space-m)");
         Component[] fields = new Component[]{firstName, lastName, email, phone, dateOfBirth, occupation, important};
