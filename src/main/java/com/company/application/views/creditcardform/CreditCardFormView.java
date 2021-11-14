@@ -14,7 +14,7 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.MainLayout;
+import com.company.application.views.mainlayout.MainLayout;
 
 @PageTitle("Credit Card Form")
 @Route(value = "credit-card-form", layout = MainLayout.class)

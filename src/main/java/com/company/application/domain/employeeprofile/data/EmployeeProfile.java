@@ -2,6 +2,8 @@ package com.company.application.domain.employeeprofile.data;
 
 import com.company.application.core.domain.IEmployee;
 import com.company.application.data.employee.entity.Occupation;
+import com.company.application.data.employee.entity.Role;
+import com.vaadin.flow.component.Component;
 
 import java.time.LocalDate;
 
@@ -14,13 +16,11 @@ public class EmployeeProfile implements IEmployee {
     private String phone;
     private LocalDate dateOfBirth;
     private Occupation occupation;
+    private Address address;
+    private Role role;
+    private String profilePicture;
 
-    public EmployeeProfile() {
-        id = 0;
-        personnelNumber = "";
-    }
-
-    public EmployeeProfile(int id, String personnelNumber, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Occupation occupation) {
+    public EmployeeProfile(int id, String personnelNumber, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Occupation occupation, Address address, Role role, String profilePicture) {
         this.id = id;
         this.personnelNumber = personnelNumber;
         this.firstName = firstName;
@@ -29,6 +29,9 @@ public class EmployeeProfile implements IEmployee {
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
         this.occupation = occupation;
+        this.address = address;
+        this.role = role;
+        this.profilePicture = profilePicture;
     }
 
     @Override
@@ -52,4 +55,18 @@ public class EmployeeProfile implements IEmployee {
     public void setDateOfBirth(LocalDate dateOfBirth) { this.dateOfBirth = dateOfBirth; }
     public Occupation getOccupation() { return occupation; }
     public void setOccupation(Occupation occupation) { this.occupation = occupation; }
+    public Address getAddress() { return address; }
+    public void setAddress(Address address) { this.address = address; }
+    public Role getRole() { return role; }
+    public void setRole(Role role) { this.role = role; }
+    public String getProfilePicture() { return profilePicture; }
+    public void setProfilePicture(String profilePicture) { this.profilePicture = profilePicture; }
+
+    public String getDisplayName() {
+        return firstName + " " + lastName + " (" + personnelNumber + ")";
+    }
+
+    public String getAddressUiText() {
+        return address.getStreet() + ", " + address.getPostalCode() + " "  + address.getCity();
+    }
 }

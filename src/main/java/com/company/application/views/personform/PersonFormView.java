@@ -1,6 +1,5 @@
 package com.company.application.views.personform;
 
-import com.company.application.data.employee.service.EmployeeService;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
 import com.company.application.domain.updateemployee.usecase.UpdateEmployeeUseCase;
 import com.vaadin.flow.component.Component;
@@ -19,7 +18,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.MainLayout;
+import com.company.application.views.mainlayout.MainLayout;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.icon.Icon;
 

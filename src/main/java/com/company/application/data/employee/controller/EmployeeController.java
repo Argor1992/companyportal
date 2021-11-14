@@ -2,6 +2,7 @@ package com.company.application.data.employee.controller;
 
 import com.company.application.data.employee.service.EmployeeService;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
+import com.company.application.domain.employeeprofile.data.EmployeeProfile;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -29,5 +30,11 @@ public class EmployeeController {
         if (samplePerson == null)
             return false;
         return employeeService.updateEmployee(samplePerson) == 1;
+    }
+
+    public Optional<EmployeeProfile> getEmployeeProfile(String email) {
+        if (email == null || email.isEmpty())
+            return Optional.empty();
+        return employeeService.getEmployeeProfile(email);
     }
 }

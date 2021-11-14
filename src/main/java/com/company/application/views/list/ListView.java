@@ -29,7 +29,7 @@ import com.vaadin.flow.data.renderer.NumberRenderer;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.MainLayout;
+import com.company.application.views.mainlayout.MainLayout;
 
 @PageTitle("List")
 @Route(value = "list", layout = MainLayout.class)

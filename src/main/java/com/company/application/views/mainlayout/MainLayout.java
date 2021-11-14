@@ -1,4 +1,4 @@
-package com.company.application.views;
+package com.company.application.views.mainlayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.dashboard.ProfileView;
+import com.company.application.views.profile.ProfileView;
 import com.company.application.views.employeelist.EmployeeListView;
 import com.company.application.views.personform.PersonFormView;
 import com.company.application.views.addressform.AddressFormView;
@@ -32,33 +32,6 @@ import com.company.application.views.about.AboutView;
  */
 @PageTitle("Main")
 public class MainLayout extends AppLayout {
-
-    public static class MenuItemInfo {
-
-        private String text;
-        private String iconClass;
-        private Class<? extends Component> view;
-
-        public MenuItemInfo(String text, String iconClass, Class<? extends Component> view) {
-            this.text = text;
-            this.iconClass = iconClass;
-            this.view = view;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public String getIconClass() {
-            return iconClass;
-        }
-
-        public Class<? extends Component> getView() {
-            return view;
-        }
-
-    }
-
     private H1 viewTitle;
 
     public MainLayout() {

@@ -1,10 +1,12 @@
 package com.company.application.data.employee.dtos;
 
+import com.company.application.data.address.entity.AddressEntity;
 import com.company.application.data.employee.entity.Occupation;
+import com.company.application.data.employee.entity.Role;
 
 import java.time.LocalDate;
 
-public interface EmployeeOverviewDTO {
+public interface EmployeeProfileDto {
     int getId();
     String getPersonnelNumber();
     String getFirstName();
@@ -13,4 +15,7 @@ public interface EmployeeOverviewDTO {
     String getPhone();
     LocalDate getDateOfBirth();
     Occupation getOccupation();
+    AddressEntity getAddress();
+    Role getRole();
+    String getProfilePicture();
 }

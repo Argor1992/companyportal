@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import java.security.SecureRandom;
+import java.util.Optional;
 
 @Controller
 public class SecurityController {
@@ -24,6 +25,13 @@ public class SecurityController {
         return authentication != null
                 && !(authentication instanceof AnonymousAuthenticationToken)
                 && authentication.isAuthenticated();
+    }
+
+    public String getPrincipalName() {
+        Authentication authentication = securityService.getAuthentication();
+        if(authentication == null || authentication instanceof AnonymousAuthenticationToken)
+            return "";
+        return authentication.getName();
     }
 
     public String getHashedPassword(String password){

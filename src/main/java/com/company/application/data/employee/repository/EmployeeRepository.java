@@ -1,10 +1,10 @@
 package com.company.application.data.employee.repository;
 
-import com.company.application.data.employee.dtos.EmployeeCredentialsDTO;
-import com.company.application.data.employee.dtos.EmployeeOverviewDTO;
+import com.company.application.data.employee.dtos.EmployeeCredentialsDto;
+import com.company.application.data.employee.dtos.EmployeeOverviewDto;
+import com.company.application.data.employee.dtos.EmployeeProfileDto;
 import com.company.application.data.employee.entity.EmployeeEntity;
 import com.company.application.data.employee.entity.Occupation;
-import com.company.application.domain.employeelist.data.EmployeeOverview;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,11 +15,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Integer> {
-    Optional<EmployeeCredentialsDTO> findCredentialsByEmail(@Param("email") String email);
+    Optional<EmployeeCredentialsDto> findCredentialsByEmail(@Param("email") String email);
 
-    List<EmployeeOverviewDTO> findAllEmployeeOverviewsBy();
+    List<EmployeeOverviewDto> findAllEmployeeOverviewsBy();
 
-    Optional<EmployeeOverviewDTO> findEmployeeOverviewById(@Param("id") Integer id);
+    Optional<EmployeeOverviewDto> findEmployeeOverviewById(@Param("id") Integer id);
+
+    Optional<EmployeeProfileDto> findEmployeeProfileByEmail(@Param("email") String email);
 
     @Modifying
     @Query(
@@ -29,13 +31,14 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Intege
                     "email = :email, " +
                     "phone = :phone, " +
                     "dateOfBirth = :dateOfBirth, " +
-                    "occupation = :occupation where lower(username) = lower(:username)"
+                    "occupation = :occupation where id = :id"
     )
-    int updateUserOverview(@Param("personnelNumber") String personnelNumber,
+    int updateUserOverview(@Param("id") Integer id,
+                           @Param("personnelNumber") String personnelNumber,
                            @Param("firstName") String firstName,
                            @Param("lastName") String lastName,
                            @Param("email") String email,
-                           @Param("phone")String phone,
+                           @Param("phone") String phone,
                            @Param("dateOfBirth") LocalDate dateOfBirth,
                            @Param("occupation") Occupation occupation);
 }

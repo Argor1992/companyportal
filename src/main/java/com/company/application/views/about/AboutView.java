@@ -6,7 +6,7 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.MainLayout;
+import com.company.application.views.mainlayout.MainLayout;
 
 @PageTitle("About")
 @Route(value = "about", layout = MainLayout.class)

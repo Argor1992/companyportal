@@ -15,7 +15,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.MainLayout;
+import com.company.application.views.mainlayout.MainLayout;
 
 @PageTitle("Address Form")
 @Route(value = "address-form", layout = MainLayout.class)

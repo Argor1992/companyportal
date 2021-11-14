@@ -5,7 +5,7 @@ import com.company.application.data.employee.entity.Occupation;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
 import com.company.application.domain.employeelist.usecase.EmployeeListUseCase;
 import com.company.application.domain.updateemployee.usecase.UpdateEmployeeUseCase;
-import com.company.application.views.MainLayout;
+import com.company.application.views.mainlayout.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Text;
@@ -46,27 +46,17 @@ public class EmployeeListView extends Div implements BeforeEnterObserver {
 
     private Grid<EmployeeOverview> grid = new Grid<>(EmployeeOverview.class, false);
 
-    private TextField firstName;
-    private TextField lastName;
-    private TextField email;
-    private TextField phone;
-    private DatePicker dateOfBirth;
-    private Select<Occupation> occupation;
-    private Checkbox important;
+    private final Button cancel = new Button("Abbrecher");
+    private final Button save = new Button("Speichern");
 
-    private Button cancel = new Button("Cancel");
-    private Button save = new Button("Save");
+    private final BeanValidationBinder<EmployeeOverview> binder;
 
-    private BeanValidationBinder<EmployeeOverview> binder;
+    private EmployeeOverview selectedEmployee;
 
-    private EmployeeOverview samplePerson;
-
-    private EmployeeListUseCase employeeListUseCase;
-    private UpdateEmployeeUseCase updateEmployeeUseCase;
+    private final EmployeeListUseCase employeeListUseCase;
 
     public EmployeeListView(EmployeeListUseCase employeeListUseCase, UpdateEmployeeUseCase updateEmployeeUseCase, GermanDateService dateService) {
         this.employeeListUseCase = employeeListUseCase;
-        this.updateEmployeeUseCase = updateEmployeeUseCase;
         addClassNames("master-detail-view", "flex", "flex-col", "h-full");
 
         // Create UI
@@ -118,18 +108,18 @@ public class EmployeeListView extends Div implements BeforeEnterObserver {
 
         save.addClickListener(e -> {
             try {
-                if (this.samplePerson == null) {
-                    this.samplePerson = new EmployeeOverview();
+                if (this.selectedEmployee == null) {
+                    this.selectedEmployee = new EmployeeOverview();
                 }
-                binder.writeBean(this.samplePerson);
+                binder.writeBean(this.selectedEmployee);
 
-                updateEmployeeUseCase.updateEmployee(this.samplePerson);
+                updateEmployeeUseCase.updateEmployee(this.selectedEmployee);
                 clearForm();
                 refreshGrid();
-                Notification.show("SamplePerson details stored.");
+                Notification.show("Update erfolgreich.");
                 UI.getCurrent().navigate(EmployeeListView.class);
             } catch (ValidationException validationException) {
-                Notification.show("An exception happened while trying to store the samplePerson details.");
+                Notification.show("Something went wrong while storing the update.");
             }
         });
 
@@ -137,17 +127,15 @@ public class EmployeeListView extends Div implements BeforeEnterObserver {
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        Optional<Integer> samplePersonId = event.getRouteParameters().getInteger(SAMPLEPERSON_ID);
-        if (samplePersonId.isPresent()) {
-            Optional<EmployeeOverview> samplePersonFromBackend = employeeListUseCase.getEmployee(samplePersonId.get());
-            if (samplePersonFromBackend.isPresent()) {
-                populateForm(samplePersonFromBackend.get());
+        Optional<Integer> employeeId = event.getRouteParameters().getInteger(SAMPLEPERSON_ID);
+        if (employeeId.isPresent()) {
+            Optional<EmployeeOverview> employee = employeeListUseCase.getEmployee(employeeId.get());
+            if (employee.isPresent()) {
+                populateForm(employee.get());
             } else {
                 Notification.show(
-                        String.format("The requested samplePerson was not found, ID = %d", samplePersonId.get()), 3000,
+                        String.format("The requested samplePerson was not found, ID = %d", employeeId.get()), 3000,
                         Notification.Position.BOTTOM_START);
-                // when a row is selected but the data is no longer available,
-                // refresh grid
                 refreshGrid();
                 event.forwardTo(EmployeeListView.class);
             }
@@ -164,16 +152,16 @@ public class EmployeeListView extends Div implements BeforeEnterObserver {
         editorLayoutDiv.add(editorDiv);
 
         FormLayout formLayout = new FormLayout();
-        firstName = new TextField("First Name");
-        lastName = new TextField("Last Name");
-        email = new TextField("Email");
-        phone = new TextField("Phone");
-        dateOfBirth = new DatePicker("Date Of Birth");
-        occupation = new Select<>();
+        TextField firstName = new TextField("First Name");
+        TextField lastName = new TextField("Last Name");
+        TextField email = new TextField("Email");
+        TextField phone = new TextField("Phone");
+        DatePicker dateOfBirth = new DatePicker("Date Of Birth");
+        Select<Occupation> occupation = new Select<>();
         occupation.setLabel("Occupation");
         occupation.setItems(Occupation.values());
         occupation.setRenderer(new ComponentRenderer<>(option -> new Text(option.getUiText())));
-        important = new Checkbox("Important");
+        Checkbox important = new Checkbox("Important");
         important.getStyle().set("padding-top", "var(--lumo-space-m)");
         Component[] fields = new Component[]{firstName, lastName, email, phone, dateOfBirth, occupation, important};
 
@@ -207,7 +195,8 @@ public class EmployeeListView extends Div implements BeforeEnterObserver {
 
     private void refreshGrid() {
         grid.select(null);
-        grid.getLazyDataView().refreshAll();
+        grid.setItems(employeeListUseCase.getEmployeeList());
+        grid.getDataProvider().refreshAll();
     }
 
     private void clearForm() {
@@ -215,8 +204,7 @@ public class EmployeeListView extends Div implements BeforeEnterObserver {
     }
 
     private void populateForm(EmployeeOverview value) {
-        this.samplePerson = value;
-        binder.readBean(this.samplePerson);
-
+        this.selectedEmployee = value;
+        binder.readBean(this.selectedEmployee);
     }
 }
