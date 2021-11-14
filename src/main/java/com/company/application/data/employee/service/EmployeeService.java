@@ -35,7 +35,7 @@ public class EmployeeService {
                     Stream.of(
                             new EmployeeEntity(
                                     "123456", "Eula", "Lane",
-                                    "eula.lane@company.de", "100",
+                                    "eula.lane@rich.de", "100",
                                     new AddressEntity(
                                             "Musterstraße 1",
                                             "60306",
@@ -49,7 +49,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123457", "Barry", "Rodriquez",
-                                    "barry.rodriquez@company.de", "101",
+                                    "barry.rodriquez@rich.de", "101",
                                     new AddressEntity(
                                             "Schoenebergerstrasse 135Musterstraße 1",
                                             "60306",
@@ -63,7 +63,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123458", "Eugenia", "Selvi",
-                                    "eugenia.selvi@company.de", "102",
+                                    "eugenia.selvi@rich.de", "102",
                                     new AddressEntity(
                                             "Pappelallee 92",
                                             "36466",
@@ -77,7 +77,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123459", "Alejandro", "Miles",
-                                    "alejandro.miles@company.de", "103",
+                                    "alejandro.miles@rich.de", "103",
                                     new AddressEntity(
                                             "Paderborner Strasse 87",
                                             "86480",
@@ -91,7 +91,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123460", "Cora", "Tesi",
-                                    "cora.tesi@company.de", "104",
+                                    "cora.tesi@rich.de", "104",
                                     new AddressEntity(
                                             "Sonnenallee 55",
                                             "86034",
@@ -105,7 +105,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123461", "Marguerite", "Ishii",
-                                    "marguerite.ishii@company.de", "105",
+                                    "marguerite.ishii@rich.de", "105",
                                     new AddressEntity(
                                             "Fugger Strasse 24",
                                             "14407",
@@ -119,7 +119,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123462", "Mildred", "Jacobs",
-                                    "mildred.jacobs@company.de", "106",
+                                    "mildred.jacobs@rich.de", "106",
                                     new AddressEntity(
                                             "Kantstraße 79",
                                             "08203",
@@ -133,7 +133,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123463", "Gene", "Goodman",
-                                    "gene.goodman@company.de", "107",
+                                    "gene.goodman@rich.de", "107",
                                     new AddressEntity(
                                             "Rhinstrasse 110",
                                             "80719",
@@ -147,7 +147,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123464", "Lettie", "Bennett",
-                                    "lettie.bennett@company.de", "108",
+                                    "lettie.bennett@rich.de", "108",
                                     new AddressEntity(
                                             "Eschenweg 69",
                                             "07717",
@@ -161,7 +161,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123465", "Mabel", "Leach",
-                                    "mabel.leach@company.de", "109",
+                                    "mabel.leach@rich.de", "109",
                                     new AddressEntity(
                                             "Kantstraße 85",
                                             "09204",
@@ -175,7 +175,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123466", "Jordan", "Miccinesi",
-                                    "jordan.miccinesi@company.de", "110",
+                                    "jordan.miccinesi@rich.de", "110",
                                     new AddressEntity(
                                             "Augsburger Straße 110",
                                             "58513",
@@ -189,7 +189,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123467", "Mark", "Parkes",
-                                    "marie.parkes@company.de", "111",
+                                    "marie.parkes@rich.de", "111",
                                     new AddressEntity(
                                             "Flughafenstrasse 22",
                                             "92714",
@@ -203,7 +203,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123468", "Rose", "Gray",
-                                    "rose.gray@company.de", "112",
+                                    "rose.gray@rich.de", "112",
                                     new AddressEntity(
                                             "Chausseestr. 28",
                                             "25408",
@@ -217,7 +217,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123469", "Garrett", "Stokes",
-                                    "garrett.stokes@company.de", "113",
+                                    "garrett.stokes@rich.de", "113",
                                     new AddressEntity(
                                             "Rudower Strasse 73",
                                             "54597",
@@ -231,7 +231,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123470", "Bob", "Matthieu",
-                                    "barbara.matthieu@company.de", "114",
+                                    "barbara.matthieu@rich.de", "114",
                                     new AddressEntity(
                                             "Brandenburgische Str 83",
                                             "55568",
@@ -245,7 +245,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123471", "Jean", "Rhodes",
-                                    "jean.rhodes@company.de", "115",
+                                    "jean.rhodes@rich.de", "115",
                                     new AddressEntity(
                                             "Ellmenreichstrasse 124",
                                             "91364",
@@ -259,7 +259,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123472", "Jack", "Romoli",
-                                    "jack.romoli@company.de", "116",
+                                    "jack.romoli@rich.de", "116",
                                     new AddressEntity(
                                             "Charlottenstrasse 104",
                                             "01261",
@@ -273,7 +273,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123473", "Pearl", "Holden",
-                                    "pearl.holden@company.de", "117",
+                                    "pearl.holden@rich.de", "117",
                                     new AddressEntity(
                                             "Hochstrasse 81",
                                             "25818",
@@ -287,7 +287,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123474", "Belle", "Montero",
-                                    "belle.montero@company.de", "118",
+                                    "belle.montero@rich.de", "118",
                                     new AddressEntity(
                                             "Augsburger Strasse 92",
                                             "56767",
@@ -301,7 +301,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123475", "Olive", "Molina",
-                                    "olive.molina@company.de", "119",
+                                    "olive.molina@rich.de", "119",
                                     new AddressEntity(
                                             "Rohrdamm 72",
                                             "31093",
@@ -315,7 +315,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123476", "Minerva", "Todd",
-                                    "minerva.todd@company.de", "120",
+                                    "minerva.todd@rich.de", "120",
                                     new AddressEntity(
                                             "Joachimstaler Str. 36",
                                             "55496",
@@ -329,7 +329,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123477", "Bobby", "Pearson",
-                                    "bobby.pearson@company.de", "121",
+                                    "bobby.pearson@rich.de", "121",
                                     new AddressEntity(
                                             "Am Borsigturm 85",
                                             "41541",
@@ -343,7 +343,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123478", "Larry", "Ciappi",
-                                    "larry.ciappi@company.de", "122",
+                                    "larry.ciappi@rich.de", "122",
                                     new AddressEntity(
                                             "Langenhorner Chaussee 66",
                                             "83313",
@@ -357,7 +357,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123479", "Ronnie", "Salucci",
-                                    "ronnie.salucci@company.de", "123",
+                                    "ronnie.salucci@rich.de", "123",
                                     new AddressEntity(
                                             "Scharnweberstrasse 58",
                                             "65817",
@@ -371,7 +371,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123480", "Walter", "Grossi",
-                                    "walter.grossi@company.de", "124",
+                                    "walter.grossi@rich.de", "124",
                                     new AddressEntity(
                                             "Genterstrasse 85",
                                             "24032",
@@ -385,7 +385,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123481", "Frances", "Koopmans",
-                                    "frances.koopmans@company.de", "125",
+                                    "frances.koopmans@rich.de", "125",
                                     new AddressEntity(
                                             "Rohrdamm 40",
                                             "29693",
@@ -399,7 +399,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123482", "Frances", "Fujimoto",
-                                    "frances.fujimoto@company.de", "126",
+                                    "frances.fujimoto@rich.de", "126",
                                     new AddressEntity(
                                             "Alt Reinickendorf 71",
                                             "86672",
@@ -413,7 +413,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123483", "Olivia", "Vidal",
-                                    "olivia.vidal@company.de", "127",
+                                    "olivia.vidal@rich.de", "127",
                                     new AddressEntity(
                                             "Friedrichstrasse 127",
                                             "40213",
@@ -427,7 +427,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123484", "Edna", "Henry",
-                                    "edna.henry@company.de", "128",
+                                    "edna.henry@rich.de", "128",
                                     new AddressEntity(
                                             "Hollander Strasse 89",
                                             "65623",
@@ -441,7 +441,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123485", "Lydia", "Brun",
-                                    "lydia.brun@company.de", "129",
+                                    "lydia.brun@rich.de", "129",
                                     new AddressEntity(
                                             "Esplanade 46",
                                             "85619",
@@ -455,7 +455,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123486", "Jay", "Blake",
-                                    "jay.blake@company.de", "130",
+                                    "jay.blake@rich.de", "130",
                                     new AddressEntity(
                                             "Fontenay 55",
                                             "95620",
@@ -469,7 +469,7 @@ public class EmployeeService {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123487", "Isabel", "Serafini",
-                                    "isabel.serafini@company.de", "131",
+                                    "isabel.serafini@rich.de", "131",
                                     new AddressEntity(
                                             "Kastanienallee 119",
                                             "24590",

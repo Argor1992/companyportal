@@ -7,7 +7,6 @@ import com.company.application.data.relations.entity.EmployeeClientRelationEntit
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +15,7 @@ import java.util.Set;
 public class ClientEntity extends AbstractEntity {
     private String name;
 
+    private String representative;
     @Column(name="email", nullable = false, unique = true)
     private String email;
     private String phone;
@@ -34,8 +34,19 @@ public class ClientEntity extends AbstractEntity {
     public ClientEntity() {
     }
 
-    public ClientEntity(String name, String email, String phone, AddressEntity address, Set<EmployeeClientRelationEntity> contactPersons, Set<ProjectEntity> projects) {
+    public ClientEntity(String name, String representative, String email, String phone, AddressEntity address) {
         this.name = name;
+        this.representative = representative;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.contactPersons = contactPersons;
+        this.projects = projects;
+    }
+
+    public ClientEntity(String name, String representative, String email, String phone, AddressEntity address, Set<EmployeeClientRelationEntity> contactPersons, Set<ProjectEntity> projects) {
+        this.name = name;
+        this.representative = representative;
         this.email = email;
         this.phone = phone;
         this.address = address;
@@ -45,6 +56,8 @@ public class ClientEntity extends AbstractEntity {
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+    public String getRepresentative() { return representative; }
+    public void setRepresentative(String representative) { this.representative = representative; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     public String getPhone() { return phone; }
