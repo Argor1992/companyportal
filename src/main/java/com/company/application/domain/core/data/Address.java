@@ -1,4 +1,4 @@
-package com.company.application.domain.employeeprofile.data;
+package com.company.application.domain.core.data;
 
 public class Address {
     private String street;
@@ -25,4 +25,8 @@ public class Address {
     public void setState(String state) { this.state = state; }
     public String getCountry() { return country; }
     public void setCountry(String country) { this.country = country; }
+
+    public String getUiText() {
+        return street + ", " + postalCode + " "  + city;
+    }
 }

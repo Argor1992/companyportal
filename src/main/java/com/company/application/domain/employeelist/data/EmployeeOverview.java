@@ -14,13 +14,9 @@ public class EmployeeOverview implements IEmployee {
     private String phone;
     private LocalDate dateOfBirth;
     private Occupation occupation;
+    private String profilePicture;
 
-    public EmployeeOverview() {
-        id = 0;
-        personnelNumber = "";
-    }
-
-    public EmployeeOverview(int id, String personnelNumber, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Occupation occupation) {
+    public EmployeeOverview(int id, String personnelNumber, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Occupation occupation, String profilePicture) {
         this.id = id;
         this.personnelNumber = personnelNumber;
         this.firstName = firstName;
@@ -29,6 +25,7 @@ public class EmployeeOverview implements IEmployee {
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
         this.occupation = occupation;
+        this.profilePicture = profilePicture;
     }
 
     @Override
@@ -52,4 +49,7 @@ public class EmployeeOverview implements IEmployee {
     public void setDateOfBirth(LocalDate dateOfBirth) { this.dateOfBirth = dateOfBirth; }
     public Occupation getOccupation() { return occupation; }
     public void setOccupation(Occupation occupation) { this.occupation = occupation; }
+    @Override
+    public String getProfilePicture() { return profilePicture; }
+    public void setProfilePicture(String profilePicture) { this.profilePicture = profilePicture; }
 }

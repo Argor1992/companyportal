@@ -1,4 +1,4 @@
-package com.company.application.views.list;
+package com.company.application.views.clientlist;
 
 public class Client {
 

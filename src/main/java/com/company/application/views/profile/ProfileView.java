@@ -3,6 +3,7 @@ package com.company.application.views.profile;
 import com.company.application.core.services.GermanDateService;
 import com.company.application.domain.employeeprofile.data.EmployeeProfile;
 import com.company.application.domain.employeeprofile.usecase.EmployeeProfileUseCase;
+import com.company.application.views.core.components.InfoRow;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -74,9 +75,9 @@ public class ProfileView extends Main implements HasUrlParameter<Integer> {
 
         layout.addClassNames("pl-m", "content-between");
         H1 name = new H1(employee.getDisplayName());
-        name.addClassNames("mb-0", "text-l", "pt-0");
+        name.addClassNames("mb-0", "text-xl", "pt-0");
         Paragraph email = new Paragraph(employee.getEmail());
-        email.addClassNames("mt-0", "text-m", "text-secondary");
+        email.addClassNames("mt-0", "text-l", "text-secondary");
 
         layout.add(name, email);
         return layout;
@@ -90,7 +91,7 @@ public class ProfileView extends Main implements HasUrlParameter<Integer> {
                 new InfoRow("Geburtsdatum", dateService.getGermanDate(employee.getDateOfBirth())),
                 new InfoRow("Abteilung", employee.getOccupation().getUiText()),
                 new InfoRow("Durchwahl", employee.getPhone()),
-                new InfoRow("Adresse", employee.getAddressUiText()),
+                new InfoRow("Adresse", employee.getAddress().getUiText()),
                 new InfoRow("Rolle", employee.getRole().getUiText()));
         return layout;
     }

@@ -13,4 +13,5 @@ public interface EmployeeOverviewDto {
     String getPhone();
     LocalDate getDateOfBirth();
     Occupation getOccupation();
+    String getProfilePicture();
 }

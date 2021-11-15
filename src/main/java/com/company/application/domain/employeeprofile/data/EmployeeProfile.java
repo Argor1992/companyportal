@@ -3,7 +3,7 @@ package com.company.application.domain.employeeprofile.data;
 import com.company.application.core.domain.IEmployee;
 import com.company.application.data.employee.entity.Occupation;
 import com.company.application.data.employee.entity.Role;
-import com.vaadin.flow.component.Component;
+import com.company.application.domain.core.data.Address;
 
 import java.time.LocalDate;
 
@@ -64,9 +64,5 @@ public class EmployeeProfile implements IEmployee {
 
     public String getDisplayName() {
         return firstName + " " + lastName + " (" + personnelNumber + ")";
-    }
-
-    public String getAddressUiText() {
-        return address.getStreet() + ", " + address.getPostalCode() + " "  + address.getCity();
     }
 }

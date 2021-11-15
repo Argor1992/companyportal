@@ -4,6 +4,7 @@ import com.company.application.data.client.entity.ClientEntity;
 import com.company.application.data.employee.entity.EmployeeEntity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "EmployeeClientRelation")
@@ -21,10 +22,13 @@ public class EmployeeClientRelationEntity {
     @JoinColumn(name = "clientId")
     private ClientEntity client;
 
+    private LocalDate date;
+
     public EmployeeClientRelationEntity() {
     }
 
-    public EmployeeClientRelationEntity(EmployeeEntity employee, ClientEntity client) {
+    public EmployeeClientRelationEntity(EmployeeEntity employee, ClientEntity client, LocalDate date) {
+        this.date = date;
         this.id = new EmployeeClientKey(employee.getId(), client.getId());
         this.employee = employee;
         this.client = client;
@@ -33,4 +37,6 @@ public class EmployeeClientRelationEntity {
     public EmployeeClientKey getId() { return id; }
     public EmployeeEntity getEmployee() { return employee; }
     public ClientEntity getClient() { return client; }
+    public LocalDate getDate() { return date; }
+    public void setDate(LocalDate date) { this.date = date; }
 }

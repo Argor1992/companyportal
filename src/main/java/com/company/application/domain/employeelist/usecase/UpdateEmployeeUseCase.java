@@ -1,4 +1,4 @@
-package com.company.application.domain.updateemployee.usecase;
+package com.company.application.domain.employeelist.usecase;
 
 import com.company.application.data.employee.controller.EmployeeController;
 import com.company.application.domain.employeelist.data.EmployeeOverview;

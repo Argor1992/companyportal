@@ -10,4 +10,5 @@ public interface IEmployee {
     String getEmail();
     String getPhone();
     LocalDate getDateOfBirth();
+    String getProfilePicture();
 }

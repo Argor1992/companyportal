@@ -3,7 +3,7 @@ package com.company.application.views.employeelist;
 import com.company.application.core.services.GermanDateService;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
 import com.company.application.domain.employeelist.usecase.EmployeeListUseCase;
-import com.company.application.domain.updateemployee.usecase.UpdateEmployeeUseCase;
+import com.company.application.domain.employeelist.usecase.UpdateEmployeeUseCase;
 import com.company.application.views.mainlayout.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
@@ -20,7 +20,7 @@ import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("FieldCanBeLocal")
 @PageTitle("Mitarbeiterübersicht")
-@Route(value = "employees/:samplePersonID?/:action?(edit)", layout = MainLayout.class)
+@Route(value = "employees", layout = MainLayout.class)
 @Uses(Icon.class)
 public class EmployeeListView extends Div {
 

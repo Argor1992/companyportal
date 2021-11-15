@@ -1,52 +1,45 @@
-package com.company.application.views.employeelist;
+package com.company.application.views.clientlist;
 
-import com.company.application.data.employee.entity.Occupation;
-import com.company.application.domain.employeelist.data.EmployeeOverview;
-import com.company.application.domain.employeelist.usecase.EmployeeListUseCase;
-import com.company.application.domain.employeelist.usecase.UpdateEmployeeUseCase;
+import com.company.application.domain.clientlist.data.ClientOverview;
+import com.company.application.domain.clientlist.usecase.ClientListUseCase;
+import com.company.application.domain.clientlist.usecase.UpdateClientUseCase;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasStyle;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.ValidationException;
-import com.vaadin.flow.data.renderer.ComponentRenderer;
 
 import java.util.Optional;
 
-public class EmployeeUpdateDialog extends Div {
-    private TextField firstName;
-    private TextField lastName;
+public class ClientUpdateDialog extends Div {
+    private TextField name;
+    private TextField representative;
     private TextField email;
     private TextField phone;
-    private DatePicker dateOfBirth;
-    private Select<Occupation> occupation;
 
     private final Button cancel = new Button("Abbrechen");
     private final Button save = new Button("Speichern");
 
-    private final BeanValidationBinder<EmployeeOverview> binder;
+    private final BeanValidationBinder<ClientOverview> binder;
 
-    private EmployeeOverview selectedEmployee;
-    private final Grid<EmployeeOverview> grid;
-    private final EmployeeListUseCase employeeListUseCase;
-    private final UpdateEmployeeUseCase updateEmployeeUseCase;
+    private ClientOverview clientOverview;
+    private final Grid<ClientOverview> grid;
+    private final ClientListUseCase clientListUseCase;
+    private final UpdateClientUseCase updateClientUseCase;
 
-    public EmployeeUpdateDialog(Grid<EmployeeOverview> grid, EmployeeListUseCase employeeListUseCase, UpdateEmployeeUseCase updateEmployeeUseCase) {
+    public ClientUpdateDialog(Grid<ClientOverview> grid, ClientListUseCase clientListUseCase, UpdateClientUseCase updateClientUseCase) {
         this.grid = grid;
-        this.employeeListUseCase = employeeListUseCase;
-        this.updateEmployeeUseCase = updateEmployeeUseCase;
-        binder = new BeanValidationBinder<>(EmployeeOverview.class);
+        this.clientListUseCase = clientListUseCase;
+        this.updateClientUseCase = updateClientUseCase;
+        binder = new BeanValidationBinder<>(ClientOverview.class);
 
         setClassName("flex flex-col");
         setWidth("400px");
@@ -62,16 +55,11 @@ public class EmployeeUpdateDialog extends Div {
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
-        firstName = new TextField("First Name");
-        lastName = new TextField("Last Name");
+        name = new TextField("First Name");
+        representative = new TextField("Last Name");
         email = new TextField("Email");
         phone = new TextField("Phone");
-        dateOfBirth = new DatePicker("Date Of Birth");
-        occupation = new Select<>();
-        occupation.setLabel("Occupation");
-        occupation.setItems(Occupation.values());
-        occupation.setRenderer(new ComponentRenderer<>(option -> new Text(option.getUiText())));
-        Component[] fields = new Component[]{firstName, lastName, email, phone, dateOfBirth, occupation};
+        Component[] fields = new Component[]{name, representative, email, phone};
 
         for (Component field : fields) {
             ((HasStyle) field).addClassName("full-width");
@@ -101,30 +89,30 @@ public class EmployeeUpdateDialog extends Div {
         // when a row is selected or deselected, populate form
         this.grid.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
-                Optional<EmployeeOverview> employee = this.employeeListUseCase.getEmployee(event.getValue().getId());
-                if (employee.isPresent()) {
+                Optional<ClientOverview> client = this.clientListUseCase.getClient(event.getValue().getId());
+                if (client.isPresent()) {
                     setEnabledOfForm(true);
-                    populateForm(employee.get());
+                    populateForm(client.get());
                 } else {
                     Notification.show(
-                            "Something went wrong while selecting the employee", 3000,
+                            "Something went wrong while selecting the client", 3000,
                             Notification.Position.BOTTOM_START);
                 }
             } else {
                 clearForm();
-                UI.getCurrent().navigate(EmployeeListView.class);
+                UI.getCurrent().navigate(ClientListView.class);
             }
         });
 
         save.addClickListener(e -> {
             try {
-                binder.writeBean(this.selectedEmployee);
+                binder.writeBean(this.clientOverview);
 
-                updateEmployeeUseCase.updateEmployee(this.selectedEmployee);
+                updateClientUseCase.updateClient(this.clientOverview);
                 clearForm();
                 refreshGrid();
                 Notification.show("Update erfolgreich gespeichert.");
-                UI.getCurrent().navigate(EmployeeListView.class);
+                UI.getCurrent().navigate(ClientListView.class);
             } catch (ValidationException validationException) {
                 Notification.show("An exception happened while trying to store the data.");
             }
@@ -136,12 +124,10 @@ public class EmployeeUpdateDialog extends Div {
     private void setEnabledOfForm(boolean enabled) {
         save.setEnabled(enabled);
         cancel.setEnabled(enabled);
-        firstName.setEnabled(enabled);
-        lastName.setEnabled(enabled);
+        name.setEnabled(enabled);
+        representative.setEnabled(enabled);
         email.setEnabled(enabled);
         phone.setEnabled(enabled);
-        dateOfBirth.setEnabled(enabled);
-        occupation.setEnabled(enabled);
     }
 
     private void clearForm() {
@@ -151,12 +137,12 @@ public class EmployeeUpdateDialog extends Div {
 
     private void refreshGrid() {
         grid.select(null);
-        grid.setItems(employeeListUseCase.getEmployeeList());
+        grid.setItems(clientListUseCase.getClientList());
         grid.getDataProvider().refreshAll();
     }
 
-    private void populateForm(EmployeeOverview value) {
-        this.selectedEmployee = value;
-        binder.readBean(this.selectedEmployee);
+    private void populateForm(ClientOverview value) {
+        this.clientOverview = value;
+        binder.readBean(this.clientOverview);
     }
 }

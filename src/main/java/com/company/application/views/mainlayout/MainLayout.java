@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.html.ListItem;
-import com.vaadin.flow.component.html.Nav;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.html.UnorderedList;
-import com.vaadin.flow.component.html.Footer;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Header;
+import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
 import com.company.application.views.profile.ProfileView;
@@ -24,8 +21,9 @@ import com.company.application.views.addressform.AddressFormView;
 import com.company.application.views.creditcardform.CreditCardFormView;
 import com.company.application.views.checkoutform.CheckoutFormView;
 import com.company.application.views.editor.EditorView;
-import com.company.application.views.list.ListView;
+import com.company.application.views.clientlist.ClientListView;
 import com.company.application.views.about.AboutView;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -42,21 +40,38 @@ public class MainLayout extends AppLayout {
 
     private Component createHeaderContent() {
         DrawerToggle toggle = new DrawerToggle();
-        toggle.addClassName("text-secondary");
+        toggle.addClassNames("text-secondary", "clickable");
         toggle.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         toggle.getElement().setAttribute("aria-label", "Menu toggle");
 
         viewTitle = new H1();
         viewTitle.addClassNames("m-0", "text-l");
 
-        Header header = new Header(toggle, viewTitle);
+        Div titleLogout = new Div();
+        titleLogout.addClassNames("flex", "items-center", "justify-between", "w-full", "h-full");
+        titleLogout.add(viewTitle, createLogoutButton());
+
+
+        Header header = new Header(toggle, titleLogout);
         header.addClassNames("bg-base", "border-b", "border-contrast-10", "box-border", "flex", "h-xl", "items-center",
                 "w-full");
         return header;
     }
 
+    private Component createLogoutButton() {
+        Button logout = new Button(new Icon(VaadinIcon.SIGN_OUT));
+        logout.addClassNames("text-secondary", "text-xl", "clickable");
+        logout.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        logout.addClickListener(buttonClickEvent -> {
+            SecurityContextHolder.clearContext();
+            UI.getCurrent().getSession().close();
+            UI.getCurrent().navigate("/login");
+        });
+        return logout;
+    }
+
     private Component createDrawerContent() {
-        H2 appName = new H2("RICH Solutions");
+        H1 appName = new H1("RICH solutions");
         appName.addClassNames("flex", "items-center", "h-xl", "m-0", "px-m", "text-m");
 
         com.vaadin.flow.component.html.Section section = new com.vaadin.flow.component.html.Section(appName,
@@ -88,6 +103,8 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("Mitarbeiterübersicht", "la la-th-list", EmployeeListView.class), //
 
+                new MenuItemInfo("Kundenübersicht", "la la-money-bill-wave", ClientListView.class), //
+
                 new MenuItemInfo("Person Form", "la la-user", PersonFormView.class), //
 
                 new MenuItemInfo("Address Form", "la la-map-marker", AddressFormView.class), //
@@ -97,8 +114,6 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo("Checkout Form", "", CheckoutFormView.class), //
 
                 new MenuItemInfo("Editor", "la la-edit", EditorView.class), //
-
-                new MenuItemInfo("List", "la la-th", ListView.class), //
 
                 new MenuItemInfo("About", "la la-file", AboutView.class), //
 

@@ -7,27 +7,6 @@
 
 .profile-photo{
     border-radius: 50%;
-    width:6rem;
-    height:6rem;
-}
-
-.profile-info-header{
-    display: inline;
-    padding-bottom: .6em;
-    padding-top: .6em;
-    font-size: var(--lumo-font-size-l);
-    font-weight: bold;
-    color: var(--lumo-text-color);
-    box-sizing: border-box;
-}
-
-.profile-info-description{
-    display: inline;
-    padding-bottom: .6em;
-    padding-top: .6em;
-    padding-right: .7em;
-    font-size: var(--lumo-font-size-l);
-    font-weight: 700;
-    color: var(--lumo-text-color);
-    box-sizing: border-box;
+    width:7rem;
+    height:7rem;
 }

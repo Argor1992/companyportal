@@ -1,5 +1,6 @@
 @import url('./main-layout.css');
 @import url('./views/profile-view.css');
+@import url('./components/info-row.css');
 @import url('./views/person-form-view.css');
 @import url('./views/address-form-view.css');
 @import url('./views/credit-card-form-view.css');
@@ -24,4 +25,13 @@
       --lumo-size-s: 2rem;
       --lumo-size-xs: 1.75rem;
 
+    }
+
+    .clickable {
+        cursor: pointer;
+    }
+
+    .info-card:hover {
+        background-color: var(--lumo-shade-20pct);
+        box-shadow: 0 2px 4px -1px var(--luma-shade-100pct), 0 3px 12 px -1px var(--lumo-shade-90pct);
     }

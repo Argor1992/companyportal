@@ -4,7 +4,7 @@ import com.company.application.data.employee.entity.Occupation;
 import com.company.application.data.employee.entity.Role;
 import com.company.application.data.employee.repository.EmployeeRepository;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
-import com.company.application.domain.employeeprofile.data.Address;
+import com.company.application.domain.core.data.Address;
 import com.company.application.domain.employeeprofile.data.EmployeeProfile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +31,8 @@ public class EmployeeService {
                 employeeOverviewDTO.getEmail(),
                 employeeOverviewDTO.getPhone(),
                 employeeOverviewDTO.getDateOfBirth(),
-                employeeOverviewDTO.getOccupation()
-        )).collect(Collectors.toList());
+                employeeOverviewDTO.getOccupation(),
+                employeeOverviewDTO.getProfilePicture())).collect(Collectors.toList());
     }
 
     public Optional<EmployeeOverview> getEmployeeOverview(int id) {
@@ -44,8 +44,8 @@ public class EmployeeService {
                 employeeOverviewDTO.getEmail(),
                 employeeOverviewDTO.getPhone(),
                 employeeOverviewDTO.getDateOfBirth(),
-                employeeOverviewDTO.getOccupation()
-        ));
+                employeeOverviewDTO.getOccupation(),
+                employeeOverviewDTO.getProfilePicture()));
     }
 
     @Transactional

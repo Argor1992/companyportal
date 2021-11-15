@@ -7,12 +7,16 @@ import com.company.application.data.employee.entity.EmployeeEntity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "Project")
 public class ProjectEntity extends AbstractEntity implements Serializable {
+    private String name;
+    private String description;
     private double amount;
     private LocalDate date;
 
@@ -47,7 +51,9 @@ public class ProjectEntity extends AbstractEntity implements Serializable {
     public ProjectEntity() {
     }
 
-    public ProjectEntity(double amount, LocalDate date, ProjectState projectState, int priority, Set<EmployeeEntity> projectManagers, Set<ClientEntity> projectClients) {
+    public ProjectEntity(String name, String description, double amount, LocalDate date, ProjectState projectState, int priority, Set<EmployeeEntity> projectManagers, Set<ClientEntity> projectClients) {
+        this.name = name;
+        this.description = description;
         this.amount = amount;
         this.date = date;
         this.projectState = projectState;
@@ -56,6 +62,10 @@ public class ProjectEntity extends AbstractEntity implements Serializable {
         this.projectClients = projectClients;
     }
 
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
     public double getAmount() { return amount; }
     public void setAmount(double amount) { this.amount = amount; }
     public LocalDate getDate() { return date; }
@@ -64,8 +74,8 @@ public class ProjectEntity extends AbstractEntity implements Serializable {
     public void setProjectState(ProjectState projectState) { this.projectState = projectState; }
     public int getPriority() { return priority; }
     public void setPriority(int priority) { this.priority = priority; }
-    public Set<EmployeeEntity> getProjectManagers() { return projectManagers; }
+    public List<EmployeeEntity> getProjectManagers() { return new ArrayList<>(projectManagers); }
     public void setProjectManagers(Set<EmployeeEntity> projectManagers) { this.projectManagers = projectManagers; }
-    public Set<ClientEntity> getProjectClients() { return projectClients; }
+    public List<ClientEntity> getProjectClients() { return new ArrayList<>(projectClients); }
     public void setProjectClients(Set<ClientEntity> projectClients) { this.projectClients = projectClients; }
 }
