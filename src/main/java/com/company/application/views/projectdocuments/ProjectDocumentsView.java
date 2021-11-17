@@ -1,4 +1,4 @@
-package com.company.application.views.editor;
+package com.company.application.views.projectdocuments;
 
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.html.DescriptionList.Description;
@@ -10,11 +10,11 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.company.application.views.mainlayout.MainLayout;
 
-@PageTitle("Editor")
+@PageTitle("Unterlagen")
 @Route(value = "editor", layout = MainLayout.class)
-public class EditorView extends Main {
+public class ProjectDocumentsView extends Main {
 
-    public EditorView() {
+    public ProjectDocumentsView() {
         addClassNames("flex", "flex-grow", "h-full");
 
         // Editor

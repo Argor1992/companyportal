@@ -8,6 +8,9 @@ import com.company.application.data.employee.entity.EmployeeEntity;
 import com.company.application.data.employee.entity.Occupation;
 import com.company.application.data.employee.entity.Role;
 import com.company.application.data.employee.repository.EmployeeRepository;
+import com.company.application.data.project.entity.ProjectEntity;
+import com.company.application.data.project.entity.ProjectState;
+import com.company.application.data.project.repository.ProjectRepository;
 import com.company.application.data.relations.entity.EmployeeClientRelationEntity;
 import com.company.application.data.relations.repository.EmployeeClientRelationRepository;
 import org.springframework.stereotype.Service;
@@ -25,12 +28,14 @@ public class DataInitializer {
     private final EmployeeRepository employeeRepository;
     private final ClientRepository clientRepository;
     private final EmployeeClientRelationRepository relationRepository;
+    private final ProjectRepository projectRepository;
     private final SecurityController securityController;
 
-    public DataInitializer(EmployeeRepository employeeRepository, ClientRepository clientRepository, EmployeeClientRelationRepository relationRepository, SecurityController securityController) {
+    public DataInitializer(EmployeeRepository employeeRepository, ClientRepository clientRepository, EmployeeClientRelationRepository relationRepository, ProjectRepository projectRepository, SecurityController securityController) {
         this.employeeRepository = employeeRepository;
         this.clientRepository = clientRepository;
         this.relationRepository = relationRepository;
+        this.projectRepository = projectRepository;
         this.securityController = securityController;
     }
 
@@ -39,9 +44,10 @@ public class DataInitializer {
         createInitialEmployeeData();
         createInitialClientData();
         createInitialRelationData();
+        createInitialProjectData();
     }
 
-    public void createInitialEmployeeData() {
+    private void createInitialEmployeeData() {
         if (employeeRepository.count() == 0) {
             employeeRepository.saveAll(
                     Stream.of(
@@ -201,7 +207,7 @@ public class DataInitializer {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123467", "Mark", "Parkes",
-                                    "marie.parkes@rich.de", "111",
+                                    "mark.parkes@rich.de", "111",
                                     new AddressEntity(
                                             "Flughafenstrasse 22",
                                             "92714",
@@ -498,7 +504,7 @@ public class DataInitializer {
         }
     }
 
-    public void createInitialClientData() {
+    private void createInitialClientData() {
         if (clientRepository.count() == 0) {
             clientRepository.saveAll(
                     Stream.of(
@@ -622,7 +628,7 @@ public class DataInitializer {
                             new ClientEntity(
                                     "Nader Group",
                                     "Sandra T Schmidt",
-                                    "schidt@nadergroup.de",
+                                    "schmidt@nadergroup.de",
                                     "03641 49 20151",
                                     new AddressEntity(
                                             "Eschenweg 64",
@@ -786,4 +792,63 @@ public class DataInitializer {
             });
         }
     }
+
+    private void createInitialProjectData() {
+        if (projectRepository.count() == 0) {
+            List<EmployeeEntity> employees = employeeRepository.findAllEntitiesAndFetchProjects();
+            List<ClientEntity> clientEntities = clientRepository.findAllEntitiesAndFetchProjects();
+            String[] names = new String[]{"PAINSTAKING WRENCH", "FUNCTIONAL BIRTHDAY", "CHEAP PLEASURE",
+                    "HIGH SHOES", "VICTORIOUS NECK", "USEFUL WAVES", "JADED TEETH", "HULKING PLOT",
+                    "HIGHFALUTIN DRINK", "RIPE TOUCH", "HOMELY CROOK", "TRUCULENT FANG", "WISE DESK",
+                    "OVERWROUGHT MOUTH", "WISTFUL WING", "GRAND INSTRUMENT", "UBIQUITOUS HALL",
+                    "NEXT CROWD", "FLUTTERING MIDDLE", "SHALLOW REASON", "COORDINATED OCEAN",
+                    "ACCEPTABLE HOT", "EXCLUSIVE STAGE", "BURLY WINE", "ENCOURAGING LINE",
+                    "WORTHY PAPER", "INTERNAL SAND", "ABSTRACTED SYSTEM", "HELPLESS SUGAR",
+                    "WATERY JEANS", "STRAIGHT COW", "QUACK LABORER", "WEARY WIRE", "ABSENT AUNT",
+                    "LAST SUBSTANCE", "GRANDIOSE TIGER", "ROOMY POT", "COORDINATED THROAT",
+                    "ASTONISHING WORK", "IMMUNE FIELD"};
+            SecureRandom rnd = new SecureRandom();
+
+            System.err.println(employees.size());
+            System.err.println(clientEntities.size());
+
+            for (String name : names) {
+                ProjectEntity projectEntity = new ProjectEntity(
+                        name,
+                        "This project is very important because it brings a lot of money.",
+                        rnd.nextInt(1_000_000) + 10000,
+                        LocalDate.of(rnd.nextInt(20) + 1980, rnd.nextInt(11) + 1, 1),
+                        ProjectState.values()[rnd.nextInt(ProjectState.values().length)],
+                        rnd.nextInt(10)
+                );
+
+                projectRepository.save(projectEntity);
+            }
+
+            createInitialProjectContributors();
+        }
+    }
+
+    private void createInitialProjectContributors() {
+        List<EmployeeEntity> employees = employeeRepository.findAllEntitiesAndFetchProjects();
+        List<ClientEntity> clients = clientRepository.findAllEntitiesAndFetchProjects();
+        List<ProjectEntity> projects = projectRepository.findAllEntitiesAndFetchProjects();
+        SecureRandom rnd = new SecureRandom();
+
+        projects.forEach(
+                projectEntity -> {
+                    List.of(employees.get(rnd.nextInt(employees.size() - 1)), employees.get(rnd.nextInt(employees.size() - 1))).forEach(
+                            projectEntity::addProjectManager
+                    );
+
+                    List.of(clients.get(rnd.nextInt(clients.size() - 1)), clients.get(rnd.nextInt(clients.size() - 1))).forEach(
+                            projectEntity::addProjectClient
+                    );
+
+                    projectRepository.save(projectEntity);
+                }
+        );
+    }
+
+
 }

@@ -1,11 +1,14 @@
 package com.company.application.views.client;
 
+import com.company.application.core.services.GermanTextService;
 import com.company.application.domain.clientprofile.data.Client;
 import com.company.application.domain.clientprofile.usecase.ClientUseCase;
 import com.company.application.views.mainlayout.MainLayout;
-import com.company.application.views.core.components.InfoRow;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Main;
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEvent;
@@ -19,18 +22,21 @@ import java.util.Optional;
 @Route(value = "client", layout = MainLayout.class)
 public class ClientView extends Main implements HasUrlParameter<Integer> {
     private final ClientUseCase clientUseCase;
+    private final GermanTextService dateService;
     private Client client;
 
     private final VerticalLayout pageContent = new VerticalLayout();
 
-    public ClientView(ClientUseCase clientUseCase) {
+    public ClientView(ClientUseCase clientUseCase, GermanTextService dateService) {
         this.clientUseCase = clientUseCase;
+        this.dateService = dateService;
 
         addClassNames("justify-center");
         Div mainDiv = new Div();
         mainDiv.addClassNames("profile-main-div", "pt-m");
         pageContent.setPadding(false);
         pageContent.setSpacing(false);
+        pageContent.addClassName("card-component");
 
         mainDiv.add(pageContent);
         add(mainDiv);
@@ -45,7 +51,10 @@ public class ClientView extends Main implements HasUrlParameter<Integer> {
 
             if (client.isPresent()) {
                 this.client = client.get();
-                pageContent.add(getProfileHeader(), getMainContent());
+                pageContent.add(getProfileHeader(),
+                        new ContactCard(this.client, this.client.getAddress()),
+                        new EmployeeCard(this.client.getContactPersons(), dateService),
+                        new ProjectCard(this.client.getProjects(), dateService));
             }
 
         } else {
@@ -72,16 +81,6 @@ public class ClientView extends Main implements HasUrlParameter<Integer> {
         email.addClassNames("mt-0", "text-l", "text-secondary");
 
         layout.add(name, email);
-        return layout;
-    }
-
-    private Component getMainContent() {
-        VerticalLayout layout = new VerticalLayout();
-        layout.setPadding(false);
-        layout.setSpacing(false);
-        layout.addClassName("card-list-view");
-        layout.add(
-                new ContactCard(client, client.getAddress()));
         return layout;
     }
 }

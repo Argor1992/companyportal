@@ -3,6 +3,7 @@ package com.company.application.views.mainlayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.company.application.views.projectlist.ProjectListView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -16,11 +17,7 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
 import com.company.application.views.profile.ProfileView;
 import com.company.application.views.employeelist.EmployeeListView;
-import com.company.application.views.personform.PersonFormView;
-import com.company.application.views.addressform.AddressFormView;
-import com.company.application.views.creditcardform.CreditCardFormView;
-import com.company.application.views.checkoutform.CheckoutFormView;
-import com.company.application.views.editor.EditorView;
+import com.company.application.views.projectdocuments.ProjectDocumentsView;
 import com.company.application.views.clientlist.ClientListView;
 import com.company.application.views.about.AboutView;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -105,17 +102,11 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("Kundenübersicht", "la la-money-bill-wave", ClientListView.class), //
 
-                new MenuItemInfo("Person Form", "la la-user", PersonFormView.class), //
+                new MenuItemInfo("Projektübersicht", "la la-tasks", ProjectListView.class), //
 
-                new MenuItemInfo("Address Form", "la la-map-marker", AddressFormView.class), //
+                new MenuItemInfo("Projektunterlagen", "la la-edit", ProjectDocumentsView.class), //
 
-                new MenuItemInfo("Credit Card Form", "", CreditCardFormView.class), //
-
-                new MenuItemInfo("Checkout Form", "", CheckoutFormView.class), //
-
-                new MenuItemInfo("Editor", "la la-edit", EditorView.class), //
-
-                new MenuItemInfo("About", "la la-file", AboutView.class), //
+                new MenuItemInfo("Über uns", "la la-file", AboutView.class), //
 
         };
         List<RouterLink> links = new ArrayList<>();

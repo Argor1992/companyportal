@@ -1,6 +1,6 @@
 package com.company.application.views.profile;
 
-import com.company.application.core.services.GermanDateService;
+import com.company.application.core.services.GermanTextService;
 import com.company.application.domain.employeeprofile.data.EmployeeProfile;
 import com.company.application.domain.employeeprofile.usecase.EmployeeProfileUseCase;
 import com.company.application.views.core.components.InfoRow;
@@ -18,12 +18,12 @@ import java.util.Optional;
 @RouteAlias(value = "", layout = MainLayout.class)
 public class ProfileView extends Main implements HasUrlParameter<Integer> {
     private final EmployeeProfileUseCase employeeProfileUseCase;
-    private final GermanDateService dateService;
+    private final GermanTextService dateService;
     private EmployeeProfile employee;
 
     private final VerticalLayout pageContent = new VerticalLayout();
 
-    public ProfileView(EmployeeProfileUseCase employeeProfileUseCase, GermanDateService dateService) {
+    public ProfileView(EmployeeProfileUseCase employeeProfileUseCase, GermanTextService dateService) {
         this.employeeProfileUseCase = employeeProfileUseCase;
         this.dateService = dateService;
 

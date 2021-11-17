@@ -68,4 +68,8 @@ public class ClientEntity extends AbstractEntity {
     public void setContactPersons(Set<EmployeeClientRelationEntity> contactPersons) { this.contactPersons = contactPersons; }
     public List<ProjectEntity> getProjects() { return new ArrayList<>(projects); }
     public void setProjects(Set<ProjectEntity> projects) { this.projects = projects; }
+
+    public void addProject(ProjectEntity projectEntity) {
+        projects.add(projectEntity);
+    }
 }

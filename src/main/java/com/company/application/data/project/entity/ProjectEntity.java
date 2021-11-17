@@ -51,6 +51,15 @@ public class ProjectEntity extends AbstractEntity implements Serializable {
     public ProjectEntity() {
     }
 
+    public ProjectEntity(String name, String description, double amount, LocalDate date, ProjectState projectState, int priority) {
+        this.name = name;
+        this.description = description;
+        this.amount = amount;
+        this.date = date;
+        this.projectState = projectState;
+        this.priority = priority;
+    }
+
     public ProjectEntity(String name, String description, double amount, LocalDate date, ProjectState projectState, int priority, Set<EmployeeEntity> projectManagers, Set<ClientEntity> projectClients) {
         this.name = name;
         this.description = description;
@@ -78,4 +87,12 @@ public class ProjectEntity extends AbstractEntity implements Serializable {
     public void setProjectManagers(Set<EmployeeEntity> projectManagers) { this.projectManagers = projectManagers; }
     public List<ClientEntity> getProjectClients() { return new ArrayList<>(projectClients); }
     public void setProjectClients(Set<ClientEntity> projectClients) { this.projectClients = projectClients; }
+
+    public void addProjectManager(EmployeeEntity employeeEntity) {
+        projectManagers.add(employeeEntity);
+    }
+
+    public void addProjectClient(ClientEntity clientEntity) {
+        projectClients.add(clientEntity);
+    }
 }

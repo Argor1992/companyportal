@@ -8,11 +8,12 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 public class ContactCard extends VerticalLayout {
     public ContactCard(IClient client, Address address) {
-        addClassNames("info-card", "card", "bg-contrast-10", "rounded-l", "p-m");
+        addClassName("card-component");
+        addClassNames("card", "rounded-l", "p-m");
         setSpacing(false);
         setPadding(false);
 
-        H1 header = new H1("Ansprechpartner:");
+        H1 header = new H1("AnsprechpartnerIn:");
         header.addClassNames("m-0", "text-xl", "pt-0", "pb-s");
 
         VerticalLayout info = new VerticalLayout();
@@ -20,7 +21,7 @@ public class ContactCard extends VerticalLayout {
         info.setSpacing(false);
         info.setPadding(false);
         info.add(
-                new InfoRow("AnsprechpartnerIn", client.getRepresentative()),
+                new InfoRow("Name", client.getRepresentative()),
                 new InfoRow("E-Mail", client.getEmail()),
                 new InfoRow("Telefon", client.getPhone()),
                 new InfoRow("Adresse", address.getUiText())

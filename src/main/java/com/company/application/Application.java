@@ -21,7 +21,7 @@ import com.vaadin.flow.component.dependency.NpmPackage;
  */
 @SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
 @Theme(value = "companyportal")
-@PWA(name = "Company Portal", shortName = "Company Portal", offlineResources = {"images/logo.png"})
+@PWA(name = "Company Portal", shortName = "Company Portal")
 @Push
 @NpmPackage(value = "line-awesome", version = "1.3.0")
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {

@@ -1,7 +1,6 @@
 package com.company.application.domain.clientprofile.data;
 
 import com.company.application.core.domain.IClient;
-import com.company.application.core.domain.IEmployee;
 import com.company.application.core.domain.IProject;
 import com.company.application.domain.core.data.Address;
 
@@ -14,10 +13,10 @@ public class Client implements IClient {
     private String email;
     private String phone;
     private Address address;
-    private List<IEmployee> contactPersons;
+    private List<EmployeeRelationship> contactPersons;
     private List<IProject> projects;
 
-    public Client(int id, String name, String representative, String email, String phone, Address address, List<IEmployee> contactPersons, List<IProject> projects) {
+    public Client(int id, String name, String representative, String email, String phone, Address address, List<EmployeeRelationship> contactPersons, List<IProject> projects) {
         this.id = id;
         this.name = name;
         this.representative = representative;
@@ -44,8 +43,8 @@ public class Client implements IClient {
     public void setPhone(String phone) { this.phone = phone; }
     public Address getAddress() { return address; }
     public void setAddress(Address address) { this.address = address; }
-    public List<IEmployee> getContactPersons() { return contactPersons; }
-    public void setContactPersons(List<IEmployee> contactPersons) { this.contactPersons = contactPersons; }
+    public List<EmployeeRelationship> getContactPersons() { return contactPersons; }
+    public void setContactPersons(List<EmployeeRelationship> contactPersons) { this.contactPersons = contactPersons; }
     public List<IProject> getProjects() { return projects; }
     public void setProjects(List<IProject> projects) { this.projects = projects; }
 }

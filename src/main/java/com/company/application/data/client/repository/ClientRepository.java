@@ -14,6 +14,17 @@ import java.util.Optional;
 
 @Repository
 public interface ClientRepository extends JpaRepository<ClientEntity, Integer> {
+    @EntityGraph(
+            type = EntityGraph.EntityGraphType.FETCH,
+            attributePaths = {
+                    "projects"
+            }
+    )
+    @Query(
+            "select e from ClientEntity e"
+    )
+    List<ClientEntity> findAllEntitiesAndFetchProjects();
+
     Optional<ClientOverview> findClientOverviewById(int id);
 
     List<ClientOverview> findAllClientOverviewsBy();
@@ -23,6 +34,7 @@ public interface ClientRepository extends JpaRepository<ClientEntity, Integer> {
             attributePaths = {
                     "address",
                     "contactPersons",
+                    "contactPersons.employee",
                     "projects"
             }
     )

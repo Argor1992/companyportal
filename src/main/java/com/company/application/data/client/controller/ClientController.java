@@ -33,6 +33,8 @@ public class ClientController {
     }
 
     public boolean updateClient(ClientOverview client) {
+        if (client == null)
+            return false;
         return clientService.updateClient(client);
     }
 }

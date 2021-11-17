@@ -6,6 +6,7 @@ import com.company.application.data.client.repository.ClientRepository;
 import com.company.application.data.project.entity.ProjectState;
 import com.company.application.domain.clientlist.data.ClientOverview;
 import com.company.application.domain.clientprofile.data.Client;
+import com.company.application.domain.clientprofile.data.EmployeeRelationship;
 import com.company.application.domain.core.data.Address;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,24 +69,27 @@ public class ClientService {
                         clientEntity.getAddress().getState(),
                         clientEntity.getAddress().getCountry()
                 ),
-                clientEntity.getContactPersons().stream().map(relation -> new IEmployee() {
-                    @Override
-                    public int getId() { return relation.getEmployee().getId(); }
-                    @Override
-                    public String getPersonnelNumber() { return relation.getEmployee().getPersonnelNumber(); }
-                    @Override
-                    public String getFirstName() { return relation.getEmployee().getFirstName(); }
-                    @Override
-                    public String getLastName() { return relation.getEmployee().getLastName(); }
-                    @Override
-                    public String getEmail() { return relation.getEmployee().getEmail(); }
-                    @Override
-                    public String getPhone() { return relation.getEmployee().getPhone(); }
-                    @Override
-                    public LocalDate getDateOfBirth() { return relation.getEmployee().getDateOfBirth(); }
-                    @Override
-                    public String getProfilePicture() { return relation.getEmployee().getProfilePicture(); }
-                }).collect(Collectors.toList()),
+                clientEntity.getContactPersons().stream().map(relation -> new EmployeeRelationship(
+                        new IEmployee() {
+                            @Override
+                            public int getId() { return relation.getEmployee().getId(); }
+                            @Override
+                            public String getPersonnelNumber() { return relation.getEmployee().getPersonnelNumber(); }
+                            @Override
+                            public String getFirstName() { return relation.getEmployee().getFirstName(); }
+                            @Override
+                            public String getLastName() { return relation.getEmployee().getLastName(); }
+                            @Override
+                            public String getEmail() { return relation.getEmployee().getEmail(); }
+                            @Override
+                            public String getPhone() { return relation.getEmployee().getPhone(); }
+                            @Override
+                            public LocalDate getDateOfBirth() { return relation.getEmployee().getDateOfBirth(); }
+                            @Override
+                            public String getProfilePicture() { return relation.getEmployee().getProfilePicture(); }
+                        },
+                        relation.getDate()
+                )).collect(Collectors.toList()),
                 clientEntity.getProjects().stream().map(projectEntity -> new IProject() {
                     @Override
                     public int getId() { return projectEntity.getId(); }

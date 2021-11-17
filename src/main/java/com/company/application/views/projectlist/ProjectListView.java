@@ -1,9 +1,9 @@
-package com.company.application.views.employeelist;
+package com.company.application.views.projectlist;
 
 import com.company.application.core.services.GermanTextService;
-import com.company.application.domain.employeelist.data.EmployeeOverview;
-import com.company.application.domain.employeelist.usecase.EmployeeListUseCase;
-import com.company.application.domain.employeelist.usecase.UpdateEmployeeUseCase;
+import com.company.application.domain.projectlist.data.ProjectOverview;
+import com.company.application.domain.projectlist.usecase.ProjectListUseCase;
+import com.company.application.domain.projectlist.usecase.UpdateProjectUseCase;
 import com.company.application.views.mainlayout.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
@@ -19,30 +19,30 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("FieldCanBeLocal")
-@PageTitle("Mitarbeiterübersicht")
-@Route(value = "employees", layout = MainLayout.class)
+@PageTitle("Projektübersicht")
+@Route(value = "projects", layout = MainLayout.class)
 @Uses(Icon.class)
-public class EmployeeListView extends Div {
+public class ProjectListView extends Div {
 
-    private final Grid<EmployeeOverview> grid = new Grid<>(EmployeeOverview.class, false);
+    private final Grid<ProjectOverview> grid = new Grid<>(ProjectOverview.class, false);
 
-    private final EmployeeListUseCase employeeListUseCase;
+    private final ProjectListUseCase projectListUseCase;
     private final GermanTextService dateService;
 
-    public EmployeeListView(EmployeeListUseCase employeeListUseCase,
-                            UpdateEmployeeUseCase updateEmployeeUseCase,
-                            GermanTextService dateService) {
-        this.employeeListUseCase = employeeListUseCase;
+    public ProjectListView(ProjectListUseCase projectListUseCase,
+                           UpdateProjectUseCase updateProjectUseCase,
+                           GermanTextService dateService) {
+        this.projectListUseCase = projectListUseCase;
         this.dateService = dateService;
         addClassNames("master-detail-view", "flex", "flex-col", "h-full");
 
         // Create UI
-        if (this.employeeListUseCase.showUpdateMenu()) {
+        if (this.projectListUseCase.showUpdateMenu()) {
             SplitLayout splitLayout = new SplitLayout();
             splitLayout.setSizeFull();
 
             splitLayout.addToPrimary(createGridLayout());
-            splitLayout.addToSecondary(new EmployeeUpdateDialog(grid, employeeListUseCase, updateEmployeeUseCase));
+            splitLayout.addToSecondary(new ProjectUpdateDialog(grid, projectListUseCase, updateProjectUseCase));
             add(splitLayout);
 
         } else {
@@ -69,24 +69,28 @@ public class EmployeeListView extends Div {
     }
 
     private void initializeGrid() {
-        grid.addColumn(EmployeeOverview::getFirstName, "firstName").setHeader("Vorname").setAutoWidth(true);
-        grid.addColumn(EmployeeOverview::getLastName, "lastName").setHeader("Nachname").setAutoWidth(true);
-        grid.addColumn(EmployeeOverview::getEmail, "email").setHeader("E-Mail").setAutoWidth(true);
-        grid.addColumn(EmployeeOverview::getPhone, "phone").setHeader("Durchwahl").setAutoWidth(true);
+        grid.addColumn(ProjectOverview::getName, "name").setHeader("Name").setAutoWidth(true);
         grid.addColumn(
-                (ValueProvider<EmployeeOverview, String>) employeeOverview ->
-                        dateService.getGermanDate(employeeOverview.getDateOfBirth()), "dateOfBirth").setHeader("Geburtsdatum").setAutoWidth(true);
+                (ValueProvider<ProjectOverview, String>) projectOverview ->
+                        dateService.getGermanCurrency(projectOverview.getAmount()), "amout")
+                .setHeader("Betrag").setAutoWidth(true);
         grid.addColumn(
-                (ValueProvider<EmployeeOverview, String>) employeeOverview ->
-                        employeeOverview.getOccupation().getUiText(), "occupation").setHeader("Abteilung").setAutoWidth(true);
+                (ValueProvider<ProjectOverview, String>) projectOverview ->
+                        dateService.getGermanDate(projectOverview.getDate()), "date")
+                .setHeader("Start").setAutoWidth(true);
+        grid.addColumn(
+                (ValueProvider<ProjectOverview, String>) projectOverview ->
+                        projectOverview.getProjectState().getUiText(), "projectState")
+                .setHeader("Status").setAutoWidth(true);
+        grid.addColumn(ProjectOverview::getPriority, "priority").setHeader("Priorität").setAutoWidth(true);
 
-        grid.setItems(employeeListUseCase.getEmployeeList());
+        grid.setItems(projectListUseCase.getProjectList());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
         grid.setHeightFull();
 
         grid.addItemClickListener(event -> {
             if (event.getClickCount() == 2)
-                UI.getCurrent().navigate("profile/" + event.getItem().getId());
+                UI.getCurrent().navigate("project/" + event.getItem().getId());
         });
     }
 }

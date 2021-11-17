@@ -6,7 +6,7 @@ import com.company.application.data.employee.dtos.EmployeeProfileDto;
 import com.company.application.data.employee.entity.EmployeeEntity;
 import com.company.application.data.employee.entity.Occupation;
 import com.company.application.data.employee.entity.Role;
-import com.company.application.domain.employeeprofile.data.EmployeeProfile;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +17,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Integer> {
+    @EntityGraph(
+            type = EntityGraph.EntityGraphType.FETCH,
+            attributePaths = {
+                    "projects"
+            }
+    )
+    @Query(
+            "select e from EmployeeEntity e"
+    )
+    List<EmployeeEntity> findAllEntitiesAndFetchProjects();
+
     Optional<EmployeeCredentialsDto> findCredentialsByEmail(@Param("email") String email);
 
     List<EmployeeOverviewDto> findAllEmployeeOverviewsBy();
