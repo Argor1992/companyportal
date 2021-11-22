@@ -8,7 +8,7 @@ import com.vaadin.flow.component.richtexteditor.RichTextEditorVariant;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.company.application.views.mainlayout.MainLayout;
+import com.company.application.views.core.mainlayout.MainLayout;
 
 @PageTitle("Unterlagen")
 @Route(value = "editor", layout = MainLayout.class)

@@ -1,13 +1,15 @@
 package com.company.application.domain.employeeprofile.data;
 
 import com.company.application.core.domain.IEmployee;
+import com.company.application.core.domain.IProject;
 import com.company.application.data.employee.entity.Occupation;
 import com.company.application.data.employee.entity.Role;
 import com.company.application.domain.core.data.Address;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public class EmployeeProfile implements IEmployee {
+public class Employee implements IEmployee {
     private final int id;
     private final String personnelNumber;
     private String firstName;
@@ -19,8 +21,12 @@ public class EmployeeProfile implements IEmployee {
     private Address address;
     private Role role;
     private String profilePicture;
+    private List<ClientRelationship> clients;
+    private List<IProject> projects;
 
-    public EmployeeProfile(int id, String personnelNumber, String firstName, String lastName, String email, String phone, LocalDate dateOfBirth, Occupation occupation, Address address, Role role, String profilePicture) {
+    public Employee(int id, String personnelNumber, String firstName, String lastName, String email,
+                    String phone, LocalDate dateOfBirth, Occupation occupation, Address address,
+                    Role role, String profilePicture, List<ClientRelationship> clients, List<IProject> projects) {
         this.id = id;
         this.personnelNumber = personnelNumber;
         this.firstName = firstName;
@@ -32,6 +38,8 @@ public class EmployeeProfile implements IEmployee {
         this.address = address;
         this.role = role;
         this.profilePicture = profilePicture;
+        this.clients = clients;
+        this.projects = projects;
     }
 
     @Override
@@ -61,6 +69,13 @@ public class EmployeeProfile implements IEmployee {
     public void setRole(Role role) { this.role = role; }
     public String getProfilePicture() { return profilePicture; }
     public void setProfilePicture(String profilePicture) { this.profilePicture = profilePicture; }
+    public List<ClientRelationship> getClients() { return clients; }
+    public void setClients(List<ClientRelationship> clients) { this.clients = clients; }
+    public List<IProject> getProjects() { return projects; }
+
+    public void setProjects(List<IProject> projects) {
+        this.projects = projects;
+    }
 
     public String getDisplayName() {
         return firstName + " " + lastName + " (" + personnelNumber + ")";

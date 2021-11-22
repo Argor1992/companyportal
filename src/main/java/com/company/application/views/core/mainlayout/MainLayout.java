@@ -1,4 +1,4 @@
-package com.company.application.views.mainlayout;
+package com.company.application.views.core.mainlayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.profile.ProfileView;
+import com.company.application.views.employee.EmployeeView;
 import com.company.application.views.employeelist.EmployeeListView;
 import com.company.application.views.projectdocuments.ProjectDocumentsView;
 import com.company.application.views.clientlist.ClientListView;
@@ -96,7 +96,7 @@ public class MainLayout extends AppLayout {
 
     private List<RouterLink> createLinks() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
-                new MenuItemInfo("Profil", "la la-user-circle", ProfileView.class), //
+                new MenuItemInfo("Profil", "la la-user-circle", EmployeeView.class), //
 
                 new MenuItemInfo("Mitarbeiterübersicht", "la la-th-list", EmployeeListView.class), //
 

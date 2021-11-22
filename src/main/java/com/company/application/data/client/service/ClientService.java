@@ -2,6 +2,7 @@ package com.company.application.data.client.service;
 
 import com.company.application.core.domain.IEmployee;
 import com.company.application.core.domain.IProject;
+import com.company.application.data.client.entity.ClientEntity;
 import com.company.application.data.client.repository.ClientRepository;
 import com.company.application.data.project.entity.ProjectState;
 import com.company.application.domain.clientlist.data.ClientOverview;
@@ -25,23 +26,11 @@ public class ClientService {
     }
 
     public Optional<ClientOverview> getClientOverview(int id) {
-        return clientRepository.findClientOverviewById(id).map(clientOverview -> new ClientOverview(
-                clientOverview.getId(),
-                clientOverview.getName(),
-                clientOverview.getRepresentative(),
-                clientOverview.getEmail(),
-                clientOverview.getPhone()
-        ));
+        return clientRepository.findClientOverviewById(id).map(this::dtoToClientOverview);
     }
 
     public List<ClientOverview> getClientOverviewList() {
-        return clientRepository.findAllClientOverviewsBy().stream().map(clientOverview -> new ClientOverview(
-                clientOverview.getId(),
-                clientOverview.getName(),
-                clientOverview.getRepresentative(),
-                clientOverview.getEmail(),
-                clientOverview.getPhone()
-        )).collect(Collectors.toList());
+        return clientRepository.findAllClientOverviewsBy().stream().map(this::dtoToClientOverview).collect(Collectors.toList());
     }
 
     @Transactional
@@ -56,7 +45,21 @@ public class ClientService {
     }
 
     public Optional<Client> getFullClient(Integer id) {
-        return clientRepository.findClientByIdAndFetchEagerly(id).map(clientEntity -> new Client(
+        return clientRepository.findClientByIdAndFetchEagerly(id).map(this::entityToClient);
+    }
+
+    private ClientOverview dtoToClientOverview(ClientOverview clientOverview) {
+        return new ClientOverview(
+                clientOverview.getId(),
+                clientOverview.getName(),
+                clientOverview.getRepresentative(),
+                clientOverview.getEmail(),
+                clientOverview.getPhone()
+        );
+    }
+
+    private Client entityToClient(ClientEntity clientEntity) {
+        return new Client(
                 clientEntity.getId(),
                 clientEntity.getName(),
                 clientEntity.getRepresentative(),
@@ -106,6 +109,6 @@ public class ClientService {
                     @Override
                     public int getPriority() { return projectEntity.getPriority(); }
                 }).collect(Collectors.toList())
-        ));
+        );
     }
 }

@@ -16,6 +16,19 @@ import java.util.Optional;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<ProjectEntity, Integer> {
+
+    @EntityGraph(
+            type = EntityGraph.EntityGraphType.FETCH,
+            attributePaths = {
+                    "projectManagers",
+                    "projectClients",
+            }
+    )
+    @Query(
+            "select c from ProjectEntity c where c.id = :id"
+    )
+    Optional<ProjectEntity> findProjectByIdAndFetchEagerly(int id);
+
     @EntityGraph(
             type = EntityGraph.EntityGraphType.FETCH,
             attributePaths = {

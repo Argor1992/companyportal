@@ -2,7 +2,7 @@ package com.company.application.domain.employeeprofile.usecase;
 
 import com.company.application.core.security.SecurityController;
 import com.company.application.data.employee.controller.EmployeeController;
-import com.company.application.domain.employeeprofile.data.EmployeeProfile;
+import com.company.application.domain.employeeprofile.data.Employee;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,12 +17,12 @@ public class EmployeeProfileUseCase {
         this.employeeController = employeeController;
     }
 
-    public Optional<EmployeeProfile> getCurrentUser() {
+    public Optional<Employee> getCurrentUser() {
         String name = securityController.getPrincipalName();
         return employeeController.getEmployeeProfile(name);
     }
 
-    public Optional<EmployeeProfile> getUser(Integer id) {
+    public Optional<Employee> getUser(Integer id) {
         return employeeController.getEmployeeProfile(id);
     }
 }

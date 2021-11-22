@@ -1,4 +1,4 @@
-package com.company.application.views.mainlayout;
+package com.company.application.views.core.mainlayout;
 
 import com.vaadin.flow.component.Component;
 

@@ -34,3 +34,10 @@
   align-items: center;
   display: flex;
 }
+
+.main-div {
+    justify-content: center;
+    max-width: 850px;
+    min-width: 45vw;
+    margin: auto;
+}

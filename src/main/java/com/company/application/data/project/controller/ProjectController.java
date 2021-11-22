@@ -2,6 +2,7 @@ package com.company.application.data.project.controller;
 
 import com.company.application.data.project.service.ProjectService;
 import com.company.application.domain.projectlist.data.ProjectOverview;
+import com.company.application.domain.projectprofile.data.Project;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -29,5 +30,11 @@ public class ProjectController {
         if (project == null)
             return false;
         return projectService.updateProject(project);
+    }
+
+    public Optional<Project> getProject(int id) {
+        if (id < 1)
+            return Optional.empty();
+        return projectService.getFullProject(id);
     }
 }

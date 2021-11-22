@@ -1,12 +1,6 @@
-.profile-main-div{
-    justify-content: center;
-    max-width: 850px;
-    min-width: 45vw;
-    margin: auto;
-}
-
-.profile-photo{
+#profile-photo{
     border-radius: 50%;
-    width:7rem;
-    height:7rem;
+    width:6rem;
+    height:6rem;
+    margin-right: 0;
 }

@@ -2,7 +2,7 @@ package com.company.application.data.employee.controller;
 
 import com.company.application.data.employee.service.EmployeeService;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
-import com.company.application.domain.employeeprofile.data.EmployeeProfile;
+import com.company.application.domain.employeeprofile.data.Employee;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -32,13 +32,13 @@ public class EmployeeController {
         return employeeService.updateEmployee(samplePerson) == 1;
     }
 
-    public Optional<EmployeeProfile> getEmployeeProfile(String email) {
+    public Optional<Employee> getEmployeeProfile(String email) {
         if (email == null || email.isEmpty())
             return Optional.empty();
         return employeeService.getEmployeeProfile(email);
     }
 
-    public Optional<EmployeeProfile> getEmployeeProfile(Integer id) {
+    public Optional<Employee> getEmployeeProfile(Integer id) {
         if (id  < 1)
             return Optional.empty();
         return employeeService.getEmployeeProfile(id);

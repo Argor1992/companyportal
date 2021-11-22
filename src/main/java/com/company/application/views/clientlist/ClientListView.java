@@ -3,7 +3,7 @@ package com.company.application.views.clientlist;
 import com.company.application.domain.clientlist.data.ClientOverview;
 import com.company.application.domain.clientlist.usecase.ClientListUseCase;
 import com.company.application.domain.clientlist.usecase.UpdateClientUseCase;
-import com.company.application.views.mainlayout.MainLayout;
+import com.company.application.views.core.mainlayout.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.grid.Grid;

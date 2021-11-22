@@ -3,13 +3,13 @@ package com.company.application.views.client;
 import com.company.application.core.services.GermanTextService;
 import com.company.application.domain.clientprofile.data.Client;
 import com.company.application.domain.clientprofile.usecase.ClientUseCase;
-import com.company.application.views.mainlayout.MainLayout;
-import com.vaadin.flow.component.Component;
+import com.company.application.views.core.components.PageHeader;
+import com.company.application.views.core.components.card.EmployeeCard;
+import com.company.application.views.core.components.card.ProjectCard;
+import com.company.application.views.core.mainlayout.MainLayout;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
@@ -23,7 +23,6 @@ import java.util.Optional;
 public class ClientView extends Main implements HasUrlParameter<Integer> {
     private final ClientUseCase clientUseCase;
     private final GermanTextService dateService;
-    private Client client;
 
     private final VerticalLayout pageContent = new VerticalLayout();
 
@@ -33,7 +32,7 @@ public class ClientView extends Main implements HasUrlParameter<Integer> {
 
         addClassNames("justify-center");
         Div mainDiv = new Div();
-        mainDiv.addClassNames("profile-main-div", "pt-m");
+        mainDiv.addClassNames("main-div", "pt-m");
         pageContent.setPadding(false);
         pageContent.setSpacing(false);
         pageContent.addClassName("card-component");
@@ -45,42 +44,22 @@ public class ClientView extends Main implements HasUrlParameter<Integer> {
     @Override
     public void setParameter(BeforeEvent beforeEvent, Integer integer) {
         pageContent.removeAll();
-        Optional<Client> client;
+
         if (integer != null) {
-            client = clientUseCase.getClient(integer);
+            Optional<Client> client = clientUseCase.getClient(integer);
 
             if (client.isPresent()) {
-                this.client = client.get();
-                pageContent.add(getProfileHeader(),
-                        new ContactCard(this.client, this.client.getAddress()),
-                        new EmployeeCard(this.client.getContactPersons(), dateService),
-                        new ProjectCard(this.client.getProjects(), dateService));
+                pageContent.add(
+                        new PageHeader(client.get().getName(), client.get().getEmail()),
+                        new ContactCard(client.get(), client.get().getAddress()),
+                        new EmployeeCard(client.get().getContactPersons(), dateService),
+                        new ProjectCard(client.get().getProjects(), dateService));
+            } else {
+                pageContent.add(new Paragraph("Error while fetching client"));
             }
 
         } else {
             pageContent.add(new Paragraph("Client does not exits"));
         }
-    }
-
-    public Component getProfileHeader() {
-        HorizontalLayout layout = new HorizontalLayout();
-        layout.addClassNames("items-center", "h-auto", "flex", "pb-m");
-        layout.add(getNameAndEmail());
-        return layout;
-    }
-
-    private Component getNameAndEmail() {
-        VerticalLayout layout = new VerticalLayout();
-        layout.setPadding(false);
-        layout.setSpacing(false);
-
-        layout.addClassNames("content-between");
-        H1 name = new H1(client.getName());
-        name.addClassNames("mb-0", "text-xl", "pt-0");
-        Paragraph email = new Paragraph(client.getEmail());
-        email.addClassNames("mt-0", "text-l", "text-secondary");
-
-        layout.add(name, email);
-        return layout;
     }
 }

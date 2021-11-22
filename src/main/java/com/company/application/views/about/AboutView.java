@@ -1,6 +1,6 @@
 package com.company.application.views.about;
 
-import com.company.application.views.mainlayout.MainLayout;
+import com.company.application.views.core.mainlayout.MainLayout;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;

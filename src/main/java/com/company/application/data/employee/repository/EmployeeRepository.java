@@ -2,7 +2,6 @@ package com.company.application.data.employee.repository;
 
 import com.company.application.data.employee.dtos.EmployeeCredentialsDto;
 import com.company.application.data.employee.dtos.EmployeeOverviewDto;
-import com.company.application.data.employee.dtos.EmployeeProfileDto;
 import com.company.application.data.employee.entity.EmployeeEntity;
 import com.company.application.data.employee.entity.Occupation;
 import com.company.application.data.employee.entity.Role;
@@ -34,9 +33,33 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Intege
 
     Optional<EmployeeOverviewDto> findEmployeeOverviewById(@Param("id") Integer id);
 
-    Optional<EmployeeProfileDto> findEmployeeProfileByEmail(@Param("email") String email);
+    @EntityGraph(
+            type = EntityGraph.EntityGraphType.FETCH,
+            attributePaths = {
+                    "address",
+                    "clients",
+                    "clients.client",
+                    "projects"
+            }
+    )
+    @Query(
+            "select c from EmployeeEntity c where lower(c.email)=lower(:email)"
+    )
+    Optional<EmployeeEntity> findEmployeeByEmailFetchEagerly(@Param("email") String email);
 
-    Optional<EmployeeProfileDto> findEmployeeProfileById(@Param("id") Integer id);
+    @EntityGraph(
+            type = EntityGraph.EntityGraphType.FETCH,
+            attributePaths = {
+                    "address",
+                    "clients",
+                    "clients.client",
+                    "projects"
+            }
+    )
+    @Query(
+            "select c from EmployeeEntity c where c.id = :id"
+    )
+    Optional<EmployeeEntity> findEmployeeByIdFetchEagerly(@Param("id") Integer id);
 
     @Query(
             "select e.role from EmployeeEntity e where lower(e.email)=lower(:email)"
