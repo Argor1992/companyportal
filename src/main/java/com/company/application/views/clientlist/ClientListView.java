@@ -3,14 +3,12 @@ package com.company.application.views.clientlist;
 import com.company.application.domain.clientlist.data.ClientOverview;
 import com.company.application.domain.clientlist.usecase.ClientListUseCase;
 import com.company.application.domain.clientlist.usecase.UpdateClientUseCase;
+import com.company.application.views.core.components.list.ListComponent;
 import com.company.application.views.core.mainlayout.MainLayout;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -27,36 +25,13 @@ public class ClientListView extends Div {
         this.clientListUseCase = clientListUseCase;
         addClassNames("master-detail-view", "flex", "flex-col", "h-full");
 
-        // Create UI
         if (this.clientListUseCase.showUpdateMenu()) {
-            SplitLayout splitLayout = new SplitLayout();
-            splitLayout.setSizeFull();
-
-            splitLayout.addToPrimary(createGridLayout());
-            splitLayout.addToSecondary(new ClientUpdateDialog(grid, clientListUseCase, updateClientUseCase));
-            add(splitLayout);
-
+            add(new ListComponent(grid, new ClientUpdateDialog(grid, clientListUseCase, updateClientUseCase)));
         } else {
-            VerticalLayout wrapper = new VerticalLayout();
-            wrapper.setWidthFull();
-            wrapper.setHeightFull();
-            wrapper.addClassNames("pl-l", "pr-l", "pb-l");
-            wrapper.setId("grid-wrapper");
-            wrapper.setWidthFull();
-            wrapper.add(grid);
-            add(wrapper);
+            add(new ListComponent(grid));
         }
 
-        // Configure Grid
         initializeGrid();
-    }
-
-    private Component createGridLayout() {
-        Div wrapper = new Div();
-        wrapper.setId("grid-wrapper");
-        wrapper.setWidthFull();
-        wrapper.add(grid);
-        return wrapper;
     }
 
     private void initializeGrid() {
@@ -67,7 +42,7 @@ public class ClientListView extends Div {
         grid.addColumn(ClientOverview::getPhone, "phone").setHeader("Telefon").setAutoWidth(true);
 
         grid.setItems(clientListUseCase.getClientList());
-        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+        grid.addThemeVariants(GridVariant.LUMO_COMPACT);
         grid.setHeightFull();
 
         grid.addItemClickListener(event -> {

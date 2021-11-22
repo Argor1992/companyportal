@@ -4,21 +4,18 @@ import com.company.application.core.services.GermanTextService;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
 import com.company.application.domain.employeelist.usecase.EmployeeListUseCase;
 import com.company.application.domain.employeelist.usecase.UpdateEmployeeUseCase;
+import com.company.application.views.core.components.list.ListComponent;
 import com.company.application.views.core.mainlayout.MainLayout;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@SuppressWarnings("FieldCanBeLocal")
 @PageTitle("Mitarbeiterübersicht")
 @Route(value = "employees", layout = MainLayout.class)
 @Uses(Icon.class)
@@ -34,38 +31,15 @@ public class EmployeeListView extends Div {
                             GermanTextService dateService) {
         this.employeeListUseCase = employeeListUseCase;
         this.dateService = dateService;
-        addClassNames("master-detail-view", "flex", "flex-col", "h-full");
+        addClassNames("h-full");
 
-        // Create UI
         if (this.employeeListUseCase.showUpdateMenu()) {
-            SplitLayout splitLayout = new SplitLayout();
-            splitLayout.setSizeFull();
-
-            splitLayout.addToPrimary(createGridLayout());
-            splitLayout.addToSecondary(new EmployeeUpdateDialog(grid, employeeListUseCase, updateEmployeeUseCase));
-            add(splitLayout);
-
+            add(new ListComponent(grid, new EmployeeUpdateDialog(grid, employeeListUseCase, updateEmployeeUseCase)));
         } else {
-            VerticalLayout wrapper = new VerticalLayout();
-            wrapper.setWidthFull();
-            wrapper.setHeightFull();
-            wrapper.addClassNames("pl-l", "pr-l", "pb-l");
-            wrapper.setId("grid-wrapper");
-            wrapper.setWidthFull();
-            wrapper.add(grid);
-            add(wrapper);
+            add(new ListComponent(grid));
         }
 
-        // Configure Grid
         initializeGrid();
-    }
-
-    private Component createGridLayout() {
-        Div wrapper = new Div();
-        wrapper.setId("grid-wrapper");
-        wrapper.setWidthFull();
-        wrapper.add(grid);
-        return wrapper;
     }
 
     private void initializeGrid() {
@@ -81,7 +55,7 @@ public class EmployeeListView extends Div {
                         employeeOverview.getOccupation().getUiText(), "occupation").setHeader("Abteilung").setAutoWidth(true);
 
         grid.setItems(employeeListUseCase.getEmployeeList());
-        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+        grid.addThemeVariants(GridVariant.LUMO_COMPACT);
         grid.setHeightFull();
 
         grid.addItemClickListener(event -> {
