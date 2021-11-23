@@ -1,20 +1,21 @@
+.info-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: calc(var(--lumo-space-s) * 1.5) var(--lumo-space-m);
+}
+
 .info-header{
     display: inline;
-    padding-bottom: .6em;
-    padding-top: .6em;
-    font-size: var(--lumo-font-size-l);
+    font-size: var(--lumo-font-size-m);
     font-weight: bold;
-    color: var(--lumo-text-color);
     box-sizing: border-box;
 }
 
 .info-description{
     display: inline;
-    padding-bottom: .6em;
-    padding-top: .6em;
-    padding-right: .7em;
-    font-size: var(--lumo-font-size-l);
-    font-weight: 700;
-    color: var(--lumo-text-color);
+    padding-right: var(--lumo-space-l);
+    font-size: var(--lumo-font-size-m);
     box-sizing: border-box;
 }

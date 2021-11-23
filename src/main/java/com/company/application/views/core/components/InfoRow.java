@@ -5,7 +5,7 @@ import com.vaadin.flow.component.html.Span;
 
 public class InfoRow extends Div {
     public InfoRow(String headerText, String description) {
-        addClassNames("items-center", "flex", "justify-between", "w-full", "pt-s");
+        addClassNames("info-row");
 
         Span header = new Span(headerText + ":");
         header.addClassNames("info-header");
