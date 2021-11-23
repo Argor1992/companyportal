@@ -1,0 +1,30 @@
+#profile-photo{
+    border-radius: 50%;
+    width:6rem;
+    height:6rem;
+    margin-right: 0;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    height: auto;
+    padding-bottom: var(--lumo-space-m);
+}
+
+.page-header .header {
+    align-content: space-between;
+    padding-left: var(--lumo-space-s);
+}
+
+.page-header .header-text{
+    margin-bottom: 0;
+    padding-top: 0;
+    font-size: var(--lumo-font-size-xl);
+}
+
+.page-header .subtitle{
+    margin-top: 0;
+    font-size: var(--lumo-font-size-l);
+    color: var(--lumo-secondary-text-color);
+}

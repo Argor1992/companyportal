@@ -6,6 +6,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.List;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class Card extends VerticalLayout {
     public Card(String headerText, List<Component> infoRows) {
         addClassNames("card-component", "card");

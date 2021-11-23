@@ -1,7 +1,8 @@
 package com.company.application.data.employee.entity;
 
-import com.vaadin.flow.component.Component;
-
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public enum Role {
     USER, ADMIN;
 

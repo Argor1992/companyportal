@@ -24,6 +24,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * The main view is a top-level placeholder for other views.
+ *
+ * @author Thorsten Zieres, 1297197
  */
 @PageTitle("Main")
 public class MainLayout extends AppLayout {

@@ -14,6 +14,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Repository
 public interface ProjectRepository extends JpaRepository<ProjectEntity, Integer> {
 

@@ -1,13 +1,16 @@
 package com.company.application.domain.projectprofile.data;
 
-import com.company.application.core.domain.IClient;
-import com.company.application.core.domain.IEmployee;
-import com.company.application.core.domain.IProject;
+import com.company.application.domain.core.data.IClient;
+import com.company.application.domain.core.data.IEmployee;
+import com.company.application.domain.core.data.IProject;
 import com.company.application.data.project.entity.ProjectState;
 
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class Project implements IProject {
     private final int id;
     private String name;

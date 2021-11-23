@@ -15,9 +15,8 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 /**
  * The entry point of the Spring Boot application.
  *
- * Use the @PWA annotation make the application installable on phones, tablets
- * and some desktop browsers.
  *
+ * @author Thorsten Zieres, 1297197
  */
 @SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
 @Theme(value = "companyportal")

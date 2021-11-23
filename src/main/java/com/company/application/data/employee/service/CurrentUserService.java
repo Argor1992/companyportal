@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class CurrentUserService implements UserDetailsService {
     @Autowired
     private EmployeeRepository employeeRepository;

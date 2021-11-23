@@ -6,6 +6,9 @@ import com.company.application.domain.core.usecase.IUpdateUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Service
 public class UpdateClientUseCase implements IUpdateUseCase<ClientOverview> {
     @Autowired

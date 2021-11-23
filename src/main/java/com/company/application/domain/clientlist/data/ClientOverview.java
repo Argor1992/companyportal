@@ -1,9 +1,12 @@
 package com.company.application.domain.clientlist.data;
 
-import com.company.application.core.domain.IClient;
+import com.company.application.domain.core.data.IClient;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class ClientOverview implements IClient {
-    private int id;
+    private final int id;
     private String name;
     private String representative;
     private String email;

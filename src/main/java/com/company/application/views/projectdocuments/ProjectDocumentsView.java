@@ -10,6 +10,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.company.application.views.core.mainlayout.MainLayout;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @PageTitle("Unterlagen")
 @Route(value = "editor", layout = MainLayout.class)
 public class ProjectDocumentsView extends Main {

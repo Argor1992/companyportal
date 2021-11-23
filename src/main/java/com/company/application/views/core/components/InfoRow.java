@@ -3,6 +3,9 @@ package com.company.application.views.core.components;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class InfoRow extends Div {
     public InfoRow(String headerText, String description) {
         addClassNames("info-row");

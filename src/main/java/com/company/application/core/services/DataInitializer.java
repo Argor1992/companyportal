@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Service
 public class DataInitializer {
 

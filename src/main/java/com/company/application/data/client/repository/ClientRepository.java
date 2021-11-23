@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Repository
 public interface ClientRepository extends JpaRepository<ClientEntity, Integer> {
     @EntityGraph(

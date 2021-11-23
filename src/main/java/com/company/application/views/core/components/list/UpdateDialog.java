@@ -16,6 +16,9 @@ import com.vaadin.flow.data.binder.ValidationException;
 
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public abstract class UpdateDialog<T extends IHasId<Integer>> extends Div {
     protected final Button cancel = new Button("Abbrechen");
     protected final Button save = new Button("Speichern");
@@ -35,11 +38,10 @@ public abstract class UpdateDialog<T extends IHasId<Integer>> extends Div {
         this.listUseCase = listUseCase;
         this.updateUseCase = updateUseCase;
 
-        setClassName("flex flex-col");
-        setWidth("400px");
+        addClassName("update-dialog");
 
         Div editorDiv = new Div();
-        editorDiv.setClassName("p-l flex-grow");
+        editorDiv.addClassName("editor");
         add(editorDiv);
         editorDiv.add(createFormLayout());
         add(createButtonLayout());
@@ -77,7 +79,7 @@ public abstract class UpdateDialog<T extends IHasId<Integer>> extends Div {
 
     public Component createButtonLayout() {
         HorizontalLayout buttonLayout = new HorizontalLayout();
-        buttonLayout.setClassName("w-full flex-wrap bg-contrast-5 py-s px-l");
+        buttonLayout.setClassName("button-layout");
         buttonLayout.setSpacing(true);
         cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);

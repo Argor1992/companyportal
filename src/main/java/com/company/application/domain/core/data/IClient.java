@@ -1,7 +1,8 @@
-package com.company.application.core.domain;
+package com.company.application.domain.core.data;
 
-import com.company.application.domain.core.data.IHasId;
-
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public interface IClient extends IHasId<Integer> {
     String getName();
     String getRepresentative();

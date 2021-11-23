@@ -20,6 +20,9 @@ import com.vaadin.flow.data.binder.Validator;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.function.ValueProvider;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class ProjectUpdateDialog extends UpdateDialog<ProjectOverview> {
     private TextField name;
     private TextField amount;

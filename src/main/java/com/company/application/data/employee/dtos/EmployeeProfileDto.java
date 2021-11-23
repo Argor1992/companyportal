@@ -6,6 +6,9 @@ import com.company.application.data.employee.entity.Role;
 
 import java.time.LocalDate;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public interface EmployeeProfileDto {
     int getId();
     String getPersonnelNumber();

@@ -1,13 +1,16 @@
 package com.company.application.domain.clientprofile.data;
 
-import com.company.application.core.domain.IClient;
-import com.company.application.core.domain.IProject;
+import com.company.application.domain.core.data.IClient;
+import com.company.application.domain.core.data.IProject;
 import com.company.application.domain.core.data.Address;
 
 import java.util.List;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class Client implements IClient {
-    private int id;
+    private final int id;
     private String name;
     private String representative;
     private String email;

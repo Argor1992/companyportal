@@ -1,6 +1,6 @@
 package com.company.application.data.client.entity;
 
-import com.company.application.core.data.AbstractEntity;
+import com.company.application.data.core.data.AbstractEntity;
 import com.company.application.data.address.entity.AddressEntity;
 import com.company.application.data.project.entity.ProjectEntity;
 import com.company.application.data.relations.entity.EmployeeClientRelationEntity;
@@ -12,6 +12,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Entity
 @Table(name = "Client")
 public class ClientEntity extends AbstractEntity {

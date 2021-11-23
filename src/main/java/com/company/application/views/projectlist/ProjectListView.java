@@ -1,6 +1,6 @@
 package com.company.application.views.projectlist;
 
-import com.company.application.core.services.GermanTextService;
+import com.company.application.core.services.TextFormatService;
 import com.company.application.domain.projectlist.data.ProjectOverview;
 import com.company.application.domain.projectlist.usecase.ProjectListUseCase;
 import com.company.application.domain.projectlist.usecase.UpdateProjectUseCase;
@@ -16,6 +16,9 @@ import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @PageTitle("Projektübersicht")
 @Route(value = "projects", layout = MainLayout.class)
 @Uses(Icon.class)
@@ -24,13 +27,13 @@ public class ProjectListView extends Div {
     private final Grid<ProjectOverview> grid = new Grid<>(ProjectOverview.class, false);
 
     private final ProjectListUseCase projectListUseCase;
-    private final GermanTextService dateService;
+    private final TextFormatService textFormatService;
 
     public ProjectListView(ProjectListUseCase projectListUseCase,
                            UpdateProjectUseCase updateProjectUseCase,
-                           GermanTextService dateService) {
+                           TextFormatService textFormatService) {
         this.projectListUseCase = projectListUseCase;
-        this.dateService = dateService;
+        this.textFormatService = textFormatService;
         addClassNames("h-full");
 
         if (this.projectListUseCase.showUpdateMenu()) {
@@ -46,11 +49,11 @@ public class ProjectListView extends Div {
         grid.addColumn(ProjectOverview::getName, "name").setHeader("Name").setAutoWidth(true);
         grid.addColumn(
                 (ValueProvider<ProjectOverview, String>) projectOverview ->
-                        dateService.getGermanCurrency(projectOverview.getAmount()), "amout")
+                        textFormatService.getGermanCurrency(projectOverview.getAmount()), "amout")
                 .setHeader("Betrag").setAutoWidth(true);
         grid.addColumn(
                 (ValueProvider<ProjectOverview, String>) projectOverview ->
-                        dateService.getGermanDate(projectOverview.getDate()), "date")
+                        textFormatService.getGermanDate(projectOverview.getDate()), "date")
                 .setHeader("Start").setAutoWidth(true);
         grid.addColumn(
                 (ValueProvider<ProjectOverview, String>) projectOverview ->

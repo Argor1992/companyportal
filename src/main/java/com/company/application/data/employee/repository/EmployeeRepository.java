@@ -15,6 +15,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Integer> {
     @EntityGraph(
             type = EntityGraph.EntityGraphType.FETCH,

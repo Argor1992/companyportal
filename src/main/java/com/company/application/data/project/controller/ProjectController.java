@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Controller
 public class ProjectController {
     private final ProjectService projectService;

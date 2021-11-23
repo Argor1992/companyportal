@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import java.security.SecureRandom;
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Controller
 public class SecurityController {
     @Autowired

@@ -1,7 +1,7 @@
 package com.company.application.data.client.service;
 
-import com.company.application.core.domain.IEmployee;
-import com.company.application.core.domain.IProject;
+import com.company.application.domain.core.data.IEmployee;
+import com.company.application.domain.core.data.IProject;
 import com.company.application.data.client.entity.ClientEntity;
 import com.company.application.data.client.repository.ClientRepository;
 import com.company.application.data.project.entity.ProjectState;
@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Service
 public class ClientService {
     private final ClientRepository clientRepository;

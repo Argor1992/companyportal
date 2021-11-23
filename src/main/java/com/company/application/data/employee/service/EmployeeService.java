@@ -1,7 +1,7 @@
 package com.company.application.data.employee.service;
 
-import com.company.application.core.domain.IClient;
-import com.company.application.core.domain.IProject;
+import com.company.application.domain.core.data.IClient;
+import com.company.application.domain.core.data.IProject;
 import com.company.application.data.employee.dtos.EmployeeOverviewDto;
 import com.company.application.data.employee.entity.EmployeeEntity;
 import com.company.application.data.employee.entity.Occupation;
@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Service
 public class EmployeeService {
 

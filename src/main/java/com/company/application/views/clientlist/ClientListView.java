@@ -12,6 +12,9 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @PageTitle("Kundenübersicht")
 @Route(value = "clients", layout = MainLayout.class)
 public class ClientListView extends Div {

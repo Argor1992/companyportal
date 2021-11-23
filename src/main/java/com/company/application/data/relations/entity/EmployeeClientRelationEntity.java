@@ -6,6 +6,9 @@ import com.company.application.data.employee.entity.EmployeeEntity;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Entity
 @Table(name = "EmployeeClientRelation")
 public class EmployeeClientRelationEntity {

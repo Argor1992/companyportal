@@ -7,15 +7,18 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class PageHeader extends HorizontalLayout {
 
     public PageHeader(String header, String subtitle) {
-        addClassNames("items-center", "h-auto", "flex", "pb-m");
+        addClassNames("page-header");
         add(getHeader(header, subtitle));
     }
 
     public PageHeader(String picture, String header, String subtitle) {
-        addClassNames("items-center", "h-auto", "flex", "pb-m");
+        addClassNames("page-header");
         add(getProfilePhoto(picture), getHeader(header, subtitle));
     }
 
@@ -31,11 +34,11 @@ public class PageHeader extends HorizontalLayout {
     private Component getHeader(String header, String subtitle) {
         VerticalLayout layout = new VerticalLayout();
 
-        layout.addClassNames("pl-s", "content-between");
+        layout.addClassNames("header");
         H1 name = new H1(header);
-        name.addClassNames("mb-0", "text-xl", "pt-0");
+        name.addClassNames("header-text");
         Paragraph email = new Paragraph(subtitle);
-        email.addClassNames("mt-0", "text-l", "text-secondary");
+        email.addClassNames("subtitle");
 
         layout.add(name, email);
         return layout;

@@ -1,12 +1,15 @@
 package com.company.application.views.client;
 
-import com.company.application.core.domain.IClient;
+import com.company.application.domain.core.data.IClient;
 import com.company.application.domain.core.data.Address;
 import com.company.application.views.core.components.InfoRow;
 import com.company.application.views.core.components.card.Card;
 
 import java.util.List;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class ContactCard extends Card {
     public ContactCard(IClient client, Address address) {
         super("AnsprechpartnerIn", List.of(

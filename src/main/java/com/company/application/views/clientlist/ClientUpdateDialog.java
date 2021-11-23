@@ -11,6 +11,9 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class ClientUpdateDialog extends UpdateDialog<ClientOverview> {
     private TextField name;
     private TextField representative;

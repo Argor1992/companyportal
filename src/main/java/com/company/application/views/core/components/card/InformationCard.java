@@ -1,14 +1,17 @@
 package com.company.application.views.core.components.card;
 
-import com.company.application.core.domain.IProject;
-import com.company.application.core.services.GermanTextService;
+import com.company.application.domain.core.data.IProject;
+import com.company.application.core.services.TextFormatService;
 import com.company.application.domain.employeeprofile.data.Employee;
 import com.company.application.views.core.components.InfoRow;
 
 import java.util.List;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class InformationCard extends Card {
-    public InformationCard(IProject project, GermanTextService textService) {
+    public InformationCard(IProject project, TextFormatService textService) {
         super("Allgemeines", List.of(
                 new InfoRow("Startdatum", textService.getGermanDate(project.getDate())),
                 new InfoRow("Preis", textService.getGermanCurrency(project.getAmount())),
@@ -17,7 +20,7 @@ public class InformationCard extends Card {
         ));
     }
 
-    public InformationCard(Employee employee, GermanTextService textService) {
+    public InformationCard(Employee employee, TextFormatService textService) {
         super("Allgemeines", List.of(
                 new InfoRow("Geburtsdatum", textService.getGermanDate(employee.getDateOfBirth())),
                 new InfoRow("Abteilung", employee.getOccupation().getUiText()),

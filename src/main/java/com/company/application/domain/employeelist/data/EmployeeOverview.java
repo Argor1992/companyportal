@@ -1,10 +1,13 @@
 package com.company.application.domain.employeelist.data;
 
-import com.company.application.core.domain.IEmployee;
+import com.company.application.domain.core.data.IEmployee;
 import com.company.application.data.employee.entity.Occupation;
 
 import java.time.LocalDate;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class EmployeeOverview implements IEmployee {
     private final int id;
     private final String personnelNumber;

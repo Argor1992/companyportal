@@ -1,6 +1,6 @@
 package com.company.application.views.client;
 
-import com.company.application.core.services.GermanTextService;
+import com.company.application.core.services.TextFormatService;
 import com.company.application.domain.clientprofile.data.Client;
 import com.company.application.domain.clientprofile.usecase.ClientUseCase;
 import com.company.application.views.core.components.PageHeader;
@@ -18,21 +18,24 @@ import com.vaadin.flow.router.Route;
 
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @PageTitle("Kunde")
 @Route(value = "client", layout = MainLayout.class)
 public class ClientView extends Main implements HasUrlParameter<Integer> {
     private final ClientUseCase clientUseCase;
-    private final GermanTextService dateService;
+    private final TextFormatService textFormatService;
 
     private final VerticalLayout pageContent = new VerticalLayout();
 
-    public ClientView(ClientUseCase clientUseCase, GermanTextService dateService) {
+    public ClientView(ClientUseCase clientUseCase, TextFormatService dateService) {
         this.clientUseCase = clientUseCase;
-        this.dateService = dateService;
+        this.textFormatService = dateService;
 
         addClassNames("justify-center");
         Div mainDiv = new Div();
-        mainDiv.addClassNames("main-div", "pt-m");
+        mainDiv.addClassNames("main-div");
         pageContent.setPadding(false);
         pageContent.setSpacing(false);
         pageContent.addClassName("card-component");
@@ -52,8 +55,8 @@ public class ClientView extends Main implements HasUrlParameter<Integer> {
                 pageContent.add(
                         new PageHeader(client.get().getName(), client.get().getEmail()),
                         new ContactCard(client.get(), client.get().getAddress()),
-                        new EmployeeCard(client.get().getContactPersons(), dateService),
-                        new ProjectCard(client.get().getProjects(), dateService));
+                        new EmployeeCard(client.get().getContactPersons(), textFormatService),
+                        new ProjectCard(client.get().getProjects(), textFormatService));
             } else {
                 pageContent.add(new Paragraph("Error while fetching client"));
             }

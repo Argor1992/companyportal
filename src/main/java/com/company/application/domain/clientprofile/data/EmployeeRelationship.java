@@ -1,9 +1,12 @@
 package com.company.application.domain.clientprofile.data;
 
-import com.company.application.core.domain.IEmployee;
+import com.company.application.domain.core.data.IEmployee;
 
 import java.time.LocalDate;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class EmployeeRelationship {
     private IEmployee contact;
     private LocalDate since;

@@ -1,10 +1,12 @@
-package com.company.application.core.domain;
+package com.company.application.domain.core.data;
 
 import com.company.application.data.project.entity.ProjectState;
-import com.company.application.domain.core.data.IHasId;
 
 import java.time.LocalDate;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public interface IProject extends IHasId<Integer> {
     String getName();
     String getDescription();

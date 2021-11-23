@@ -1,6 +1,6 @@
 package com.company.application.views.employeelist;
 
-import com.company.application.core.services.GermanTextService;
+import com.company.application.core.services.TextFormatService;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
 import com.company.application.domain.employeelist.usecase.EmployeeListUseCase;
 import com.company.application.domain.employeelist.usecase.UpdateEmployeeUseCase;
@@ -16,6 +16,9 @@ import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @PageTitle("Mitarbeiterübersicht")
 @Route(value = "employees", layout = MainLayout.class)
 @Uses(Icon.class)
@@ -24,13 +27,13 @@ public class EmployeeListView extends Div {
     private final Grid<EmployeeOverview> grid = new Grid<>(EmployeeOverview.class, false);
 
     private final EmployeeListUseCase employeeListUseCase;
-    private final GermanTextService dateService;
+    private final TextFormatService textFormatService;
 
     public EmployeeListView(EmployeeListUseCase employeeListUseCase,
                             UpdateEmployeeUseCase updateEmployeeUseCase,
-                            GermanTextService dateService) {
+                            TextFormatService textFormatService) {
         this.employeeListUseCase = employeeListUseCase;
-        this.dateService = dateService;
+        this.textFormatService = textFormatService;
         addClassNames("h-full");
 
         if (this.employeeListUseCase.showUpdateMenu()) {
@@ -49,7 +52,7 @@ public class EmployeeListView extends Div {
         grid.addColumn(EmployeeOverview::getPhone, "phone").setHeader("Durchwahl").setAutoWidth(true);
         grid.addColumn(
                 (ValueProvider<EmployeeOverview, String>) employeeOverview ->
-                        dateService.getGermanDate(employeeOverview.getDateOfBirth()), "dateOfBirth").setHeader("Geburtsdatum").setAutoWidth(true);
+                        textFormatService.getGermanDate(employeeOverview.getDateOfBirth()), "dateOfBirth").setHeader("Geburtsdatum").setAutoWidth(true);
         grid.addColumn(
                 (ValueProvider<EmployeeOverview, String>) employeeOverview ->
                         employeeOverview.getOccupation().getUiText(), "occupation").setHeader("Abteilung").setAutoWidth(true);

@@ -1,12 +1,14 @@
 package com.company.application.views.core.components.card;
 
-import com.company.application.core.domain.IClient;
+import com.company.application.domain.core.data.IClient;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class ClientCard extends Card {
-
     public ClientCard(List<IClient> clients) {
         super(
                 "Kunden",

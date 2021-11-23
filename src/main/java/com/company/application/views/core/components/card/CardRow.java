@@ -10,6 +10,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.List;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class CardRow extends HorizontalLayout {
     private final String headerText;
     private final String subtitleText;

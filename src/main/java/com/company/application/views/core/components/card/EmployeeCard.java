@@ -1,15 +1,17 @@
 package com.company.application.views.core.components.card;
 
-import com.company.application.core.domain.IEmployee;
-import com.company.application.core.services.GermanTextService;
+import com.company.application.domain.core.data.IEmployee;
+import com.company.application.core.services.TextFormatService;
 import com.company.application.domain.clientprofile.data.EmployeeRelationship;
 import com.vaadin.flow.component.icon.VaadinIcon;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class EmployeeCard extends Card {
-
     public EmployeeCard(List<IEmployee> employees) {
         super(
                 "ProjektbetreuerInnen",
@@ -27,7 +29,7 @@ public class EmployeeCard extends Card {
         );
     }
 
-    public EmployeeCard(List<EmployeeRelationship> employeesRelation, GermanTextService dateService) {
+    public EmployeeCard(List<EmployeeRelationship> employeesRelation, TextFormatService dateService) {
         super(
                 "KundenbetreuerInnen",
                 employeesRelation.stream().map(relation -> new CardRow(

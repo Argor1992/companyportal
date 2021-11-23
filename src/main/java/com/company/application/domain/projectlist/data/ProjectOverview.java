@@ -1,10 +1,13 @@
 package com.company.application.domain.projectlist.data;
 
-import com.company.application.core.domain.IProject;
+import com.company.application.domain.core.data.IProject;
 import com.company.application.data.project.entity.ProjectState;
 
 import java.time.LocalDate;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class ProjectOverview implements IProject {
     private final int id;
     private String name;

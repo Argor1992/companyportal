@@ -1,7 +1,7 @@
 package com.company.application.domain.employeeprofile.data;
 
-import com.company.application.core.domain.IEmployee;
-import com.company.application.core.domain.IProject;
+import com.company.application.domain.core.data.IEmployee;
+import com.company.application.domain.core.data.IProject;
 import com.company.application.data.employee.entity.Occupation;
 import com.company.application.data.employee.entity.Role;
 import com.company.application.domain.core.data.Address;
@@ -9,6 +9,9 @@ import com.company.application.domain.core.data.Address;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class Employee implements IEmployee {
     private final int id;
     private final String personnelNumber;

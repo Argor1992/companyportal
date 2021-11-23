@@ -1,5 +1,8 @@
 package com.company.application.data.employee.entity;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public enum Occupation {
     DEVELOPER, HUMAN_RESOURCES, MANAGEMENT, SERVICE_DESK, MARKETING, SALES;
 

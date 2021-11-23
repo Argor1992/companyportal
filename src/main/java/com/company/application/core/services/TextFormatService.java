@@ -8,8 +8,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Currency;
 import java.util.Locale;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Service
-public class GermanTextService {
+public class TextFormatService {
     public String getGermanDate(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         return formatter.format(date);

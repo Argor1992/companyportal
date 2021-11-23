@@ -6,6 +6,9 @@ import com.company.application.domain.projectlist.data.ProjectOverview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Service
 public class UpdateProjectUseCase implements IUpdateUseCase<ProjectOverview> {
     @Autowired

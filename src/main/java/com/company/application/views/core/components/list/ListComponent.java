@@ -3,17 +3,21 @@ package com.company.application.views.core.components.list;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class ListComponent extends Div {
     public ListComponent(Grid<?> grid) {
-        addClassNames("master-detail-view", "flex", "flex-col", "h-full");
+        addClassNames("master-detail-view", "list-component");
 
-        VerticalLayout gridWrapper = new VerticalLayout();
+        HorizontalLayout gridWrapper = new HorizontalLayout();
+        gridWrapper.setSpacing(false);
+        gridWrapper.setMargin(false);
         gridWrapper.setWidthFull();
         gridWrapper.setHeightFull();
-        gridWrapper.addClassNames("pl-l", "pr-l", "pb-l");
         gridWrapper.setId("grid-wrapper");
         gridWrapper.setWidthFull();
         gridWrapper.add(grid);
@@ -22,7 +26,7 @@ public class ListComponent extends Div {
     }
 
     public ListComponent(Grid<?> grid, Component updateDialog) {
-        addClassNames("master-detail-view", "flex", "flex-col", "h-full");
+        addClassNames("master-detail-view", "list-component");
 
         SplitLayout splitLayout = new SplitLayout();
         splitLayout.setSizeFull();

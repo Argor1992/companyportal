@@ -16,6 +16,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class EmployeeUpdateDialog extends UpdateDialog<EmployeeOverview> {
     private TextField firstName;
     private TextField lastName;

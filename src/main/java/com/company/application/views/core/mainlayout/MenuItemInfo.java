@@ -2,10 +2,13 @@ package com.company.application.views.core.mainlayout;
 
 import com.vaadin.flow.component.Component;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class MenuItemInfo {
-    private String text;
-    private String iconClass;
-    private Class<? extends Component> view;
+    private final String text;
+    private final String iconClass;
+    private final Class<? extends Component> view;
 
     public MenuItemInfo(String text, String iconClass, Class<? extends Component> view) {
         this.text = text;

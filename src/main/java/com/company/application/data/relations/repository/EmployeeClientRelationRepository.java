@@ -5,6 +5,9 @@ import com.company.application.data.relations.entity.EmployeeClientRelationEntit
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Repository
 public interface EmployeeClientRelationRepository extends JpaRepository<EmployeeClientRelationEntity, EmployeeClientKey> {
 }

@@ -3,8 +3,11 @@ package com.company.application.data.address.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.company.application.core.data.AbstractEntity;
+import com.company.application.data.core.data.AbstractEntity;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Entity
 @Table(name = "Address")
 public class AddressEntity extends AbstractEntity {

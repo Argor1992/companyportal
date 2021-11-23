@@ -1,5 +1,8 @@
 package com.company.application.domain.core.data;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 public class Address {
     private String street;
     private String postalCode;

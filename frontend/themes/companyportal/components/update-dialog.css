@@ -1,0 +1,20 @@
+.update-dialog{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.update-dialog .editor{
+    padding: var(--lumo-space-l);
+    flex-grow: 1;
+}
+
+.update-dialog .button-layout{
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: var(--lumo-contrast-5pct);
+    padding-bottom: var(--lumo-space-s);
+    padding-top: var(--lumo-space-s);
+    padding-left: var(--lumo-space-l);
+    padding-right: var(--lumo-space-l);
+}

@@ -1,6 +1,6 @@
 package com.company.application.views.project;
 
-import com.company.application.core.services.GermanTextService;
+import com.company.application.core.services.TextFormatService;
 import com.company.application.domain.projectprofile.data.Project;
 import com.company.application.domain.projectprofile.usecase.ProjectUseCase;
 import com.company.application.views.core.components.PageHeader;
@@ -19,21 +19,24 @@ import com.vaadin.flow.router.Route;
 
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @PageTitle("Projekt")
 @Route(value = "project", layout = MainLayout.class)
 public class ProjectView extends Main implements HasUrlParameter<Integer> {
     private final ProjectUseCase projectUseCase;
-    private final GermanTextService germanTextService;
+    private final TextFormatService textFormatService;
 
     private final VerticalLayout pageContent = new VerticalLayout();
 
-    public ProjectView(ProjectUseCase projectUseCase, GermanTextService germanTextService) {
+    public ProjectView(ProjectUseCase projectUseCase, TextFormatService textFormatService) {
         this.projectUseCase = projectUseCase;
-        this.germanTextService = germanTextService;
+        this.textFormatService = textFormatService;
 
         addClassNames("justify-center");
         Div mainDiv = new Div();
-        mainDiv.addClassNames("main-div", "pt-m");
+        mainDiv.addClassNames("main-div");
         pageContent.setPadding(false);
         pageContent.setSpacing(false);
         pageContent.addClassName("card-component");
@@ -52,7 +55,7 @@ public class ProjectView extends Main implements HasUrlParameter<Integer> {
             if (project.isPresent()) {
                 pageContent.add(
                         new PageHeader(project.get().getName(), project.get().getDescription()),
-                        new InformationCard(project.get(), this.germanTextService),
+                        new InformationCard(project.get(), this.textFormatService),
                         new EmployeeCard(project.get().getProjectManagers()),
                         new ClientCard(project.get().getProjectClients()));
             } else {

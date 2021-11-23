@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Embeddable
 public class EmployeeClientKey implements Serializable {
     @Column(name = "employeeId")

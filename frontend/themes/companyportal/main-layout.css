@@ -36,8 +36,13 @@
 }
 
 .main-div {
+    padding-top: var(--lumo-space-m);
     justify-content: center;
     max-width: 850px;
     min-width: 45vw;
     margin: auto;
+}
+
+.clickable {
+   cursor: pointer;
 }

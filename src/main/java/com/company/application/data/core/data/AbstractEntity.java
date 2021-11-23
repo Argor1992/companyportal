@@ -1,4 +1,4 @@
-package com.company.application.core.data;
+package com.company.application.data.core.data;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,6 +8,9 @@ import com.vaadin.fusion.Nonnull;
 
 import java.io.Serializable;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 
@@ -35,7 +38,7 @@ public abstract class AbstractEntity implements Serializable {
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof AbstractEntity)) {
-            return false; // null or other class
+            return false;
         }
         AbstractEntity other = (AbstractEntity) obj;
 

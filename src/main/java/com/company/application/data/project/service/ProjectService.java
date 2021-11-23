@@ -1,7 +1,7 @@
 package com.company.application.data.project.service;
 
-import com.company.application.core.domain.IClient;
-import com.company.application.core.domain.IEmployee;
+import com.company.application.domain.core.data.IClient;
+import com.company.application.domain.core.data.IEmployee;
 import com.company.application.data.project.entity.ProjectEntity;
 import com.company.application.data.project.repository.ProjectRepository;
 import com.company.application.domain.projectlist.data.ProjectOverview;
@@ -14,8 +14,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Service
-public class ProjectService {
+public class /**
+ * @author Thorsten Zieres, 1297197
+ */ProjectService {
     private final ProjectRepository projectRepository;
 
     public ProjectService(ProjectRepository projectRepository) {

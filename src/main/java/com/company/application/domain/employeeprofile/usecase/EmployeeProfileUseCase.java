@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * @author Thorsten Zieres, 1297197
+ */
 @Service
 public class EmployeeProfileUseCase {
     private final SecurityController securityController;
