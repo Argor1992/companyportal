@@ -58,7 +58,7 @@ public class ProjectListView extends Div {
                 .setHeader("Status").setAutoWidth(true);
         grid.addColumn(ProjectOverview::getPriority, "priority").setHeader("Priorität").setAutoWidth(true);
 
-        grid.setItems(projectListUseCase.getProjectList());
+        grid.setItems(projectListUseCase.getList());
         grid.addThemeVariants(GridVariant.LUMO_COMPACT);
         grid.setHeightFull();
 

@@ -54,7 +54,7 @@ public class EmployeeListView extends Div {
                 (ValueProvider<EmployeeOverview, String>) employeeOverview ->
                         employeeOverview.getOccupation().getUiText(), "occupation").setHeader("Abteilung").setAutoWidth(true);
 
-        grid.setItems(employeeListUseCase.getEmployeeList());
+        grid.setItems(employeeListUseCase.getList());
         grid.addThemeVariants(GridVariant.LUMO_COMPACT);
         grid.setHeightFull();
 

@@ -4,27 +4,19 @@ import com.company.application.data.employee.entity.Occupation;
 import com.company.application.domain.employeelist.data.EmployeeOverview;
 import com.company.application.domain.employeelist.usecase.EmployeeListUseCase;
 import com.company.application.domain.employeelist.usecase.UpdateEmployeeUseCase;
+import com.company.application.views.core.components.list.UpdateDialog;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
-import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 
-import java.util.Optional;
-
-public class EmployeeUpdateDialog extends Div {
+public class EmployeeUpdateDialog extends UpdateDialog<EmployeeOverview> {
     private TextField firstName;
     private TextField lastName;
     private TextField email;
@@ -32,35 +24,12 @@ public class EmployeeUpdateDialog extends Div {
     private DatePicker dateOfBirth;
     private Select<Occupation> occupation;
 
-    private final Button cancel = new Button("Abbrechen");
-    private final Button save = new Button("Speichern");
-
-    private final BeanValidationBinder<EmployeeOverview> binder;
-
-    private EmployeeOverview selectedEmployee;
-    private final Grid<EmployeeOverview> grid;
-    private final EmployeeListUseCase employeeListUseCase;
-    private final UpdateEmployeeUseCase updateEmployeeUseCase;
-
     public EmployeeUpdateDialog(Grid<EmployeeOverview> grid, EmployeeListUseCase employeeListUseCase, UpdateEmployeeUseCase updateEmployeeUseCase) {
-        this.grid = grid;
-        this.employeeListUseCase = employeeListUseCase;
-        this.updateEmployeeUseCase = updateEmployeeUseCase;
-        binder = new BeanValidationBinder<>(EmployeeOverview.class);
-
-        setClassName("flex flex-col");
-        setWidth("400px");
-
-        Div editorDiv = new Div();
-        editorDiv.setClassName("p-l flex-grow");
-        add(editorDiv);
-        editorDiv.add(createFormLayout());
-        add(createButtonLayout());
-
-        initializeForm();
+        super(EmployeeListView.class, grid, new BeanValidationBinder<>(EmployeeOverview.class), employeeListUseCase, updateEmployeeUseCase);
     }
 
-    private Component createFormLayout() {
+    @Override
+    public Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         firstName = new TextField("First Name");
         lastName = new TextField("Last Name");
@@ -80,60 +49,13 @@ public class EmployeeUpdateDialog extends Div {
         return formLayout;
     }
 
-    private Component createButtonLayout() {
-        HorizontalLayout buttonLayout = new HorizontalLayout();
-        buttonLayout.setClassName("w-full flex-wrap bg-contrast-5 py-s px-l");
-        buttonLayout.setSpacing(true);
-        cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
-        save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonLayout.add(save, cancel);
-        return buttonLayout;
-    }
-
-    private void initializeForm() {
+    @Override
+    public void bindInstanceFields() {
         binder.bindInstanceFields(this);
-
-        cancel.addClickListener(e -> {
-            clearForm();
-            refreshGrid();
-        });
-
-        // when a row is selected or deselected, populate form
-        this.grid.asSingleSelect().addValueChangeListener(event -> {
-            if (event.getValue() != null) {
-                Optional<EmployeeOverview> employee = this.employeeListUseCase.getEmployee(event.getValue().getId());
-                if (employee.isPresent()) {
-                    setEnabledOfForm(true);
-                    populateForm(employee.get());
-                } else {
-                    Notification.show(
-                            "Something went wrong while selecting the employee", 3000,
-                            Notification.Position.BOTTOM_START);
-                }
-            } else {
-                clearForm();
-                UI.getCurrent().navigate(EmployeeListView.class);
-            }
-        });
-
-        save.addClickListener(e -> {
-            try {
-                binder.writeBean(this.selectedEmployee);
-
-                updateEmployeeUseCase.updateEmployee(this.selectedEmployee);
-                clearForm();
-                refreshGrid();
-                Notification.show("Update erfolgreich gespeichert.");
-                UI.getCurrent().navigate(EmployeeListView.class);
-            } catch (ValidationException validationException) {
-                Notification.show("An exception happened while trying to store the data.");
-            }
-        });
-
-        setEnabledOfForm(false);
     }
 
-    private void setEnabledOfForm(boolean enabled) {
+    @Override
+    public void setEnabledOfForm(boolean enabled) {
         save.setEnabled(enabled);
         cancel.setEnabled(enabled);
         firstName.setEnabled(enabled);
@@ -142,21 +64,5 @@ public class EmployeeUpdateDialog extends Div {
         phone.setEnabled(enabled);
         dateOfBirth.setEnabled(enabled);
         occupation.setEnabled(enabled);
-    }
-
-    private void clearForm() {
-        setEnabledOfForm(false);
-        populateForm(null);
-    }
-
-    private void refreshGrid() {
-        grid.select(null);
-        grid.setItems(employeeListUseCase.getEmployeeList());
-        grid.getDataProvider().refreshAll();
-    }
-
-    private void populateForm(EmployeeOverview value) {
-        this.selectedEmployee = value;
-        binder.readBean(this.selectedEmployee);
     }
 }

@@ -43,7 +43,7 @@ public class Employee implements IEmployee {
     }
 
     @Override
-    public int getId() { return id; }
+    public Integer getId() { return id; }
     @Override
     public String getPersonnelNumber() { return personnelNumber; }
     @Override

@@ -41,7 +41,7 @@ public class ClientListView extends Div {
         grid.addColumn(ClientOverview::getEmail, "email").setHeader("E-Mail").setAutoWidth(true);
         grid.addColumn(ClientOverview::getPhone, "phone").setHeader("Telefon").setAutoWidth(true);
 
-        grid.setItems(clientListUseCase.getClientList());
+        grid.setItems(clientListUseCase.getList());
         grid.addThemeVariants(GridVariant.LUMO_COMPACT);
         grid.setHeightFull();
 

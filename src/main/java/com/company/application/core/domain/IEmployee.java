@@ -1,9 +1,10 @@
 package com.company.application.core.domain;
 
+import com.company.application.domain.core.data.IHasId;
+
 import java.time.LocalDate;
 
-public interface IEmployee {
-    int getId();
+public interface IEmployee extends IHasId<Integer> {
     String getPersonnelNumber();
     String getFirstName();
     String getLastName();

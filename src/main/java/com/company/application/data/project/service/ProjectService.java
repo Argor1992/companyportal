@@ -70,7 +70,7 @@ public class ProjectService {
                 projectEntity.getPriority(),
                 projectEntity.getProjectManagers().stream().map(employeeEntity -> new IEmployee() {
                     @Override
-                    public int getId() { return employeeEntity.getId(); }
+                    public Integer getId() { return employeeEntity.getId(); }
                     @Override
                     public String getPersonnelNumber() { return employeeEntity.getPersonnelNumber(); }
                     @Override
@@ -88,7 +88,7 @@ public class ProjectService {
                 }).collect(Collectors.toList()),
                 projectEntity.getProjectClients().stream().map(clientEntity -> new IClient() {
                     @Override
-                    public int getId() { return clientEntity.getId(); }
+                    public Integer getId() { return clientEntity.getId(); }
                     @Override
                     public String getName() { return clientEntity.getName(); }
                     @Override

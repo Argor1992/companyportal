@@ -32,7 +32,7 @@ public class Project implements IProject {
     }
 
     @Override
-    public int getId() { return id; }
+    public Integer getId() { return id; }
     @Override
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

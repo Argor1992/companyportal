@@ -2,15 +2,17 @@ package com.company.application.domain.clientlist.usecase;
 
 import com.company.application.data.client.controller.ClientController;
 import com.company.application.domain.clientlist.data.ClientOverview;
+import com.company.application.domain.core.usecase.IUpdateUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateClientUseCase {
+public class UpdateClientUseCase implements IUpdateUseCase<ClientOverview> {
     @Autowired
     private ClientController clientController;
 
-    public boolean updateClient(ClientOverview client) {
-        return clientController.updateClient(client);
+    @Override
+    public boolean update(ClientOverview selected) {
+        return clientController.updateClient(selected);
     }
 }
