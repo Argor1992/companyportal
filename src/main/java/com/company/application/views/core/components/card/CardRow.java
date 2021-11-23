@@ -11,33 +11,29 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import java.util.List;
 
 public class CardRow extends HorizontalLayout {
-    private String headerText;
-    private String subtitle;
+    private final String headerText;
+    private final String subtitleText;
     private String descriptionText;
     private List<Icon> buttons;
 
-    private CardRow(String navigationLink) {
-        addClassNames("card-row", "info-card", "clickable", "items-center");
+    private CardRow(String navigationLink, String headerText, String subtitleText) {
+        this.headerText = headerText;
+        this.subtitleText = subtitleText;
+
+        addClassNames("card-row", "clickable");
         setSpacing(false);
         getThemeList().add("spacing-s");
         addClickListener(horizontalLayoutClickEvent -> UI.getCurrent().navigate(navigationLink));
     }
 
-    public CardRow(String navigationLink, String headerText, String subtitle, String descriptionText) {
-        this(navigationLink);
-
-        this.headerText = headerText;
-        this.subtitle = subtitle;
+    public CardRow(String navigationLink, String headerText, String subtitleText, String descriptionText) {
+        this(navigationLink, headerText, subtitleText);
         this.descriptionText = descriptionText;
-
         add(getContent());
     }
 
-    public CardRow(String navigationLink, String picture, String headerText, String subtitle, List<Icon> buttons) {
-        this(navigationLink);
-
-        this.headerText = headerText;
-        this.subtitle = subtitle;
+    public CardRow(String navigationLink, String picture, String headerText, String subtitleText, List<Icon> buttons) {
+        this(navigationLink, headerText, subtitleText);
         this.buttons = buttons;
 
         Image image = new Image();
@@ -54,7 +50,7 @@ public class CardRow extends HorizontalLayout {
 
         if (buttons == null || buttons.isEmpty()) {
             Span email = new Span(descriptionText);
-            email.addClassName("description");
+            email.addClassName("description-text");
 
             description.add(getHeader(), email);
         } else {
@@ -66,7 +62,7 @@ public class CardRow extends HorizontalLayout {
 
     private Component getHeader() {
         HorizontalLayout header = new HorizontalLayout();
-        header.addClassName("header");
+        header.addClassName("row-header");
         header.setPadding(false);
         header.setSpacing(false);
         header.getThemeList().add("spacing-s");
@@ -74,10 +70,10 @@ public class CardRow extends HorizontalLayout {
         Span name = new Span(headerText);
         name.addClassName("name");
 
-        Span email = new Span(subtitle);
-        email.addClassName("description");
+        Span subtitle = new Span(subtitleText);
+        subtitle.addClassName("subtitle");
 
-        header.add(name, email);
+        header.add(name, subtitle);
 
         return header;
     }
