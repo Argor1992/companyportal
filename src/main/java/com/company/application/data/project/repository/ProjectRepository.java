@@ -20,6 +20,11 @@ import java.util.Optional;
 @Repository
 public interface ProjectRepository extends JpaRepository<ProjectEntity, Integer> {
 
+    @Query(
+            "select p.name from ProjectEntity p"
+    )
+    List<String> findAllProjectNames();
+
     @EntityGraph(
             type = EntityGraph.EntityGraphType.FETCH,
             attributePaths = {

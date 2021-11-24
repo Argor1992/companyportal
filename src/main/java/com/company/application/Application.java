@@ -1,5 +1,6 @@
 package com.company.application;
 
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.server.PWA;
 
@@ -23,6 +24,7 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 @PWA(name = "Company Portal", shortName = "Company Portal")
 @Push
 @NpmPackage(value = "line-awesome", version = "1.3.0")
+@CssImport(value = "./themes/companyportal/components/vaadin-text-area.css", themeFor = "vaadin-text-area")
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
 
     public static void main(String[] args) {

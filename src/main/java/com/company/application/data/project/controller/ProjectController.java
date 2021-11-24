@@ -40,4 +40,8 @@ public class ProjectController {
             return Optional.empty();
         return projectService.getFullProject(id);
     }
+
+    public List<String> getAllProjectNames() {
+        return projectService.getAllProjectNames();
+    }
 }

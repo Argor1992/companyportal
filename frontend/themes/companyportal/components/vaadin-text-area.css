@@ -1,0 +1,74 @@
+:host {
+  padding: 0;
+}
+
+:host:hover{
+  background-color: var(--lumo-base-color);
+}
+
+:host::before{
+background-color: var(--lumo-base-color);
+}
+
+:host::after{
+background-color: var(--lumo-base-color);
+}
+
+:host([invalid]) [part="input-field"] {
+background-color: var(--lumo-base-color);
+}
+
+:host([focused]) [part="input-field"] {
+background-color: var(--lumo-base-color);
+}
+
+:host:hover [part="input-field"] {
+background-color: var(--lumo-base-color);
+}
+
+[part="input-field"]::slitted(textarea) {
+    height: auto;
+    box-sizing: border-box;
+    line-height: var(--lumo-line-height-s);
+  background-color: var(--lumo-base-color);
+  transition: none !important;
+}
+
+[part="input-field"] {
+    padding: 0;
+    margin: 0;
+     transition: none !important;
+  background-color: var(--lumo-base-color);
+}
+
+[part="input-field"]:hover {
+    opacity: 1;
+  background-color: var(--lumo-base-color);
+}
+
+[part="input-field"]::before {
+    opacity: 1;
+  background-color: var(--lumo-base-color);
+}
+
+[part="input-field"]::after {
+    opacity: 1;
+  background-color: var(--lumo-base-color);
+}
+
+[part="input-field"][selected] {
+  background-color: var(--lumo-base-color);
+}
+
+[part="input-field"][focused] {
+  background-color: var(--lumo-base-color);
+}
+
+[part="value"] {
+    padding: var(--lumo-space-s);
+}
+
+[part="value"]:hover {
+  background-color: var(--lumo-base-color);
+  opacity: 1;
+}

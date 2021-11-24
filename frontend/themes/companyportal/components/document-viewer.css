@@ -1,0 +1,22 @@
+.my-text-area {
+  background-color: white;
+}
+
+.my-text-area:hover{
+  background-color: white;
+}
+
+.my-text-area:focus {
+  background-color: white;
+
+}
+
+.my-text-area:active {
+  background-color: white;
+
+}
+
+.my-text-area:visited {
+  background-color: white;
+
+}

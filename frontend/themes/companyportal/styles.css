@@ -4,6 +4,7 @@
 @import url('./components/page-header.css');
 @import url('./components/update-dialog.css');
 @import url('./components/list-component.css');
+@import url('./components/document-viewer.css');
 @import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');
 
 html {
@@ -24,4 +25,12 @@ html {
     --lumo-size-m: 2.5rem;
     --lumo-size-s: 2rem;
     --lumo-size-xs: 1.75rem;
+}
+
+.vaadin-text-area:hover{
+  background-color: white;
+}
+
+.text-area-container:hover{
+  background-color: white;
 }

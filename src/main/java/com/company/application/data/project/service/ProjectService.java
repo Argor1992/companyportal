@@ -103,4 +103,8 @@ public class /**
                 }).collect(Collectors.toList())
         );
     }
+
+    public List<String> getAllProjectNames() {
+        return projectRepository.findAllProjectNames();
+    }
 }
