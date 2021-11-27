@@ -24,35 +24,36 @@ public class CreateFileTreeUseCase {
             if (projectDirectory.exists() && projectDirectory.isDirectory()) {
                 String[] fileContent = projectDirectory.list();
 
-                files.add(getDirectoryFile(projectDirectory, fileContent));
+                files.add(getDirectoryFile(new ServerFile(projectDirectory.getName(), projectDirectory.getName(), true), fileContent));
             } else {
                 if (projectDirectory.mkdir()) {
-                    files.add(new ServerFile(projectName, true));
+                    files.add(new ServerFile(projectName, projectName, true));
                 }
             }
         });
 
+        files.sort(Comparator.comparing(ServerFile::getFileName));
+
         return files;
     }
 
-    private ServerFile getDirectoryFile(File directory, String[] directoryContent) {
-        ServerFile file = new ServerFile(directory.getName(), true);
+    private ServerFile getDirectoryFile(ServerFile parentFile, String[] directoryContent) {
 
-        Arrays.stream(directoryContent).forEach(content -> {
-                    File f = new File(directory, content);
+        Arrays.stream(directoryContent).forEach(childName -> {
+                    File f = new File("./projectfiles/" + parentFile.getPath(), childName);
 
                     if (f.isDirectory()) {
                         String[] fileContent = f.list();
 
-                        file.addChildren(getDirectoryFile(f, fileContent));
+                        parentFile.addChildren(getDirectoryFile(new ServerFile(childName, parentFile.getPath() + "/" + childName, true), fileContent));
                     } else {
-                        file.addChildren(
-                                new ServerFile(f.getName(), false)
+                        parentFile.addChildren(
+                                new ServerFile(childName, parentFile.getPath() + "/" + childName, false)
                         );
                     }
                 }
         );
 
-        return file;
+        return parentFile;
     }
 }

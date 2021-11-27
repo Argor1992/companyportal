@@ -5,23 +5,30 @@ import java.util.List;
 
 public class ServerFile {
     private String fileName;
+    private String path;
     private List<ServerFile> children;
     private boolean isDirectory;
+    private static final String FILE_DIRECTORY = "./projectfiles/";
 
-    public ServerFile(String fileName, boolean isDirectory) {
-        this.children = new ArrayList<>();
+    public ServerFile(String fileName, String path, boolean isDirectory) {
         this.fileName = fileName;
+        this.path = path;
+        this.children = new ArrayList<>();
         this.isDirectory = isDirectory;
     }
 
-    public ServerFile(String fileName, List<ServerFile> children, boolean isDirectory) {
+    public ServerFile(String fileName, String path, List<ServerFile> children, boolean isDirectory) {
         this.fileName = fileName;
+        this.path = path;
         this.children = children;
         this.isDirectory = isDirectory;
     }
 
     public String getFileName() { return fileName; }
     public void setFileName(String fileName) { this.fileName = fileName; }
+    public String getPath() { return path; }
+    public String getAbsolutePath() { return FILE_DIRECTORY + path; }
+    public void setPath(String path) { this.path = path; }
     public List<ServerFile> getChildren() { return children; }
     public void setChildren(List<ServerFile> children) { this.children = children; }
     public void addChildren(ServerFile file) {
@@ -33,4 +40,12 @@ public class ServerFile {
     }
     public boolean isDirectory() { return isDirectory; }
     public void setDirectory(boolean directory) { isDirectory = directory; }
+
+    public String getFileSuffix() {
+        if (isDirectory)
+            return "";
+
+        int index = fileName.indexOf(".");
+        return fileName.substring(index+1);
+    }
 }
