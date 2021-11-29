@@ -1,4 +1,4 @@
-package com.company.application.views.projectdocuments.component;
+package com.company.application.views.projectdocuments.component.fileeditor.text;
 
 import com.vaadin.flow.component.textfield.TextArea;
 
@@ -12,12 +12,7 @@ public class TextEditor extends TextArea {
         setWidth("100%");
         addClassNames("my-text-area");
         StringBuilder value = new StringBuilder(1_000);
-        FileInputStream inputStream = null;
-        Scanner sc = null;
-        try {
-            inputStream = new FileInputStream(path);
-            sc = new Scanner(inputStream, StandardCharsets.UTF_8);
-
+        try (FileInputStream inputStream = new FileInputStream(path); Scanner sc = new Scanner(inputStream, StandardCharsets.UTF_8)) {
             while (sc.hasNext()) {
                 value.append(sc.nextLine()).append("\n");
             }
@@ -25,16 +20,6 @@ public class TextEditor extends TextArea {
         } catch (IOException e) {
             value.append("Exception");
             e.printStackTrace();
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException ignored) {}
-            }
-
-            if (sc != null) {
-                sc.close();
-            }
         }
 
         setValue(value.toString());

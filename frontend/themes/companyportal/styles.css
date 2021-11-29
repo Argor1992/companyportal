@@ -16,7 +16,7 @@ html {
     --lumo-error-color-50pct: hsla(3, 100%, 46%, 0.5);
     --lumo-error-color-10pct: hsla(3, 100%, 46%, 0.1);
     --lumo-body-text-color: hsla(214, 27%, 16%, 0.94);
-    --lumo-primary-text-color: hsla(232, 100%, 52%, 1);
+    --lumo-primary-text-color: hsla(214, 100%, 50%, 1);
     --lumo-base-color: #ffffff;
     --lumo-line-height-m: 1.8;
     --lumo-line-height-s: 1.5;

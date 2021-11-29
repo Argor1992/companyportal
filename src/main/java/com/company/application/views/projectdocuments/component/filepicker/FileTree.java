@@ -1,4 +1,4 @@
-package com.company.application.views.projectdocuments.component;
+package com.company.application.views.projectdocuments.component.filepicker;
 
 import com.company.application.domain.projectdocuments.data.ServerFile;
 import com.vaadin.flow.component.html.Span;

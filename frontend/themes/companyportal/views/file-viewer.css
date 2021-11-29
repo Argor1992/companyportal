@@ -13,6 +13,10 @@
 }
 
 .toolbar .toolbar-button {
-    color: var(--lumo-secondary-text-color);
+    color: var(--lumo-primary-text-color);
     font-size: var(--lumo-font-size-l);
+}
+
+.vaadin-button-container {
+    color: black;
 }

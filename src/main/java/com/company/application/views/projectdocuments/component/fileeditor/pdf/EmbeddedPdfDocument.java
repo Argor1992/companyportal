@@ -1,4 +1,4 @@
-package com.company.application.views.projectdocuments.component;
+package com.company.application.views.projectdocuments.component.fileeditor.pdf;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasSize;
