@@ -117,7 +117,7 @@ public class TextArea extends VerticalLayout {
         delete.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         delete.addClickListener(buttonClickEvent -> {
             if (editFileUseCase.isAllowedToEdit()) {
-                openAcceptAndDeclinePopup("Sind Sie sich sicher, dass Sie die Datei löschen möchten?");
+                openDeletePopup();
             } else {
                 openAcceptPopup("Nur Admins oder Entwickler des Projeks sind berechtigt Dateien zu löschen.");
             }
@@ -141,13 +141,13 @@ public class TextArea extends VerticalLayout {
         popup.open();
     }
 
-    private void openAcceptAndDeclinePopup(String text) {
+    private void openDeletePopup() {
         Dialog popup = new Dialog();
 
         VerticalLayout layout = new VerticalLayout();
         layout.setPadding(false);
 
-        Span span = new Span(text);
+        Span span = new Span("Sind Sie sich sicher, dass Sie die Datei löschen möchten?");
 
         Button accept = new Button("Ok", VaadinIcon.CHECK.create(), e -> {
             System.err.println("Deleted");

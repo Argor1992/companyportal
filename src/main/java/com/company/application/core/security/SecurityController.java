@@ -3,6 +3,7 @@ package com.company.application.core.security;
 import com.company.application.data.employee.entity.Occupation;
 import com.company.application.data.employee.entity.Role;
 import com.company.application.data.employee.service.EmployeeService;
+import com.company.application.domain.employeeprofile.data.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,6 +39,10 @@ public class SecurityController {
 
     public Optional<Occupation> getCurrentUserOccupation() {
         return employeeService.getEmployeeOccupation(getPrincipalName());
+    }
+
+    public Optional<Employee> getCurrentUser() {
+        return employeeService.getEmployeeProfile(getPrincipalName());
     }
 
     public String getPrincipalName() {

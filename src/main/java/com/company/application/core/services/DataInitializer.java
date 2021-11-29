@@ -858,13 +858,16 @@ public class DataInitializer {
         List<ProjectEntity> projects = projectRepository.findAllEntitiesAndFetchProjects();
         SecureRandom rnd = new SecureRandom();
 
+        List<EmployeeEntity> developers = employees.stream().filter(employeeEntity -> employeeEntity.getOccupation() == Occupation.DEVELOPER).collect(Collectors.toList());
+        List<EmployeeEntity> managers = employees.stream().filter(employeeEntity -> employeeEntity.getOccupation() == Occupation.MANAGEMENT).collect(Collectors.toList());
+
         projects.forEach(
                 projectEntity -> {
-                    List.of(employees.get(rnd.nextInt(employees.size() - 1)), employees.get(rnd.nextInt(employees.size() - 1))).forEach(
+                    List.of(managers.get(rnd.nextInt(managers.size() - 1)), developers.get(rnd.nextInt(developers.size() - 1)), employees.get(rnd.nextInt(employees.size() - 1))).forEach(
                             projectEntity::addProjectManager
                     );
 
-                    List.of(clients.get(rnd.nextInt(clients.size() - 1)), clients.get(rnd.nextInt(clients.size() - 1))).forEach(
+                    List.of(clients.get(rnd.nextInt(clients.size() - 1))).forEach(
                             projectEntity::addProjectClient
                     );
 

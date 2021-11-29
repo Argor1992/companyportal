@@ -43,6 +43,14 @@
     margin: auto;
 }
 
+.company-logo {
+    width: 70%;
+    padding-top: var(--lumo-space-s);
+    padding-bottom: var(--lumo-space-s);
+    padding-left: var(--lumo-space-xs);
+    padding-right: var(--lumo-space-xs);
+}
+
 .clickable {
    cursor: pointer;
 }

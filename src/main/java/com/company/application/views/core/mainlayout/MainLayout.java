@@ -13,6 +13,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
 import com.company.application.views.employee.EmployeeView;
@@ -73,10 +74,19 @@ public class MainLayout extends AppLayout {
         H1 appName = new H1("RICH solutions");
         appName.addClassNames("flex", "items-center", "h-xl", "m-0", "px-m", "text-m");
 
-        com.vaadin.flow.component.html.Section section = new com.vaadin.flow.component.html.Section(appName,
+        com.vaadin.flow.component.html.Section section = new com.vaadin.flow.component.html.Section(appLogo(),
                 createNavigation(), createFooter());
         section.addClassNames("flex", "flex-col", "items-stretch", "max-h-full", "min-h-full");
         return section;
+    }
+
+    private Component appLogo() {
+        Div layout = new Div();
+        layout.addClassNames("text-center");
+        Image logo = new Image("images/company_logo.png", "RICH solutions");
+        logo.addClassName("company-logo");
+        layout.add(logo);
+        return layout;
     }
 
     private Nav createNavigation() {

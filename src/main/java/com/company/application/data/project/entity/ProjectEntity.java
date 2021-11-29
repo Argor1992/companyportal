@@ -19,6 +19,8 @@ import java.util.Set;
 @Table(name = "Project")
 public class ProjectEntity extends AbstractEntity implements Serializable {
     private String name;
+
+    @Column(name = "description",unique=false,columnDefinition="VARCHAR(512)")
     private String description;
     private double amount;
     private LocalDate date;

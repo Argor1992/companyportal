@@ -83,4 +83,8 @@ public class Employee implements IEmployee {
     public String getDisplayName() {
         return firstName + " " + lastName + " (" + personnelNumber + ")";
     }
+
+    public boolean isInIt() {
+        return occupation == Occupation.DEVELOPER || occupation == Occupation.SERVICE_DESK || occupation == Occupation.MANAGEMENT;
+    }
 }

@@ -10,6 +10,11 @@ import com.company.application.views.projectdocuments.component.TextArea;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -37,9 +42,15 @@ public class ProjectDocumentsView extends Div {
 
         mainLayout = new SplitLayout();
         mainLayout.setSizeFull();
-        mainLayout.addToPrimary(getFileSelector());
 
-        getTextArea(mainLayout);
+        if (!projectFiles.isEmpty()) {
+            mainLayout.addToPrimary(getFileSelector());
+
+            getTextArea(mainLayout);
+        } else {
+            mainLayout.addToPrimary(new Paragraph("No current User found"));
+            mainLayout.addToSecondary(new Paragraph("No selectable Files found"));
+        }
 
         add(mainLayout);
     }
@@ -70,7 +81,24 @@ public class ProjectDocumentsView extends Div {
         Div div = new Div();
         div.addClassName("file-selector");
 
-        FileTree fileTree = new FileTree(ServerFile::getFileName);
+        FileTree fileTree = new FileTree(serverFile -> {
+            HorizontalLayout layout = new HorizontalLayout();
+            layout.setPadding(false);
+            layout.setSpacing(false);
+            layout.setAlignItems(FlexComponent.Alignment.CENTER);
+
+            if (serverFile.isDirectory())
+                layout.add(new Icon(VaadinIcon.FOLDER_O));
+            else
+                layout.add(new Icon(VaadinIcon.FILE_TEXT_O));
+
+            Span span = new Span(serverFile.getFileName());
+            span.addClassNames("pl-s");
+            layout.add(span);
+
+            return layout;
+        });
+
         fileTree.setItems(projectFiles, file -> {
             if (file.isDirectory()) {
                 return file.getChildren();
@@ -78,6 +106,7 @@ public class ProjectDocumentsView extends Div {
                 return Collections.emptyList();
             }
         });
+
 
         fileTree.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
