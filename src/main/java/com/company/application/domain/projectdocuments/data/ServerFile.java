@@ -6,6 +6,7 @@ import java.util.List;
 public class ServerFile {
     private String fileName;
     private String path;
+    private ServerFile parent;
     private List<ServerFile> children;
     private boolean isDirectory;
     private static final String FILE_DIRECTORY = "./projectfiles/";
@@ -17,10 +18,11 @@ public class ServerFile {
         this.isDirectory = isDirectory;
     }
 
-    public ServerFile(String fileName, String path, List<ServerFile> children, boolean isDirectory) {
+    public ServerFile(String fileName, String path, ServerFile parent, boolean isDirectory) {
         this.fileName = fileName;
         this.path = path;
-        this.children = children;
+        this.parent = parent;
+        this.children = new ArrayList<>();
         this.isDirectory = isDirectory;
     }
 
@@ -29,6 +31,8 @@ public class ServerFile {
     public String getPath() { return path; }
     public String getAbsolutePath() { return FILE_DIRECTORY + path; }
     public void setPath(String path) { this.path = path; }
+    public ServerFile getParent() { return parent; }
+    public void setParent(ServerFile parent) { this.parent = parent; }
     public List<ServerFile> getChildren() { return children; }
     public void setChildren(List<ServerFile> children) { this.children = children; }
     public void addChildren(ServerFile file) {

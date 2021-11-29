@@ -59,10 +59,10 @@ public class CreateFileTreeUseCase {
                         if (f.isDirectory()) {
                             String[] fileContent = f.list();
 
-                            parentFile.addChildren(getDirectoryFile(new ServerFile(childName, parentFile.getPath() + "/" + childName, true), fileContent, currentUser));
+                            parentFile.addChildren(getDirectoryFile(new ServerFile(childName, parentFile.getPath() + "/" + childName, parentFile, true), fileContent, currentUser));
                         } else {
                             parentFile.addChildren(
-                                    new ServerFile(childName, parentFile.getPath() + "/" + childName, false)
+                                    new ServerFile(childName, parentFile.getPath() + "/" + childName, parentFile, false)
                             );
                         }
 

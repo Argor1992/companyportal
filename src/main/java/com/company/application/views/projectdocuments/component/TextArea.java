@@ -2,6 +2,7 @@ package com.company.application.views.projectdocuments.component;
 
 import com.company.application.domain.projectdocuments.data.ServerFile;
 import com.company.application.domain.projectdocuments.usecase.EditFileUseCase;
+import com.company.application.views.projectdocuments.ProjectDocumentsView;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -22,10 +23,11 @@ public class TextArea extends VerticalLayout {
     private final Button download;
     private final Button delete;
     private final TextEditor textEditor;
-    private final EditFileUseCase editFileUseCase;
+    private final ProjectDocumentsView projectDocumentsView;
 
-    public TextArea(EditFileUseCase editFileUseCase, ServerFile selectedFile) {
-        this.editFileUseCase = editFileUseCase;
+    public TextArea(ProjectDocumentsView projectDocumentsView) {
+        this.projectDocumentsView = projectDocumentsView;
+
         setPadding(false);
         setSpacing(false);
 
@@ -34,7 +36,7 @@ public class TextArea extends VerticalLayout {
         toolbar.setSpacing(false);
         toolbar.addClassName("toolbar");
 
-        textEditor = new TextEditor(selectedFile.getAbsolutePath(), false);
+        textEditor = new TextEditor(projectDocumentsView.getSelectedFile().getAbsolutePath(), false);
         edit = new Button(new Icon(VaadinIcon.EDIT));
         save = new Button(new Icon(VaadinIcon.FILE_O));
         refresh = new Button(new Icon(VaadinIcon.FILE_REFRESH));
@@ -42,8 +44,8 @@ public class TextArea extends VerticalLayout {
         download = new Button(new Icon(VaadinIcon.DOWNLOAD));
         delete = new Button(new Icon(VaadinIcon.TRASH));
 
-        initEditButton(editFileUseCase);
-        initSaveButton(editFileUseCase, selectedFile);
+        initEditButton(projectDocumentsView.getEditFileUseCase());
+        initSaveButton(projectDocumentsView.getEditFileUseCase(), projectDocumentsView.getSelectedFile());
         initRefreshButton();
         initShareButton();
         initDownloadButton();
@@ -104,7 +106,7 @@ public class TextArea extends VerticalLayout {
         download.addClassNames("toolbar-button", "clickable");
         download.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         download.addClickListener(buttonClickEvent -> {
-            if (editFileUseCase.isAllowedToEdit()) {
+            if (projectDocumentsView.getEditFileUseCase().isAllowedToEdit()) {
                 System.err.println("Download");
             } else {
                 openAcceptPopup("Nur Admins oder Entwickler des Projeks sind berechtigt Sourcecode herunterzuladen.");
@@ -116,7 +118,7 @@ public class TextArea extends VerticalLayout {
         delete.addClassNames("toolbar-button", "pr-l", "clickable");
         delete.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         delete.addClickListener(buttonClickEvent -> {
-            if (editFileUseCase.isAllowedToEdit()) {
+            if (projectDocumentsView.getEditFileUseCase().isAllowedToEdit()) {
                 openDeletePopup();
             } else {
                 openAcceptPopup("Nur Admins oder Entwickler des Projeks sind berechtigt Dateien zu löschen.");
@@ -150,8 +152,19 @@ public class TextArea extends VerticalLayout {
         Span span = new Span("Sind Sie sich sicher, dass Sie die Datei löschen möchten?");
 
         Button accept = new Button("Ok", VaadinIcon.CHECK.create(), e -> {
-            System.err.println("Deleted");
             popup.close();
+
+            if (projectDocumentsView.getEditFileUseCase().deleteFile(projectDocumentsView.getSelectedFile())) {
+                Notification.show(
+                        "Datei erfolgreich gelöscht", 3000,
+                        Notification.Position.BOTTOM_START);
+                projectDocumentsView.deleteFile();
+            } else {
+                Notification.show(
+                        "Datei konnte nicht gelöscht werden", 3000,
+                        Notification.Position.BOTTOM_START);
+            }
+
         });
         accept.addClickShortcut(Key.ENTER);
 

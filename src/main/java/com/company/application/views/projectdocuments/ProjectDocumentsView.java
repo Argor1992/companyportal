@@ -7,19 +7,14 @@ import com.company.application.views.core.mainlayout.MainLayout;
 import com.company.application.views.projectdocuments.component.EmbeddedPdfDocument;
 import com.company.application.views.projectdocuments.component.FileTree;
 import com.company.application.views.projectdocuments.component.TextArea;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -30,13 +25,16 @@ import java.util.List;
 public class ProjectDocumentsView extends Div {
 
     private final SplitLayout mainLayout;
+    private FileTree fileTree;
     private ServerFile selectedFile;
     private final List<ServerFile> projectFiles;
+    private final List<ServerFile> expandedNodes;
     private final EditFileUseCase editFileUseCase;
 
-    public ProjectDocumentsView(CreateFileTreeUseCase fileTreeUseCase, EditFileUseCase editFileUseCase) {
-        this.projectFiles = fileTreeUseCase.getProjectFiles();
+    public ProjectDocumentsView(CreateFileTreeUseCase createFileTreeUseCase, EditFileUseCase editFileUseCase) {
+        this.projectFiles = createFileTreeUseCase.getProjectFiles();
         this.editFileUseCase = editFileUseCase;
+        this.expandedNodes = new ArrayList<>();
         addClassNames("flex", "flex-grow", "h-full");
         setHeight("100%");
 
@@ -44,9 +42,9 @@ public class ProjectDocumentsView extends Div {
         mainLayout.setSizeFull();
 
         if (!projectFiles.isEmpty()) {
-            mainLayout.addToPrimary(getFileSelector());
-
-            getTextArea(mainLayout);
+            fileTree = new FileTree(projectFiles, expandedNodes);
+            getFileSelector();
+            getTextArea();
         } else {
             mainLayout.addToPrimary(new Paragraph("No current User found"));
             mainLayout.addToSecondary(new Paragraph("No selectable Files found"));
@@ -55,68 +53,67 @@ public class ProjectDocumentsView extends Div {
         add(mainLayout);
     }
 
-    private void getTextArea(SplitLayout splitLayout) {
-
+    private void getTextArea() {
         if (selectedFile == null || selectedFile.isDirectory()) {
-            splitLayout.addToSecondary(new Paragraph("Select something"));
+            mainLayout.addToSecondary(new Paragraph("Select something"));
         } else {
 
             if (selectedFile.getFileSuffix().equals("pdf")) {
-                splitLayout.addToSecondary(new EmbeddedPdfDocument(selectedFile.getAbsolutePath()));
+                mainLayout.addToSecondary(new EmbeddedPdfDocument(selectedFile.getAbsolutePath()));
             } else {
-                splitLayout.addToSecondary(new TextArea(editFileUseCase, selectedFile));
+                mainLayout.addToSecondary(new TextArea(this));
             }
 
         }
     }
 
-    private void redrawTextArea(SplitLayout splitLayout) {
-        if (splitLayout.getSecondaryComponent() != null)
-            splitLayout.remove(splitLayout.getSecondaryComponent());
+    private void redrawTextArea() {
+        if (mainLayout.getSecondaryComponent() != null)
+            mainLayout.remove(mainLayout.getSecondaryComponent());
 
-        getTextArea(splitLayout);
+        getTextArea();
     }
 
-    private Component getFileSelector() {
+    private void getFileSelector() {
         Div div = new Div();
         div.addClassName("file-selector");
-
-        FileTree fileTree = new FileTree(serverFile -> {
-            HorizontalLayout layout = new HorizontalLayout();
-            layout.setPadding(false);
-            layout.setSpacing(false);
-            layout.setAlignItems(FlexComponent.Alignment.CENTER);
-
-            if (serverFile.isDirectory())
-                layout.add(new Icon(VaadinIcon.FOLDER_O));
-            else
-                layout.add(new Icon(VaadinIcon.FILE_TEXT_O));
-
-            Span span = new Span(serverFile.getFileName());
-            span.addClassNames("pl-s");
-            layout.add(span);
-
-            return layout;
-        });
-
-        fileTree.setItems(projectFiles, file -> {
-            if (file.isDirectory()) {
-                return file.getChildren();
-            } else {
-                return Collections.emptyList();
-            }
-        });
-
 
         fileTree.asSingleSelect().addValueChangeListener(event -> {
             if (event.getValue() != null) {
                 selectedFile = event.getValue();
-                redrawTextArea(mainLayout);
+                redrawTextArea();
+            }
+        });
+
+        fileTree.addExpandListener(serverFileTreeGridExpandEvent -> {
+            Collection<ServerFile> items = serverFileTreeGridExpandEvent.getItems();
+            if (!items.isEmpty()) {
+                expandedNodes.addAll(items);
+            }
+        });
+
+        fileTree.addCollapseListener(serverFileTreeGridCollapseEvent -> {
+            Collection<ServerFile> items = serverFileTreeGridCollapseEvent.getItems();
+            if (!items.isEmpty()) {
+                expandedNodes.removeAll(items);
             }
         });
 
         div.add(fileTree);
 
-        return div;
+        mainLayout.addToPrimary(div);
     }
+
+    public void deleteFile() {
+        ServerFile parent = selectedFile.getParent();
+        parent.getChildren().remove(selectedFile);
+        selectedFile = null;
+
+        redrawTextArea();
+        fileTree.refreshFileTree(projectFiles, expandedNodes);
+    }
+
+    public ServerFile getSelectedFile() { return selectedFile; }
+    public void setSelectedFile(ServerFile selectedFile) { this.selectedFile = selectedFile; }
+    public EditFileUseCase getEditFileUseCase() { return editFileUseCase; }
 }

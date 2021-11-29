@@ -7,6 +7,7 @@ import com.company.application.domain.projectdocuments.data.ServerFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Optional;
@@ -18,13 +19,21 @@ public class EditFileUseCase {
     private SecurityController securityController;
 
     public boolean storeFile(ServerFile serverFile, String newText) {
-        System.err.println("Save");
         try (PrintWriter writer = new PrintWriter(serverFile.getAbsolutePath())){
             writer.write(newText);
             return true;
         } catch (FileNotFoundException e) {
             return false;
         }
+    }
+
+    public boolean deleteFile(ServerFile selectedFile) {
+        File file = new File(selectedFile.getAbsolutePath());
+        if (file.exists()) {
+            return file.delete();
+        }
+
+        return false;
     }
 
     public boolean isAllowedToEdit() {
