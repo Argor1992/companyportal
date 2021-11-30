@@ -15,6 +15,7 @@ public class AcceptPopup extends VerticalLayout {
         layout.setPadding(false);
 
         Span span = new Span(text);
+        span.addClassNames("popup-header");
 
         Button accept = new Button("Ok", VaadinIcon.CHECK.create(), e -> popup.close());
         accept.addClickShortcut(Key.ENTER);

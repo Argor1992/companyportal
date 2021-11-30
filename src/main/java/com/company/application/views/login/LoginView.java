@@ -3,12 +3,16 @@ package com.company.application.views.login;
 import com.company.application.domain.login.data.LoginData;
 import com.company.application.domain.login.usecase.LoginUseCase;
 import com.company.application.views.employee.EmployeeView;
+import com.company.application.views.login.components.LoginInformationCard;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Main;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
@@ -27,7 +31,6 @@ public class LoginView extends Main {
     private final EmailField email = new EmailField();
     private final PasswordField password = new PasswordField();
 
-
     public LoginView(LoginUseCase loginUseCase) {
         this.loginUseCase = loginUseCase;
         addClassName("login-view");
@@ -38,7 +41,14 @@ public class LoginView extends Main {
         pageContent.setPadding(true);
         pageContent.setSpacing(false);
 
+        initDataBinder();
+        pageContent.add(getLogo(), getLoginHeader(), getLoginPage());
 
+        mainDiv.add(pageContent);
+        add(mainDiv);
+    }
+
+    private void initDataBinder() {
         Binder<LoginData> binder = new Binder<>(LoginData.class);
         binder.forField(email)
                 .withValidator(new EmailValidator("Bitte eine valide E-Mail-Adresse eingeben"))
@@ -57,10 +67,6 @@ public class LoginView extends Main {
                 }).bind(LoginData::getPassword, LoginData::setPassword);
 
         binder.setBean(new LoginData());
-        pageContent.add(getLogo(), getLoginHeader(), getLoginPage());
-
-        mainDiv.add(pageContent);
-        add(mainDiv);
     }
 
     public Component getLogo() {
@@ -85,8 +91,7 @@ public class LoginView extends Main {
     public Component getLoginPage() {
         HorizontalLayout layout = new HorizontalLayout();
         layout.setWidthFull();
-
-        layout.add(getLoginForm(), getCards());
+        layout.add(getLoginForm(), new LoginInformationCard());
         return layout;
     }
 
@@ -135,53 +140,5 @@ public class LoginView extends Main {
                 password.setErrorMessage("Die E-Mail-Adresse oder das Passwort sind nicht korrekt.");
             }
         }
-    }
-
-    private Component getCards() {
-        VerticalLayout layout = new VerticalLayout();
-        layout.addClassNames("card-layout");
-
-        VerticalLayout card = new VerticalLayout();
-        card.setSpacing(false);
-        card.setPadding(false);
-        card.addClassName("card");
-
-        card.add(getForgotPassword(), getRegister());
-
-        layout.add(card);
-        return layout;
-    }
-
-    private Component getForgotPassword() {
-        VerticalLayout layout = new VerticalLayout();
-        layout.addClassName("card-forgot-password");
-        layout.setPadding(false);
-        layout.setSpacing(false);
-        Span header = new Span("Passwort Vergessen?");
-        header.addClassName("card-header");
-        Span description = new Span("Wenn Sie Ihr Passwort vergessen haben, können Sie hier ein neues anfordern.");
-        description.addClassName("card-description");
-        Span link = new Span(">> neues Password anfordern");
-        link.addClassNames("card-link", "clickable");
-        link.addClickListener(event -> {
-            System.err.println("Forgot Password");
-        });
-
-        layout.add(header, description, link);
-        return layout;
-    }
-
-    private Component getRegister() {
-        VerticalLayout layout = new VerticalLayout();
-        layout.addClassName("card-register");
-        layout.setPadding(false);
-        layout.setSpacing(false);
-        Span header = new Span("Noch nicht registriert?");
-        header.addClassName("card-header");
-        Span description = new Span("Wenden Sie sich an einen Administrator, der Ihnen einen Account anlegen wird.");
-        description.addClassName("card-description");
-
-        layout.add(header, description);
-        return layout;
     }
 }

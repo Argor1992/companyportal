@@ -21,6 +21,7 @@ public class DeleteFilePopup extends VerticalLayout {
         layout.setPadding(false);
 
         Span span = new Span("Sind Sie sich sicher, dass Sie die Datei löschen möchten?");
+        span.addClassNames("popup-header");
 
         Button accept = new Button("Ok", VaadinIcon.CHECK.create(), e -> {
             popup.close();
