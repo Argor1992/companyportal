@@ -1,6 +1,6 @@
 # Database
-docker run --name some-mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=test -d mysql
-docker exec -it some-mysql mysql -uroot -p
+docker run --name some-mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=test -d mysql<br>
+docker exec -it some-mysql mysql -uroot -p<br>
 create database company;
 
 

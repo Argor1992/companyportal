@@ -252,7 +252,7 @@ public class DataInitializer {
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
                                     "123470", "Bob", "Matthieu",
-                                    "barbara.matthieu@rich.de", "114",
+                                    "bob.matthieu@rich.de", "114",
                                     new AddressEntity(
                                             "Brandenburgische Str 83",
                                             "55568",

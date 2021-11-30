@@ -29,7 +29,7 @@ public class DeleteFilePopup extends VerticalLayout {
                 Notification.show(
                         "Datei erfolgreich gelöscht", 3000,
                         Notification.Position.BOTTOM_START);
-                projectDocumentsView.deleteFile();
+                projectDocumentsView.deleteSelectedFile();
             } else {
                 Notification.show(
                         "Datei konnte nicht gelöscht werden", 3000,

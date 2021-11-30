@@ -1,5 +1,6 @@
 @import url('./main-layout.css');
 @import url('./views/file-viewer.css');
+@import url('./views/login-view.css');
 @import url('./components/info-row.css');
 @import url('./components/card-component.css');
 @import url('./components/page-header.css');

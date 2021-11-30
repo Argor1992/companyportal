@@ -5,16 +5,14 @@ import com.company.application.domain.projectdocuments.usecase.CreateFileTreeUse
 import com.company.application.domain.projectdocuments.usecase.EditFileUseCase;
 import com.company.application.views.core.mainlayout.MainLayout;
 import com.company.application.views.projectdocuments.component.fileeditor.pdf.EmbeddedPdfDocument;
-import com.company.application.views.projectdocuments.component.filepicker.FileTree;
 import com.company.application.views.projectdocuments.component.fileeditor.text.TextArea;
+import com.company.application.views.projectdocuments.component.filepicker.FileTree;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -26,15 +24,12 @@ public class ProjectDocumentsView extends Div {
 
     private final SplitLayout mainLayout;
     private FileTree fileTree;
-    private ServerFile selectedFile;
-    private final List<ServerFile> projectFiles;
-    private final List<ServerFile> expandedNodes;
     private final EditFileUseCase editFileUseCase;
 
     public ProjectDocumentsView(CreateFileTreeUseCase createFileTreeUseCase, EditFileUseCase editFileUseCase) {
-        this.projectFiles = createFileTreeUseCase.getProjectFiles();
+        List<ServerFile> projectFiles = createFileTreeUseCase.getProjectFiles();
         this.editFileUseCase = editFileUseCase;
-        this.expandedNodes = new ArrayList<>();
+
         addClassNames("flex", "flex-grow", "h-full");
         setHeight("100%");
 
@@ -42,8 +37,13 @@ public class ProjectDocumentsView extends Div {
         mainLayout.setSizeFull();
 
         if (!projectFiles.isEmpty()) {
-            fileTree = new FileTree(projectFiles, expandedNodes);
-            getFileSelector();
+            fileTree = new FileTree(this, projectFiles);
+
+            Div div = new Div();
+            div.addClassName("file-selector");
+            div.add(fileTree);
+            mainLayout.addToPrimary(div);
+
             getTextArea();
         } else {
             mainLayout.addToPrimary(new Paragraph("No current User found"));
@@ -54,12 +54,12 @@ public class ProjectDocumentsView extends Div {
     }
 
     private void getTextArea() {
-        if (selectedFile == null || selectedFile.isDirectory()) {
+        if (fileTree.getSelectedFile() == null || fileTree.getSelectedFile().isDirectory()) {
             mainLayout.addToSecondary(new Paragraph("Select something"));
         } else {
 
-            if (selectedFile.getFileSuffix().equals("pdf")) {
-                mainLayout.addToSecondary(new EmbeddedPdfDocument(selectedFile.getAbsolutePath()));
+            if (fileTree.getSelectedFile().getFileSuffix().equals("pdf")) {
+                mainLayout.addToSecondary(new EmbeddedPdfDocument(fileTree.getSelectedFile().getAbsolutePath()));
             } else {
                 mainLayout.addToSecondary(new TextArea(this));
             }
@@ -67,53 +67,18 @@ public class ProjectDocumentsView extends Div {
         }
     }
 
-    private void redrawTextArea() {
+    public void redrawTextArea() {
         if (mainLayout.getSecondaryComponent() != null)
             mainLayout.remove(mainLayout.getSecondaryComponent());
 
         getTextArea();
     }
 
-    private void getFileSelector() {
-        Div div = new Div();
-        div.addClassName("file-selector");
-
-        fileTree.asSingleSelect().addValueChangeListener(event -> {
-            if (event.getValue() != null) {
-                selectedFile = event.getValue();
-                redrawTextArea();
-            }
-        });
-
-        fileTree.addExpandListener(serverFileTreeGridExpandEvent -> {
-            Collection<ServerFile> items = serverFileTreeGridExpandEvent.getItems();
-            if (!items.isEmpty()) {
-                expandedNodes.addAll(items);
-            }
-        });
-
-        fileTree.addCollapseListener(serverFileTreeGridCollapseEvent -> {
-            Collection<ServerFile> items = serverFileTreeGridCollapseEvent.getItems();
-            if (!items.isEmpty()) {
-                expandedNodes.removeAll(items);
-            }
-        });
-
-        div.add(fileTree);
-
-        mainLayout.addToPrimary(div);
-    }
-
-    public void deleteFile() {
-        ServerFile parent = selectedFile.getParent();
-        parent.getChildren().remove(selectedFile);
-        selectedFile = null;
-
+    public void deleteSelectedFile() {
+        fileTree.deleteSelectedFile();
         redrawTextArea();
-        fileTree.refreshFileTree(projectFiles, expandedNodes);
     }
 
-    public ServerFile getSelectedFile() { return selectedFile; }
-    public void setSelectedFile(ServerFile selectedFile) { this.selectedFile = selectedFile; }
+    public ServerFile getSelectedFile() { return fileTree.getSelectedFile(); }
     public EditFileUseCase getEditFileUseCase() { return editFileUseCase; }
 }

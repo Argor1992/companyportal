@@ -13,8 +13,10 @@ import java.util.List;
  */
 public class UserCredentials implements UserDetails {
     private String email;
-    private final String password;
-    private final Role role;
+    private String password;
+    private Role role;
+
+    public UserCredentials() { }
 
     public UserCredentials(String email, String password, Role role) {
         this.email = email;
@@ -32,6 +34,8 @@ public class UserCredentials implements UserDetails {
     public String getPassword() {
         return this.password;
     }
+
+    public void setPassword(String password) { this.password = password; }
 
     @Override
     public String getUsername() {

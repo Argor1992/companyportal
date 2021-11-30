@@ -1,0 +1,82 @@
+.login-view {
+    justify-content: center;
+}
+
+.login-view .center-layout{
+    width: 100%;
+    text-align: center;
+}
+
+.login-view .company-logo {
+    width: 60%;
+    padding-top: var(--lumo-space-s);
+    padding-bottom: var(--lumo-space-s);
+    padding-left: var(--lumo-space-xs);
+    padding-right: var(--lumo-space-xs);
+}
+
+.login-view .border-layout{
+    width: 100%;
+    border-bottom: 1px solid;
+    border-color: var(--lumo-contrast-10pct);
+}
+
+.login-view .login-header{
+    font-weight: 700;
+    font-size: var(--lumo-font-size-xl);
+    padding-top: var(--lumo-space-s);
+}
+
+.login-view .login-form{
+    display: flex;
+    width: 50% !important;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-view .card-layout{
+    display: flex;
+    width: 50% !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-view .card{
+    padding: var(--lumo-space-m);
+    background-color: var(--lumo-shade-10pct);
+    border-radius: var(--lumo-border-radius-l);
+    box-shadow: var(--lumo-box-shadow-xs);
+    padding: calc(var(--lumo-space-s) * 1.5) var(--lumo-space-m);
+}
+
+.login-view .card-forgot-password{
+    padding-bottom: var(--lumo-space-s);
+    border-bottom: 1px solid;
+    border-color: var(--lumo-contrast-10pct);
+}
+
+.login-view .card-register{
+    padding-top: var(--lumo-space-s);
+}
+
+.login-view .card-header{
+    font-weight: 700;
+    font-size: var(--lumo-font-size-s);
+    color: var(--lumo-primary-text-color);
+}
+
+.login-view .card-description{
+    font-size: var(--lumo-font-size-s);
+}
+
+.login-view .card-link{
+    font-size: var(--lumo-font-size-s);
+    color: var(--lumo-primary-text-color);
+}
+
+.login-view .card-link:hover{
+    font-size: var(--lumo-font-size-s);
+    color: var(--lumo-primary-text-color);
+    background-color: var(--lumo-shade-5pct);
+}

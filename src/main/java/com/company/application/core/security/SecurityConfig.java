@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 import java.security.SecureRandom;
 
@@ -55,11 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable() //cross site request protection not needed because it is already supported by vaadin
-                .authorizeRequests()
+                .exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
+                .and().authorizeRequests()
                 .requestMatchers(SecurityUtils::isFrameworkInternalRequest).permitAll()
                 .antMatchers("/login**", "/error**").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin();
+                .anyRequest().authenticated();
     }
 
     @Override
