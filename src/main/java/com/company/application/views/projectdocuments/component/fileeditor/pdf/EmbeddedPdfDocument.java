@@ -19,7 +19,7 @@ public class EmbeddedPdfDocument extends Component implements HasSize {
 
     public EmbeddedPdfDocument(String path) {
         this();
-        getElement().setAttribute("data", new StreamResource("introduction-tasks.pdf", () -> {
+        getElement().setAttribute("data", new StreamResource("zentech-tasks.pdf", () -> {
             try {
                 return getPdfInputStream(path);
             } catch (FileNotFoundException e) {

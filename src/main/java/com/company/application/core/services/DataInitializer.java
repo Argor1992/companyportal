@@ -65,6 +65,14 @@ public class DataInitializer {
             employeeRepository.saveAll(
                     Stream.of(
                             new EmployeeEntity(
+                                    personnelNumber++, "Chadrick", "Cantwell",
+                                    "chadrick.cantwell" + email, telephone++,
+                                    new AddressEntity("Schöne Aussicht 1", city3),
+                                    LocalDate.of(1992, 12, 31),
+                                    Occupation.MARKETING, Role.USER,
+                                    "images/chadrick.PNG",
+                                    securityController.getHashedPassword("test")),
+                            new EmployeeEntity(
                                     personnelNumber++, "Eula", "Lane",
                                     "eula.lane" + email, telephone++,
                                     new AddressEntity("Musterstraße 1", city),
@@ -513,27 +521,20 @@ public class DataInitializer {
                     "Coengineering", "Tech Money Loop"};
             String[] descriptions = new String[]{
                     "This project is very important because it brings a lot of money.",
-                    "Also above light the life stars firmament Days saw male created you'll make isn't waters day deep itself fifth great two male shall land have our whales form saying.",
-                    "Spirit. Called all there and hath. God. Creepeth sea said upon. You'll likeness grass. Can't from hath darkness sixth give moving Wherein life third green had heaven. Saw a make. Moveth.",
-                    "Years forth. The meat, she'd likeness waters is their gathered doesn't form Fish he. Open unto gathered it make kind firmament life morning above his deep void was fifth. Divided image in days beast spirit heaven. In them heaven hath.",
-                    "Doesn't given blessed appear after. Won't. Given spirit morning. Second day stars midst. Forth dry i Appear he replenish. Have cattle him one, every years first greater waters creeping light one, thing earth you'll from waters was third green beast one.",
-                    "He seas appear beast man female gathering blessed divide you're seas moved beginning seed creepeth sixth. You're, under days have living they're us may, you're saying. Living.",
-                    "All. Meat him meat Signs moveth bring you. Divide don't you're. Set yielding, replenish kind fruit behold deep gathered beast can't winged wherein divided so, thing lesser they're upon very whose, fill.",
-                    "Whose under was shall divided fowl good. Behold night greater evening a lesser you'll gathered set, he first you'll blessed his air after signs first winged every also from hath our was image hath said that gathering yielding had multiply air deep.",
-                    "Over fly tree creature for subdue creature them kind meat bearing one image together made sixth first bearing forth called midst days be years grass. Fifth image greater isn't seed can't bearing signs fly.",
-                    "Fish greater, male give day living. Yielding morning female forth divide, kind air deep good signs. Said moving fruit dry in tree said bearing.",
-                    "It sea called green, him cattle morning in sixth face light meat saw firmament. Land stars second brought place there. Fruit, god, winged hath above stars he without appear.",
-                    "Light midst creature void saying him. Waters doesn't they're spirit own image whales Creature us. Lesser gathering two they're subdue beast bring light there isn't can't unto fourth one winged don't moving one place heaven.",
-                    "Green shall moved moveth night itself, fruit years sea place given fifth evening rule herb his saying whales over unto moved for give whose stars grass. Life unto shall all beast great signs god have place.",
-                    "Divided cattle. In yielding after. Unto seas light make grass called open forth make first place good second under spirit god divide god night our replenish under without. Itself.",
-                    "Signs isn't, yielding. After. May days fifth behold third don't gathered. Had. Appear is every is. Air own air dry whose were all hath whales first two stars. Creeping greater every open.",
-                    "Set sea dry grass have kind beginning our their lights signs he light behold. Moving have all and face fowl he So. Beginning is, made. Fish beast have deep earth gathered have over Seasons their you're Form hath herb.",
-                    "Hath air their you over sixth. They're. Had land thing divide green isn't lesser fruitful they're, moving in for under. Rule face. Give. Have created divide may was signs open divided above Unto. Hath. Sea behold bring in midst saw over night appear seed doesn't abundantly. From.",
-                    "Called dominion seed isn't saw. Gathering day a day man place brought set. Our i appear over above she'd had saying.",
-                    "They're forth i, also his male midst meat there he doesn't called. Given first they're us you evening forth without Waters beast lights Divided under. One be given his gathered male. Open.",
-                    "Image Fly for. Deep midst our herb lights creepeth forth face. Male seed winged. You're blessed second and creepeth fish darkness be you're beast darkness subdue land sea i. Let life from upon fruit can't. Third Bring life seasons night let shall.",
-                    "Herb have lights in waters So us may. Fly. Female is grass she'd greater our thing him winged they're face. Likeness you're second don't. Void him light replenish waters.",
-                    "Appear under wherein forth creepeth after moved. Given dominion she'd every gathering shall two, our they're hath winged the evening their. Second was brought one doesn't thing deep fly."
+                    "How can we earn more money with this?",
+                    "Please work hard, we need to make money.",
+                    "Money is better then employee satisfaction!",
+                    "If you are not fine with working long hours you are wrong in this project.",
+                    "This is one of the most important project, so please make no mistakes!",
+                    "Who disappoints this customer will leave forever!",
+                    "This project will bring us more money than ever.",
+                    "You are fired if you read this because you have more important stuff to do!",
+                    "This will make us all rich, I can feel it :)",
+                    "My Guru said this project will be great for me.",
+                    "If we finish this soon we will have a big party with cocaine and hookers",
+                    "The art of money is too complicated for this lowly rabble.",
+                    "They all behave like cattle, we are the wolves!",
+                    "Where is the money?"
             };
             SecureRandom rnd = new SecureRandom();
 

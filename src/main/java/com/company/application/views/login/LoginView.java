@@ -125,7 +125,7 @@ public class LoginView extends Main {
             email.setErrorMessage("Bitte eine E-Mail-Adresse eingeben");
         } else {
             try {
-                if (loginUseCase.login(new LoginData(email.getValue(), password.getValue()))) {
+                if (loginUseCase.login(new LoginData(email.getValue().toLowerCase(), password.getValue()))) {
                     UI.getCurrent().navigate(EmployeeView.class);
                 } else {
                     email.setInvalid(true);
