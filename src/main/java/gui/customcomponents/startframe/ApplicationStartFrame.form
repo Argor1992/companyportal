@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.customcomponents.startframe.ApplicationStartFrame">
+  <grid id="27dc6" binding="pnMain" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="893"/>
+    </constraints>
+    <properties>
+      <background color="-592138"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="46bc3" binding="pnHeader" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="16" bottom="0" right="16"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="48"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <opaque value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="71c7" class="javax.swing.JLabel" binding="lbIntro">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-1"/>
+              <opaque value="false"/>
+              <text value="Intro"/>
+            </properties>
+          </component>
+          <hspacer id="a8fa">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <grid id="39f8e" binding="pnBody" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-2302756"/>
+          <enabled value="true"/>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="9bdc7" class="gui.customcomponents.JCustomPaperPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="35" left="35" bottom="35" right="35"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="400" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="bd797" class="gui.customcomponents.JCustomButton" binding="btMain">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="500" height="-1"/>
+                    <preferred-size width="500" height="-1"/>
+                    <maximum-size width="500" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-11558928"/>
+                  <buttonType value="Primary"/>
+                  <doubleBuffered value="false"/>
+                  <text value="Button"/>
+                </properties>
+                <clientProperties>
+                  <html.disable class="java.lang.Boolean" value="false"/>
+                </clientProperties>
+              </component>
+              <grid id="893a7" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="16"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="a68d7" class="javax.swing.JTextArea" binding="introductionText">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <minimum-size width="500" height="-1"/>
+                        <preferred-size width="500" height="50"/>
+                        <maximum-size width="500" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="edcf5" binding="pnCenter" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="21499" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <minimum-size width="-1" height="24"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <opaque value="false"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <component id="d3eeb" class="javax.swing.JLabel" binding="lblLogo" custom-create="true">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                        <minimum-size width="500" height="210"/>
+                        <preferred-size width="500" height="210"/>
+                        <maximum-size width="500" height="210"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="69675" class="javax.swing.JSeparator" binding="sep">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <minimum-size width="500" height="-1"/>
+                        <preferred-size width="500" height="-1"/>
+                        <maximum-size width="500" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <foreground color="-16777216"/>
+                    </properties>
+                  </component>
+                  <grid id="66e1a" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <minimum-size width="500" height="24"/>
+                        <preferred-size width="500" height="-1"/>
+                        <maximum-size width="500" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <opaque value="false"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                  <component id="dacdf" class="javax.swing.JLabel" binding="textHeader">
+                    <constraints>
+                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <minimum-size width="500" height="-1"/>
+                        <preferred-size width="500" height="-1"/>
+                        <maximum-size width="500" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="Introduction"/>
+                    </properties>
+                  </component>
+                  <grid id="8de58" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <minimum-size width="500" height="6"/>
+                        <preferred-size width="500" height="-1"/>
+                        <maximum-size width="500" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <opaque value="false"/>
+                    </properties>
+                    <border type="none"/>
+                    <children/>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

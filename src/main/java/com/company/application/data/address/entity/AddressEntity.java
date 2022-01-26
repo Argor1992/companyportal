@@ -21,6 +21,14 @@ public class AddressEntity extends AbstractEntity {
     public AddressEntity() {
     }
 
+    public AddressEntity(String street, City city) {
+        this.street = street;
+        this.postalCode = city.getPlz();
+        this.city = city.getCity();
+        this.state = city.getState();
+        this.country = city.getCountry();
+    }
+
     public AddressEntity(String street, String postalCode, String city, String state, String country) {
         this.street = street;
         this.postalCode = postalCode;
@@ -28,6 +36,7 @@ public class AddressEntity extends AbstractEntity {
         this.state = state;
         this.country = country;
     }
+
 
     public String getStreet() {
         return street;

@@ -2,6 +2,7 @@ package com.company.application.core.services;
 
 import com.company.application.core.security.SecurityController;
 import com.company.application.data.address.entity.AddressEntity;
+import com.company.application.data.address.entity.City;
 import com.company.application.data.client.entity.ClientEntity;
 import com.company.application.data.client.repository.ClientRepository;
 import com.company.application.data.employee.entity.EmployeeEntity;
@@ -52,455 +53,272 @@ public class DataInitializer {
 
     private void createInitialEmployeeData() {
         if (employeeRepository.count() == 0) {
+            City city = new City("Frankfurt am Main", "60313", "Hessen", "Deutschland");
+            City city2 = new City("Bad Vilbel", "61118", "Hessen", "Deutschland");
+            City city3 = new City("Bad Homburg", "61348", "Hessen", "Deutschland");
+
+            int personnelNumber = 123456;
+            int telephone = 100;
+
+            String portraitLink = "https://randomuser.me/api/portraits/";
+            String email = "@rich.de";
             employeeRepository.saveAll(
                     Stream.of(
                             new EmployeeEntity(
-                                    "123456", "Eula", "Lane",
-                                    "eula.lane@rich.de", "100",
-                                    new AddressEntity(
-                                            "Musterstraße 1",
-                                            "60306",
-                                            "Frankfurt",
-                                            "Hessen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Eula", "Lane",
+                                    "eula.lane" + email, telephone++,
+                                    new AddressEntity("Musterstraße 1", city),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.HUMAN_RESOURCES, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/1.jpg",
+                                    portraitLink + "women/1.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123457", "Barry", "Rodriquez",
-                                    "barry.rodriquez@rich.de", "101",
-                                    new AddressEntity(
-                                            "Schoenebergerstrasse 135",
-                                            "60306",
-                                            "Schlema",
-                                            "Sachsen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Daniel", "Jung",
+                                    "barry.rodriquez" + email, telephone++,
+                                    new AddressEntity("Schoenebergerstrasse 135", city2),
                                     LocalDate.of(2011, 4, 9),
-                                    Occupation.HUMAN_RESOURCES, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/1.jpg",
+                                    Occupation.IT_SECURITY, Role.USER,
+                                    portraitLink + "men/1.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123458", "Eugenia", "Selvi",
-                                    "eugenia.selvi@rich.de", "102",
-                                    new AddressEntity(
-                                            "Pappelallee 92",
-                                            "36466",
-                                            "Dermbach",
-                                            "Thüringen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Eugenia", "Selvi",
+                                    "eugenia.selvi" + email, telephone++,
+                                    new AddressEntity("Pappelallee 92", city3),
                                     LocalDate.of(1971, 3, 25),
                                     Occupation.HUMAN_RESOURCES, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/2.jpg",
+                                    portraitLink + "women/2.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123459", "Alejandro", "Miles",
-                                    "alejandro.miles@rich.de", "103",
-                                    new AddressEntity(
-                                            "Paderborner Strasse 87",
-                                            "86480",
-                                            "Aletshausen",
-                                            "Bayern",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Rick", "Stanley",
+                                    "stanley-rick" + email, telephone++,
+                                    new AddressEntity("Paderborner Strasse 87", city),
                                     LocalDate.of(2011, 5, 12),
-                                    Occupation.HUMAN_RESOURCES, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/2.jpg",
+                                    Occupation.IT_SECURITY, Role.USER,
+                                    portraitLink + "men/2.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123460", "Cora", "Tesi",
-                                    "cora.tesi@rich.de", "104",
-                                    new AddressEntity(
-                                            "Sonnenallee 55",
-                                            "86034",
-                                            "Augsburg",
-                                            "Bayern",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Cora", "Tesi",
+                                    "cora.tesi" + email, telephone++,
+                                    new AddressEntity("Sonnenallee 55", city2),
                                     LocalDate.of(1969, 7, 8),
                                     Occupation.HUMAN_RESOURCES, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/3.jpg",
+                                    portraitLink + "women/3.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123461", "Marguerite", "Ishii",
-                                    "marguerite.ishii@rich.de", "105",
-                                    new AddressEntity(
-                                            "Fugger Strasse 24",
-                                            "14407",
-                                            "Potsdam",
-                                            "Brandenburg",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Marguerite", "Ishii",
+                                    "marguerite.ishii" + email, telephone++,
+                                    new AddressEntity("Fugger Strasse 24", city3),
                                     LocalDate.of(1935, 4, 8),
                                     Occupation.HUMAN_RESOURCES, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/4.jpg",
+                                    portraitLink + "women/4.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123462", "Mildred", "Jacobs",
-                                    "mildred.jacobs@rich.de", "106",
-                                    new AddressEntity(
-                                            "Kantstraße 79",
-                                            "08203",
-                                            "Auerbach",
-                                            "Sachsen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Jochen", "Günther",
+                                    "mildred.jacobs" + email, telephone++,
+                                    new AddressEntity("Kantstraße 79", city),
                                     LocalDate.of(1964, 8, 11),
                                     Occupation.HUMAN_RESOURCES, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/5.jpg",
+                                    portraitLink + "men/50.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123463", "Gene", "Goodman",
-                                    "gene.goodman@rich.de", "107",
-                                    new AddressEntity(
-                                            "Rhinstrasse 110",
-                                            "80719",
-                                            "München",
-                                            "Bayern",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Gene", "Goodman",
+                                    "gene.goodman" + email, telephone++,
+                                    new AddressEntity("Rhinstrasse 110", city2),
                                     LocalDate.of(2000, 9, 19),
                                     Occupation.DEVELOPER, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/3.jpg",
+                                    portraitLink + "men/3.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123464", "Lettie", "Bennett",
-                                    "lettie.bennett@rich.de", "108",
-                                    new AddressEntity(
-                                            "Eschenweg 69",
-                                            "07717",
-                                            "Jena",
-                                            "Thüringen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Lettie", "Bennett",
+                                    "lettie.bennett" + email, telephone++,
+                                    new AddressEntity("Eschenweg 69", city3),
                                     LocalDate.of(1956, 4, 30),
                                     Occupation.DEVELOPER, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/6.jpg",
+                                    portraitLink + "women/6.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123465", "Mabel", "Leach",
-                                    "mabel.leach@rich.de", "109",
-                                    new AddressEntity(
-                                            "Kantstraße 85",
-                                            "09204",
-                                            "Limbach-Oberfrohna",
-                                            "Sachsen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Mabel", "Leach",
+                                    "mabel.leach" + email, telephone++,
+                                    new AddressEntity("Kantstraße 85", city),
                                     LocalDate.of(1990, 1, 8),
                                     Occupation.DEVELOPER, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/7.jpg",
+                                    portraitLink + "women/7.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123466", "Jordan", "Miccinesi",
-                                    "jordan.miccinesi@rich.de", "110",
-                                    new AddressEntity(
-                                            "Augsburger Straße 110",
-                                            "58513",
-                                            "Lüdenscheid",
-                                            "Nordrhein-Westfalen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Jordan", "Miccinesi",
+                                    "jordan.miccinesi" + email, telephone++,
+                                    new AddressEntity("Augsburger Straße 110", city2),
                                     LocalDate.of(1979, 12, 12),
                                     Occupation.DEVELOPER, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/4.jpg",
+                                    portraitLink + "men/4.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123467", "Mark", "Parkes",
-                                    "mark.parkes@rich.de", "111",
-                                    new AddressEntity(
-                                            "Flughafenstrasse 22",
-                                            "92714",
-                                            "Pleystein",
-                                            "Bayern",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Mark", "Parkes",
+                                    "mark.parkes" + email, telephone++,
+                                    new AddressEntity("Flughafenstrasse 22", city3),
                                     LocalDate.of(1998, 3, 10),
                                     Occupation.DEVELOPER, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/5.jpg",
+                                    portraitLink + "men/5.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123468", "Rose", "Gray",
-                                    "rose.gray@rich.de", "112",
-                                    new AddressEntity(
-                                            "Chausseestr. 28",
-                                            "25408",
-                                            "Pinneberg",
-                                            "Schleswig-Holstein",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Rose", "Gray",
+                                    "rose.gray" + email, telephone++,
+                                    new AddressEntity("Chausseestr. 28", city),
                                     LocalDate.of(1980, 4, 8),
                                     Occupation.SERVICE_DESK, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/8.jpg",
+                                    portraitLink + "women/8.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123469", "Garrett", "Stokes",
-                                    "garrett.stokes@rich.de", "113",
-                                    new AddressEntity(
-                                            "Rudower Strasse 73",
-                                            "54597",
-                                            "Rommersheim",
-                                            "Rheinland-Pfalz",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Garrett", "Stokes",
+                                    "garrett.stokes" + email, telephone++,
+                                    new AddressEntity("Rudower Strasse 73", city2),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.DEVELOPER, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/6.jpg",
+                                    portraitLink + "men/6.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123470", "Bob", "Matthieu",
-                                    "bob.matthieu@rich.de", "114",
-                                    new AddressEntity(
-                                            "Brandenburgische Str 83",
-                                            "55568",
-                                            "Abtweiler",
-                                            "Rheinland-Pfalz",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Bob", "Matthieu",
+                                    "bob.matthieu" + email, telephone++,
+                                    new AddressEntity("Brandenburgische Str 83", city3),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.MANAGEMENT, Role.ADMIN,
-                                    "https://randomuser.me/api/portraits/men/7.jpg",
+                                    portraitLink + "men/7.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123471", "Jean", "Rhodes",
-                                    "jean.rhodes@rich.de", "115",
-                                    new AddressEntity(
-                                            "Ellmenreichstrasse 124",
-                                            "91364",
-                                            "Unterleinleiter",
-                                            "Bayern",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Jean", "Rhodes",
+                                    "jean.rhodes" + email, telephone++,
+                                    new AddressEntity("Ellmenreichstrasse 124", city),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.MANAGEMENT, Role.ADMIN,
-                                    "https://randomuser.me/api/portraits/men/8.jpg",
+                                    portraitLink + "men/8.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123472", "Jack", "Romoli",
-                                    "jack.romoli@rich.de", "116",
-                                    new AddressEntity(
-                                            "Charlottenstrasse 104",
-                                            "01261",
-                                            "Dresden",
-                                            "Sachsen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Jack", "Romoli",
+                                    "jack.romoli" + email, telephone++,
+                                    new AddressEntity("Charlottenstrasse 104", city2),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.MANAGEMENT, Role.ADMIN,
-                                    "https://randomuser.me/api/portraits/men/9.jpg",
+                                    portraitLink + "men/9.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123473", "Pearl", "Holden",
-                                    "pearl.holden@rich.de", "117",
-                                    new AddressEntity(
-                                            "Hochstrasse 81",
-                                            "25818",
-                                            "Bredstedt",
-                                            "Schleswig-Holstein",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Pearl", "Holden",
+                                    "pearl.holden" + email, telephone++,
+                                    new AddressEntity("Hochstrasse 81", city3),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.SALES, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/9.jpg",
+                                    portraitLink + "women/9.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123474", "Belle", "Montero",
-                                    "belle.montero@rich.de", "118",
-                                    new AddressEntity(
-                                            "Augsburger Strasse 92",
-                                            "56767",
-                                            "Kolverath",
-                                            "Rheinland-Pfalz",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Belle", "Montero",
+                                    "belle.montero" + email, telephone++,
+                                    new AddressEntity("Augsburger Strasse 92", city),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.SALES, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/10.jpg",
+                                    portraitLink + "women/10.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123475", "Olive", "Molina",
-                                    "olive.molina@rich.de", "119",
-                                    new AddressEntity(
-                                            "Rohrdamm 72",
-                                            "31093",
-                                            "Hoyershausen",
-                                            "Niedersachsen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Olive", "Molina",
+                                    "olive.molina" + email, telephone++,
+                                    new AddressEntity("Rohrdamm 72", city),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.SALES, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/11.jpg",
+                                    portraitLink + "women/11.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123476", "Minerva", "Todd",
-                                    "minerva.todd@rich.de", "120",
-                                    new AddressEntity(
-                                            "Joachimstaler Str. 36",
-                                            "55496",
-                                            "Argenthal",
-                                            "Rheinland-Pfalz",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Minerva", "Todd",
+                                    "minerva.todd" + email, telephone++,
+                                    new AddressEntity("Joachimstaler Str. 36", city),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.SALES, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/12.jpg",
+                                    portraitLink + "women/12.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123477", "Bobby", "Pearson",
-                                    "bobby.pearson@rich.de", "121",
-                                    new AddressEntity(
-                                            "Am Borsigturm 85",
-                                            "41541",
-                                            "Stürzelberg",
-                                            "Nordrhein-Westfalen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Bobby", "Pearson",
+                                    "bobby.pearson" + email, telephone++,
+                                    new AddressEntity("Am Borsigturm 85", city),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.SALES, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/10.jpg",
+                                    portraitLink + "men/10.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123478", "Larry", "Ciappi",
-                                    "larry.ciappi@rich.de", "122",
-                                    new AddressEntity(
-                                            "Langenhorner Chaussee 66",
-                                            "83313",
-                                            "Grub",
-                                            "Bayern",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Larry", "Ciappi",
+                                    "larry.ciappi" + email, telephone++,
+                                    new AddressEntity("Langenhorner Chaussee 66", city),
                                     LocalDate.of(1952, 4, 8),
                                     Occupation.SALES, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/11.jpg",
+                                    portraitLink + "men/11.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123479", "Ronnie", "Salucci",
-                                    "ronnie.salucci@rich.de", "123",
-                                    new AddressEntity(
-                                            "Scharnweberstrasse 58",
-                                            "65817",
-                                            "Eppstein",
-                                            "Hessen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Ronnie", "Salucci",
+                                    "ronnie.salucci" + email, telephone++,
+                                    new AddressEntity("Scharnweberstrasse 58", city2),
                                     LocalDate.of(1979, 4, 3),
                                     Occupation.SERVICE_DESK, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/12.jpg",
+                                    portraitLink + "men/12.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123480", "Walter", "Grossi",
-                                    "walter.grossi@rich.de", "124",
-                                    new AddressEntity(
-                                            "Genterstrasse 85",
-                                            "24032",
-                                            "Kiel",
-                                            "Schleswig-Holstein",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Walter", "Grossi",
+                                    "walter.grossi" + email, telephone++,
+                                    new AddressEntity("Genterstrasse 85", city3),
                                     LocalDate.of(1979, 5, 21),
                                     Occupation.SERVICE_DESK, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/13.jpg",
+                                    portraitLink + "men/13.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123481", "Frances", "Koopmans",
-                                    "frances.koopmans@rich.de", "125",
-                                    new AddressEntity(
-                                            "Rohrdamm 40",
-                                            "29693",
-                                            "Hademstorf",
-                                            "Niedersachsen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Frances", "Koopmans",
+                                    "frances.koopmans" + email, telephone++,
+                                    new AddressEntity("Rohrdamm 40", city2),
                                     LocalDate.of(1979, 7, 13),
                                     Occupation.SERVICE_DESK, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/14.jpg",
+                                    portraitLink + "men/14.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123482", "Frances", "Fujimoto",
-                                    "frances.fujimoto@rich.de", "126",
-                                    new AddressEntity(
-                                            "Alt Reinickendorf 71",
-                                            "86672",
-                                            "Thierhaupten",
-                                            "Bayern",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Frances", "Fujimoto",
+                                    "frances.fujimoto" + email, telephone++,
+                                    new AddressEntity("Alt Reinickendorf 71", city),
                                     LocalDate.of(1979, 12, 16),
                                     Occupation.SERVICE_DESK, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/15.jpg",
+                                    portraitLink + "men/15.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123483", "Olivia", "Vidal",
-                                    "olivia.vidal@rich.de", "127",
-                                    new AddressEntity(
-                                            "Friedrichstrasse 127",
-                                            "40213",
-                                            "Karlstadt",
-                                            "Nordrhein-Westfalen",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Olivia", "Vidal",
+                                    "olivia.vidal" + email, telephone++,
+                                    new AddressEntity("Friedrichstrasse 127", city),
                                     LocalDate.of(1979, 3, 26),
                                     Occupation.SERVICE_DESK, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/13.jpg",
+                                    portraitLink + "women/13.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123484", "Edna", "Henry",
-                                    "edna.henry@rich.de", "128",
-                                    new AddressEntity(
-                                            "Hollander Strasse 89",
-                                            "65623",
-                                            "Netzbach",
-                                            "Rheinland-Pfalz",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Edna", "Henry",
+                                    "edna.henry" + email, telephone++,
+                                    new AddressEntity("Hollander Strasse 89", city2),
                                     LocalDate.of(1944, 7, 2),
                                     Occupation.MARKETING, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/14.jpg",
+                                    portraitLink + "women/14.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123485", "Lydia", "Brun",
-                                    "lydia.brun@rich.de", "129",
-                                    new AddressEntity(
-                                            "Esplanade 46",
-                                            "85619",
-                                            "Feldkirchen",
-                                            "Bayern",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Lydia", "Brun",
+                                    "lydia.brun" + email, telephone++,
+                                    new AddressEntity("Esplanade 46", city3),
                                     LocalDate.of(1988, 3, 23),
                                     Occupation.MARKETING, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/15.jpg",
+                                    portraitLink + "women/15.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123486", "Jay", "Blake",
-                                    "jay.blake@rich.de", "130",
-                                    new AddressEntity(
-                                            "Fontenay 55",
-                                            "95620",
-                                            "Wunsiedel",
-                                            "Bayern",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber++, "Jay", "Blake",
+                                    "jay.blake" + email, telephone++,
+                                    new AddressEntity("Fontenay 55", city),
                                     LocalDate.of(2000, 9, 4),
                                     Occupation.MARKETING, Role.USER,
-                                    "https://randomuser.me/api/portraits/men/16.jpg",
+                                    portraitLink + "men/16.jpg",
                                     securityController.getHashedPassword("test")),
                             new EmployeeEntity(
-                                    "123487", "Isabel", "Serafini",
-                                    "isabel.serafini@rich.de", "131",
-                                    new AddressEntity(
-                                            "Kastanienallee 119",
-                                            "24590",
-                                            "Hohenwestedt",
-                                            "Schleswig-Holstein",
-                                            "Deutschland"
-                                    ),
+                                    personnelNumber, "Isabel", "Serafini",
+                                    "isabel.serafini" + email, telephone,
+                                    new AddressEntity("Kastanienallee 119", city2),
                                     LocalDate.of(1999, 1, 17),
                                     Occupation.MARKETING, Role.USER,
-                                    "https://randomuser.me/api/portraits/women/16.jpg",
+                                    portraitLink + "women/16.jpg",
                                     securityController.getHashedPassword("test"))
                     ).collect(Collectors.toList())
             );
@@ -509,6 +327,10 @@ public class DataInitializer {
 
     private void createInitialClientData() {
         if (clientRepository.count() == 0) {
+            City city = new City("Frankfurt am Main", "60313", "Hessen", "Deutschland");
+            City city2 = new City("Bad Vilbel", "61118", "Hessen", "Deutschland");
+            City city3 = new City("Bad Homburg", "61348", "Hessen", "Deutschland");
+
             clientRepository.saveAll(
                     Stream.of(
                             new ClientEntity(
@@ -516,260 +338,140 @@ public class DataInitializer {
                                     "Katrin W Schulz",
                                     "schulz@ruecker.de",
                                     "08442 54 65869",
-                                    new AddressEntity(
-                                            "Rankestraße 28",
-                                            "85280",
-                                            "Wolnzach",
-                                            "Bayern",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Rankestraße 28", city)
                             ),
                             new ClientEntity(
                                     "Treutel, Hirthe and Ortiz",
                                     "Uwe J Schuster",
                                     "schuster@treutel.de",
                                     "06340 71 37226",
-                                    new AddressEntity(
-                                            "Brandenburgische Strasse 78",
-                                            "76872",
-                                            "Freckenfeld",
-                                            "Rheinland-Pfalz",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Brandenburgische Strasse 78", city2)
                             ),
                             new ClientEntity(
                                     "Heller - Schuster",
                                     "Klaudia N Lang",
                                     "lang@heller-schuster.de",
                                     "04353 19 63106",
-                                    new AddressEntity(
-                                            "Schönwalder Allee 112",
-                                            "24361",
-                                            "Damendorf",
-                                            "Schleswig-Holstein",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Schönwalder Allee 112", city3)
                             ),
                             new ClientEntity(
                                     "Dach, Prosacco and Nolan",
                                     "Michael K Fischer",
                                     "fischer@dach.de",
                                     "03631 32 60420",
-                                    new AddressEntity(
-                                            "Heinrich Heine Platz 127",
-                                            "86574",
-                                            "Petersdorf",
-                                            "Bayern",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Heinrich Heine Platz 127", city)
                             ),
                             new ClientEntity(
                                     "Jacobs, Olson and Baumbach",
                                     "Felix A Lehrer",
                                     "lehrer@jacobs.de",
                                     "033232 15972",
-                                    new AddressEntity(
-                                            "Schmarjestrasse 114",
-                                            "14652",
-                                            "Brieselang",
-                                            "Brandenburg",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Schmarjestrasse 114", city)
                             ),
                             new ClientEntity(
                                     "Champlin - Crona",
                                     "Leonie P Blau",
                                     "blau@champlon-crona.de",
                                     "09632 55 84754",
-                                    new AddressEntity(
-                                            "Flughafenstrasse 71",
-                                            "17111",
-                                            "Aalbude",
-                                            "Mecklenburg-Vorpommern",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Flughafenstrasse 71", city2)
                             ),
                             new ClientEntity(
                                     "Shanahan Inc",
                                     "Mathias K Shuster",
                                     "shuster@shanahan.de",
                                     "04107 30 86464",
-                                    new AddressEntity(
-                                            "Inge Beisheim Platz 120",
-                                            "22962",
-                                            "Siek",
-                                            "Schleswig-Holstein",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Inge Beisheim Platz 120", city3)
                             ),
                             new ClientEntity(
                                     "Wolf, Armstrong and Harris",
                                     "Daniel S Drescher",
                                     "drescher@wolf.de",
                                     "034443 92100",
-                                    new AddressEntity(
-                                            "Hoheluftchaussee 107",
-                                            "06680",
-                                            "Teuchern",
-                                            "Sachsen-Anhalt",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Hoheluftchaussee 107", city)
                             ),
                             new ClientEntity(
                                     "Donnelly - Kovacek",
                                     "Tobias M Pfeiffer",
                                     "pfeiffer@donnelly.de",
                                     "09861 59 66825",
-                                    new AddressEntity(
-                                            "Heiligengeistbrücke 73",
-                                            "91536",
-                                            "Rothenburg",
-                                            "Bayern",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Heiligengeistbrücke 73", city)
                             ),
                             new ClientEntity(
                                     "Nader Group",
                                     "Sandra T Schmidt",
                                     "schmidt@nadergroup.de",
                                     "03641 49 20151",
-                                    new AddressEntity(
-                                            "Eschenweg 64",
-                                            "07707",
-                                            "Jena",
-                                            "Thüringen",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Eschenweg 64", city)
                             ),
                             new ClientEntity(
                                     "Schinner and Sons",
                                     "Christine S Gaertner",
                                     "gaertner@schinner.de",
                                     "06074 29 80824",
-                                    new AddressEntity(
-                                            "Konstanzer Strasse 56",
-                                            "63303",
-                                            "Dreieich",
-                                            "Hessen",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Konstanzer Strasse 56", city2)
                             ),
                             new ClientEntity(
                                     "Bergstrom, Larson and Skiles",
                                     "Kerstin S Probst",
                                     "probst@bergstrom.de",
                                     "0365 39 68582",
-                                    new AddressEntity(
-                                            "Gotthardstrasse 16",
-                                            "07515",
-                                            "Gera",
-                                            "Thüringen",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Gotthardstrasse 16", city3)
                             ),
                             new ClientEntity(
                                     "Borer, Reichert and Schmeler",
                                     "Heike R Nadel",
                                     "nadel@borer.de",
                                     "05221 96 45894",
-                                    new AddressEntity(
-                                            "Rohrdamm 78",
-                                            "32052",
-                                            "Innenstadt",
-                                            "Nordrhein-Westfalen",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Rohrdamm 78", city)
                             ),
                             new ClientEntity(
                                     "Labadie Inc",
                                     "Jana T Kaufmann",
                                     "kaufmann@labadie.de",
                                     "04533 96 51908",
-                                    new AddressEntity(
-                                            "Hans-Grade-Allee 41",
-                                            "23854",
-                                            "Reinfeld",
-                                            "Schleswig-Holstein",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Hans-Grade-Allee 41", city)
                             ),
                             new ClientEntity(
                                     "Hackett, Cormier and Nader",
                                     "Michael A Frei",
                                     "frei@hackett.de",
                                     "02682 99 31040",
-                                    new AddressEntity(
-                                            "Knesebeckstrasse 117",
-                                            "03141",
-                                            "Forst",
-                                            "Brandenburg",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Knesebeckstrasse 117", city2)
                             ),
                             new ClientEntity(
                                     "Kirlin - Gleason",
                                     "Tom A Fleischer",
                                     "fleischer@kirlin-gleason.de",
                                     "09303 14 26465",
-                                    new AddressEntity(
-                                            "Billwerder Neuer Deich 76",
-                                            "97235",
-                                            "Randersacker",
-                                            "Bayern",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Billwerder Neuer Deich 76", city3)
                             ),
                             new ClientEntity(
                                     "Weber, Heller and Bauch",
                                     "Sebastian G Maurer",
                                     "maurer@weber.de",
                                     "02691 82 12505",
-                                    new AddressEntity(
-                                            "Augsburger Strasse 93",
-                                            "53534",
-                                            "Wirft",
-                                            "Rheinland-Pfalz",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Augsburger Strasse 93", city)
                             ),
                             new ClientEntity(
                                     "Hessel, Hayes and Witting",
                                     "Dieter A Reinhard",
                                     "reinhard@hessel.de",
                                     "07248 80 76559",
-                                    new AddressEntity(
-                                            "Sömmeringstr. 21",
-                                            "76359",
-                                            "Marxzell",
-                                            "Baden-Württemberg",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Sömmeringstr. 21", city)
                             ),
                             new ClientEntity(
                                     "Herman LLC",
                                     "Lisa L Rothschild",
                                     "rothschild@hemanllc.de",
                                     "02688 63 41765",
-                                    new AddressEntity(
-                                            "Knesebeckstrasse 52",
-                                            "57627",
-                                            "Marzhausen",
-                                            "Rheinland-Pfalz",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Knesebeckstrasse 52", city)
                             ),
                             new ClientEntity(
                                     "Runolfsdottir - Homenick",
                                     "Philipp A Duerr",
                                     "duerr@runolfsdottor.de",
                                     "09621 72 42107",
-                                    new AddressEntity(
-                                            "Flughafenstrasse 46",
-                                            "92256",
-                                            "Hahnbach",
-                                            "Bayern",
-                                            "Deutschland"
-                                    )
+                                    new AddressEntity("Flughafenstrasse 46", city2)
                             )
                     ).collect(Collectors.toList())
             );
@@ -787,7 +489,7 @@ public class DataInitializer {
                     relationRepository.save(
                             new EmployeeClientRelationEntity(
                                     employeeEntity,
-                                    clientEntities.get(rnd.nextInt(clientEntities.size()-1)),
+                                    clientEntities.get(rnd.nextInt(clientEntities.size() - 1)),
                                     LocalDate.of(rnd.nextInt(20) + 1980, rnd.nextInt(11) + 1, 1)
                             )
                     );
@@ -838,7 +540,7 @@ public class DataInitializer {
             for (String name : names) {
                 ProjectEntity projectEntity = new ProjectEntity(
                         name,
-                        descriptions[rnd.nextInt(descriptions.length-1)],
+                        descriptions[rnd.nextInt(descriptions.length - 1)],
                         rnd.nextInt(1_000_000) + 10000,
                         LocalDate.of(rnd.nextInt(20) + 1980, rnd.nextInt(11) + 1, 1),
                         ProjectState.values()[rnd.nextInt(ProjectState.values().length)],

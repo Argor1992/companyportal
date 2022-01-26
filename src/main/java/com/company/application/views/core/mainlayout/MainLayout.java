@@ -1,8 +1,9 @@
 package com.company.application.views.core.mainlayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.company.application.views.clientlist.ClientListView;
+import com.company.application.views.employee.EmployeeView;
+import com.company.application.views.employeelist.EmployeeListView;
+import com.company.application.views.projectdocuments.ProjectDocumentsView;
 import com.company.application.views.projectlist.ProjectListView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
@@ -13,15 +14,12 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
-import com.company.application.views.employee.EmployeeView;
-import com.company.application.views.employeelist.EmployeeListView;
-import com.company.application.views.projectdocuments.ProjectDocumentsView;
-import com.company.application.views.clientlist.ClientListView;
-import com.company.application.views.about.AboutView;
+import com.vaadin.flow.router.RouterLink;
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -117,8 +115,6 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo("Projektübersicht", "la la-tasks", ProjectListView.class), //
 
                 new MenuItemInfo("Projektunterlagen", "la la-edit", ProjectDocumentsView.class), //
-
-                new MenuItemInfo("Über uns", "la la-file", AboutView.class), //
 
         };
         List<RouterLink> links = new ArrayList<>();

@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <vaadin.version>21.0.4</vaadin.version>
     </properties>
 
@@ -118,6 +118,19 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-core</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>forms_rt</artifactId>
+            <version>7.0.3</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.vaadin.olli</groupId>
